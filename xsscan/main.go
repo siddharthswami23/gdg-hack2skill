@@ -22,6 +22,7 @@ type Config struct {
 	StopOnHit     bool
 	ShowAll       bool
 	CustomPayload string
+	PayloadFile   string
 }
 
 func main() {
@@ -60,6 +61,21 @@ func main() {
 	if config.CustomPayload != "" {
 		payloads = []string{config.CustomPayload}
 		fmt.Printf("[*] Using custom payload only: %s\n", config.CustomPayload)
+	} else if config.PayloadFile != "" {
+		// Load payloads from custom file
+		var err error
+		payloads, err = loadPayloadsFromFile(config.PayloadFile)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error loading payloads from file: %v\n", err)
+			os.Exit(1)
+		}
+
+		if len(payloads) == 0 {
+			fmt.Fprintf(os.Stderr, "Error: Payload file is empty\n")
+			os.Exit(1)
+		}
+
+		fmt.Printf("[*] Loaded payloads from custom file: %s\n", config.PayloadFile)
 	} else {
 		// Load built-in payloads from file
 		var err error
@@ -102,6 +118,7 @@ func parseArgs() (*Config, error) {
 	stopOnHit := flag.Bool("stop-on-hit", false, "Stop testing a parameter after first RAW reflection")
 	showAll := flag.Bool("show", false, "Show output for each payload tested (default: only triggered payloads)")
 	customPayload := flag.String("custom-payload", "", "Use ONLY this custom payload (ignores built-in payloads)")
+	payloadFile := flag.String("payload-file", "", "Path to custom payload file (.txt only)")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -120,7 +137,9 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --show\n")
 		fmt.Fprintf(os.Stderr, "        Show output for each payload tested (default: only triggered)\n")
 		fmt.Fprintf(os.Stderr, "  --custom-payload string\n")
-		fmt.Fprintf(os.Stderr, "        Use ONLY this custom payload (ignores built-in payloads)\n\n")
+		fmt.Fprintf(os.Stderr, "        Use ONLY this custom payload (ignores built-in payloads)\n")
+		fmt.Fprintf(os.Stderr, "  --payload-file string\n")
+		fmt.Fprintf(os.Stderr, "        Path to custom payload file (.txt only, shows only triggered)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
 		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n\n")
 	}
@@ -142,6 +161,12 @@ func parseArgs() (*Config, error) {
 	config.StopOnHit = *stopOnHit
 	config.ShowAll = *showAll
 	config.CustomPayload = *customPayload
+	config.PayloadFile = *payloadFile
+
+	// Validate that only one payload source is specified
+	if config.CustomPayload != "" && config.PayloadFile != "" {
+		return nil, fmt.Errorf("cannot use both --custom-payload and --payload-file together")
+	}
 
 	// Parse parameters
 	paramList := strings.Split(*params, ",")
@@ -180,6 +205,41 @@ func loadPayloads() ([]string, error) {
 
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("error reading payloads file: %w", err)
+	}
+
+	return payloads, nil
+}
+
+// loadPayloadsFromFile loads XSS payloads from a custom user-provided file
+func loadPayloadsFromFile(filePath string) ([]string, error) {
+	// Validate file extension
+	if !strings.HasSuffix(strings.ToLower(filePath), ".txt") {
+		return nil, fmt.Errorf("only .txt files are supported")
+	}
+
+	// Try to open the file
+	file, err := os.Open(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open payload file: %w", err)
+	}
+	defer file.Close()
+
+	var payloads []string
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+
+		// Skip empty lines and comments
+		if line == "" || strings.HasPrefix(line, "#") || strings.HasPrefix(line, "//") {
+			continue
+		}
+
+		payloads = append(payloads, line)
+	}
+
+	if err := scanner.Err(); err != nil {
+		return nil, fmt.Errorf("error reading payload file: %w", err)
 	}
 
 	return payloads, nil

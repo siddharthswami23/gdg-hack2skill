@@ -13,6 +13,7 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 - ⚡ Stop-on-Hit Mode
 - 👁️ Show All Payloads Mode
 - 🎨 Custom Payload Support
+- 📁 Custom Payload File Support
 
 ## Installation
 
@@ -47,6 +48,7 @@ go build -o xsscan
 - `--stop-on-hit`: Stop after first RAW reflection
 - `--show`: Show output for each payload tested (default: only triggered)
 - `--custom-payload`: Use ONLY this custom payload (ignores built-in payloads)
+- `--payload-file`: Path to custom payload file (.txt only, shows only triggered)
 
 ### Examples
 
@@ -78,6 +80,11 @@ go build -o xsscan
 #### Test with custom payload
 ```bash
 ./xsscan --url https://example.com/search --params q --custom-payload "<script>alert('custom')</script>"
+```
+
+#### Test with custom payload file
+```bash
+./xsscan --url https://example.com/search --params q --payload-file /path/to/custom_payloads.txt
 ```
 
 #### Combine multiple options
