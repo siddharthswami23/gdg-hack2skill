@@ -46,7 +46,7 @@ go build -o xsscan
 - `--method`: HTTP method (default: GET)
 - `--stop-on-hit`: Stop after first RAW reflection
 - `--show`: Show output for each payload tested (default: only triggered)
-- `--custom-payload`: Add a custom payload to test
+- `--custom-payload`: Use ONLY this custom payload (ignores built-in payloads)
 
 ### Examples
 

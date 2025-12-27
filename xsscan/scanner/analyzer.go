@@ -29,9 +29,9 @@ func (r ReflectionType) String() string {
 
 // AnalysisResult contains the result of analyzing a response
 type AnalysisResult struct {
-	Type           ReflectionType
-	Parameter      string
-	Payload        string
+	Type            ReflectionType
+	Parameter       string
+	Payload         string
 	ResponseSnippet string
 }
 
@@ -55,9 +55,16 @@ func AnalyzeResponse(responseBody, payload, parameter string) AnalysisResult {
 	}
 
 	// Check for exact payload (RAW_REFLECTION)
+	// Only consider it a reflection if the COMPLETE payload is found
+	// This prevents false positives from partial matches like "<script" existing naturally in HTML
 	if strings.Contains(responseBody, payload) {
-		result.Type = RawReflection
-		return result
+		// Additional verification: check if this is a real reflection
+		// by ensuring the payload is substantial enough (not just a single character or very short string)
+		// or verify it's not just part of the normal HTML structure
+		if len(payload) >= 3 || !isCommonHTMLFragment(payload) {
+			result.Type = RawReflection
+			return result
+		}
 	}
 
 	// Check for escaped payload (ESCAPED)
@@ -120,6 +127,44 @@ func containsEncodedPayload(responseBody, payload string) bool {
 		// Decimal encoding: &#60; for <
 		decEncoded := "&#" + string(rune(char)) + ";"
 		if strings.Contains(responseBody, decEncoded) {
+			return true
+		}
+	}
+	return false
+}
+
+// isCommonHTMLFragment checks if a string is a common HTML fragment that naturally appears in pages
+func isCommonHTMLFragment(s string) bool {
+	commonFragments := []string{
+		"<script", "</script>", "<script>",
+		"<style", "</style>", "<style>",
+		"<div", "</div>", "<div>",
+		"<span", "</span>", "<span>",
+		"<svg", "</svg>", "<svg>",
+		"<img", "</img>", "<img>",
+		"<a", "</a>", "<a>",
+		"<body", "</body>", "<body>",
+		"<html", "</html>", "<html>",
+		"<head", "</head>", "<head>",
+		"<link", "</link>", "<link>",
+		"<meta", "</meta>", "<meta>",
+		"<iframe", "</iframe>", "<iframe>",
+		"<form", "</form>", "<form>",
+		"<input", "</input>", "<input>",
+		"<button", "</button>", "<button>",
+		"<p", "</p>", "<p>",
+		"<h1", "</h1>", "<h1>",
+		"<h2", "</h2>", "<h2>",
+		"<h3", "</h3>", "<h3>",
+		"<ul", "</ul>", "<ul>",
+		"<li", "</li>", "<li>",
+		"<table", "</table>", "<table>",
+		"<tr", "</tr>", "<tr>",
+		"<td", "</td>", "<td>",
+	}
+
+	for _, fragment := range commonFragments {
+		if s == fragment {
 			return true
 		}
 	}

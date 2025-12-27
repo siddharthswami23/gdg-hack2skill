@@ -54,21 +54,25 @@ func main() {
 	}
 
 	// Load payloads
-	payloads, err := loadPayloads()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error loading payloads: %v\n", err)
-		os.Exit(1)
-	}
+	var payloads []string
 
-	if len(payloads) == 0 {
-		fmt.Fprintf(os.Stderr, "Error: No payloads loaded\n")
-		os.Exit(1)
-	}
-
-	// Add custom payload if provided
+	// If custom payload is provided, use ONLY that payload
 	if config.CustomPayload != "" {
-		payloads = append(payloads, config.CustomPayload)
-		fmt.Printf("[*] Custom payload added: %s\n", config.CustomPayload)
+		payloads = []string{config.CustomPayload}
+		fmt.Printf("[*] Using custom payload only: %s\n", config.CustomPayload)
+	} else {
+		// Load built-in payloads from file
+		var err error
+		payloads, err = loadPayloads()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error loading payloads: %v\n", err)
+			os.Exit(1)
+		}
+
+		if len(payloads) == 0 {
+			fmt.Fprintf(os.Stderr, "Error: No payloads loaded\n")
+			os.Exit(1)
+		}
 	}
 
 	// Print scan info
@@ -97,7 +101,7 @@ func parseArgs() (*Config, error) {
 	method := flag.String("method", DefaultMethod, "HTTP method (default: GET)")
 	stopOnHit := flag.Bool("stop-on-hit", false, "Stop testing a parameter after first RAW reflection")
 	showAll := flag.Bool("show", false, "Show output for each payload tested (default: only triggered payloads)")
-	customPayload := flag.String("custom-payload", "", "Add a custom payload to test")
+	customPayload := flag.String("custom-payload", "", "Use ONLY this custom payload (ignores built-in payloads)")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -116,7 +120,7 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --show\n")
 		fmt.Fprintf(os.Stderr, "        Show output for each payload tested (default: only triggered)\n")
 		fmt.Fprintf(os.Stderr, "  --custom-payload string\n")
-		fmt.Fprintf(os.Stderr, "        Add a custom payload to test\n\n")
+		fmt.Fprintf(os.Stderr, "        Use ONLY this custom payload (ignores built-in payloads)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
 		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n\n")
 	}
