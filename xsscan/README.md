@@ -11,6 +11,8 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 - 🚀 Multiple HTTP Methods
 - 🛡️ HTTP/HTTPS Support
 - ⚡ Stop-on-Hit Mode
+- 👁️ Show All Payloads Mode
+- 🎨 Custom Payload Support
 
 ## Installation
 
@@ -43,6 +45,8 @@ go build -o xsscan
 
 - `--method`: HTTP method (default: GET)
 - `--stop-on-hit`: Stop after first RAW reflection
+- `--show`: Show output for each payload tested (default: only triggered)
+- `--custom-payload`: Add a custom payload to test
 
 ### Examples
 
@@ -64,6 +68,21 @@ go build -o xsscan
 #### Stop on first hit
 ```bash
 ./xsscan --url https://example.com/search --params q --stop-on-hit
+```
+
+#### Show all payloads (including non-triggered)
+```bash
+./xsscan --url https://example.com/search --params q --show
+```
+
+#### Test with custom payload
+```bash
+./xsscan --url https://example.com/search --params q --custom-payload "<script>alert('custom')</script>"
+```
+
+#### Combine multiple options
+```bash
+./xsscan --url https://example.com/api/search --params query --method POST --custom-payload "<img src=x onerror=alert(document.domain)>" --show
 ```
 
 ## Output
@@ -157,9 +176,3 @@ Example payloads:
 ❌ URL encoding  
 ❌ Concurrent requests  
 ❌ Auto parameter discovery  
-
-## License
-
-MIT License - See LICENSE file.
-
-Use for authorized security testing only.

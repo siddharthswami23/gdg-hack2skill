@@ -16,10 +16,12 @@ const (
 
 // Config holds the application configuration from CLI arguments
 type Config struct {
-	URL        string
-	Params     []string
-	Method     string
-	StopOnHit  bool
+	URL           string
+	Params        []string
+	Method        string
+	StopOnHit     bool
+	ShowAll       bool
+	CustomPayload string
 }
 
 func main() {
@@ -63,12 +65,19 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Add custom payload if provided
+	if config.CustomPayload != "" {
+		payloads = append(payloads, config.CustomPayload)
+		fmt.Printf("[*] Custom payload added: %s\n", config.CustomPayload)
+	}
+
 	// Print scan info
 	fmt.Printf("\n[*] Target: %s\n", config.URL)
 	fmt.Printf("[*] Method: %s\n", config.Method)
 	fmt.Printf("[*] Parameters: %s\n", strings.Join(config.Params, ", "))
 	fmt.Printf("[*] Payloads loaded: %d\n", len(payloads))
-	fmt.Printf("[*] Stop on hit: %v\n\n", config.StopOnHit)
+	fmt.Printf("[*] Stop on hit: %v\n", config.StopOnHit)
+	fmt.Printf("[*] Show all: %v\n\n", config.ShowAll)
 
 	// Scan each parameter
 	for _, param := range config.Params {
@@ -87,6 +96,8 @@ func parseArgs() (*Config, error) {
 	params := flag.String("params", "", "Comma-separated parameter names (required)")
 	method := flag.String("method", DefaultMethod, "HTTP method (default: GET)")
 	stopOnHit := flag.Bool("stop-on-hit", false, "Stop testing a parameter after first RAW reflection")
+	showAll := flag.Bool("show", false, "Show output for each payload tested (default: only triggered payloads)")
+	customPayload := flag.String("custom-payload", "", "Add a custom payload to test")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -101,7 +112,11 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --method string\n")
 		fmt.Fprintf(os.Stderr, "        HTTP method (default: GET)\n")
 		fmt.Fprintf(os.Stderr, "  --stop-on-hit\n")
-		fmt.Fprintf(os.Stderr, "        Stop testing a parameter after first RAW reflection\n\n")
+		fmt.Fprintf(os.Stderr, "        Stop testing a parameter after first RAW reflection\n")
+		fmt.Fprintf(os.Stderr, "  --show\n")
+		fmt.Fprintf(os.Stderr, "        Show output for each payload tested (default: only triggered)\n")
+		fmt.Fprintf(os.Stderr, "  --custom-payload string\n")
+		fmt.Fprintf(os.Stderr, "        Add a custom payload to test\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
 		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n\n")
 	}
@@ -121,6 +136,8 @@ func parseArgs() (*Config, error) {
 	config.URL = *url
 	config.Method = strings.ToUpper(*method)
 	config.StopOnHit = *stopOnHit
+	config.ShowAll = *showAll
+	config.CustomPayload = *customPayload
 
 	// Parse parameters
 	paramList := strings.Split(*params, ",")
@@ -220,7 +237,13 @@ func scanParameter(config *Config, param string, payloads []string) {
 			fmt.Println()
 
 		case scanner.NoReflection:
-			// Don't print anything for no reflection (keeps output clean)
+			// Show all payloads if --show flag is enabled
+			if config.ShowAll {
+				fmt.Printf("[-] No reflection\n")
+				fmt.Printf("    Param: %s\n", param)
+				fmt.Printf("    Payload: %s\n", payload)
+				fmt.Println()
+			}
 		}
 	}
 
@@ -242,7 +265,7 @@ func printBanner() {
   / . \ ____) |___) | (_| (_| | | | |
  /_/ \_\_____/_____/ \___\__,_|_| |_|
                                       
- Reflected XSS Scanner v1.0
+ Reflected XSS Scanner
  ========================================
 `
 	fmt.Println(banner)
