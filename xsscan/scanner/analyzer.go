@@ -62,7 +62,13 @@ func AnalyzeResponse(responseBody, payload, parameter string) AnalysisResult {
 		// by ensuring the payload is substantial enough (not just a single character or very short string)
 		// or verify it's not just part of the normal HTML structure
 		if len(payload) >= 3 || !isCommonHTMLFragment(payload) {
-			result.Type = RawReflection
+			// Check if payload is in a dangerous/executable context
+			if isInDangerousContext(responseBody, payload) {
+				result.Type = RawReflection
+				return result
+			}
+			// If payload exists but in safe context, treat as escaped
+			result.Type = EscapedReflection
 			return result
 		}
 	}
@@ -169,4 +175,72 @@ func isCommonHTMLFragment(s string) bool {
 		}
 	}
 	return false
+}
+
+// isInDangerousContext checks if the payload appears in an executable context
+// Returns true if payload is likely to execute, false if in safe context
+func isInDangerousContext(responseBody, payload string) bool {
+	// Find the position of the payload in the response
+	index := strings.Index(responseBody, payload)
+	if index == -1 {
+		return false
+	}
+
+	// Extract context around the payload (500 chars before and after)
+	contextStart := index - 500
+	if contextStart < 0 {
+		contextStart = 0
+	}
+	contextEnd := index + len(payload) + 500
+	if contextEnd > len(responseBody) {
+		contextEnd = len(responseBody)
+	}
+	context := responseBody[contextStart:contextEnd]
+	contextLower := strings.ToLower(context)
+
+	// Check if payload is in SAFE (non-executable) contexts
+	safeContexts := []string{
+		"<!--",        // HTML comment
+		"<title>",     // Title tag (displays but doesn't execute)
+		"<textarea",   // Textarea (displays as text)
+		"<noscript>",  // NoScript tag
+		"<style",      // Style tag (CSS, not JS)
+		"<xmp>",       // XMP tag (deprecated, displays as text)
+		"<plaintext>", // Plaintext tag (displays as text)
+		"<listing>",   // Listing tag (displays as text)
+	}
+
+	// Check if payload is within any safe context
+	payloadPos := strings.Index(contextLower, strings.ToLower(payload))
+	for _, safeCtx := range safeContexts {
+		safeStart := strings.LastIndex(contextLower[:payloadPos], safeCtx)
+		if safeStart != -1 {
+			// Check if there's a closing tag after payload
+			closingTags := map[string]string{
+				"<!--":        "-->",
+				"<title>":     "</title>",
+				"<textarea":   "</textarea>",
+				"<noscript>":  "</noscript>",
+				"<style":      "</style>",
+				"<xmp>":       "</xmp>",
+				"<plaintext>": "",
+				"<listing>":   "</listing>",
+			}
+
+			closingTag := closingTags[safeCtx]
+			if closingTag == "" {
+				// Tags like <plaintext> don't have closing tags
+				return false
+			}
+
+			closingPos := strings.Index(contextLower[payloadPos:], closingTag)
+			if closingPos == -1 || closingPos > len(payload) {
+				// Payload is between opening and closing safe tags
+				return false
+			}
+		}
+	}
+
+	// If we reach here, payload is likely in a dangerous/executable context
+	return true
 }
