@@ -9,7 +9,6 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 - 🔄 Auto Retry on Network Errors
 - 📊 Smart Analysis (RAW/ESCAPED/NONE)
 - 🧠 Context-Aware Detection (Reduces False Positives)
-- 🌐 **Browser Verification with Selenium (NEW!)**
 - 🚀 Multiple HTTP Methods
 - 🛡️ HTTP/HTTPS Support
 - ⚡ Stop-on-Hit Mode
@@ -51,8 +50,6 @@ go build -o xsscan
 - `--show`: Show output for ALL payloads including escaped reflections and no reflections
 - `--custom-payload`: Use ONLY this custom payload (ignores built-in payloads)
 - `--payload-file`: Path to custom payload file (.txt only, shows only triggered)
-- `--browser-verify`: **Use real browser to verify XSS execution (requires ChromeDriver)**
-- `--headless`: Run browser in headless mode (default: true)
 
 ### Examples
 
@@ -89,17 +86,6 @@ go build -o xsscan
 #### Test with custom payload file
 ```bash
 ./xsscan --url https://example.com/search --params q --payload-file /path/to/custom_payloads.txt
-```
-
-#### Browser verification (100% accuracy)
-```bash
-# Start ChromeDriver first: chromedriver --port=9515
-./xsscan --url https://example.com/search --params q --browser-verify
-```
-
-#### Browser verification in visible mode
-```bash
-./xsscan --url https://example.com/search --params q --browser-verify --headless=false
 ```
 
 #### Combine multiple options
@@ -171,67 +157,6 @@ The tool now checks if payloads are in **executable contexts**:
 - SVG/IMG tags with events
 
 This significantly reduces false positives! See `CONTEXT_DETECTION.md` for details.
-
-## Browser Verification (NEW!)
-
-### What is Browser Verification?
-
-Instead of just checking if payloads exist in HTML, the tool can load pages in a **real Chrome browser** and detect if JavaScript actually executes!
-
-### Setup
-
-1. **Install Chrome and ChromeDriver**:
-   ```bash
-   sudo apt install google-chrome-stable chromium-chromedriver
-   ```
-
-2. **Start ChromeDriver**:
-   ```bash
-   chromedriver --port=9515
-   ```
-
-3. **Run with browser verification**:
-   ```bash
-   ./xsscan --url https://example.com/search --params q --browser-verify
-   ```
-
-### How It Works
-
-```
-Static Analysis (Default):
-✓ Fast, but may have false positives
-✓ Checks if payload exists in HTML
-✗ Can't confirm if JavaScript runs
-
-Browser Verification:
-✓ 100% accurate - only reports confirmed XSS
-✓ Loads page in real Chrome browser
-✓ Detects alert(), confirm(), prompt()
-✓ Detects all JavaScript execution
-✗ Slower (1-2 seconds per payload)
-```
-
-### Output Comparison
-
-**Without browser verification:**
-```
-[+] RAW XSS FOUND
-    Param: q
-    Payload: <script>alert(1)</script>
-```
-
-**With browser verification:**
-```
-[+] RAW XSS FOUND [✓ BROWSER VERIFIED]
-    Param: q
-    Payload: <script>alert(1)</script>
-
-[*] Summary for param 'q': 23 raw, 3 browser-verified, 145 escaped
-```
-
-Only the **3 browser-verified** payloads actually executed!
-
-See `BROWSER_SETUP.md` for complete setup and usage guide.
 
 ## Payload Management
 

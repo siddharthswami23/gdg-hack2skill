@@ -16,15 +16,13 @@ const (
 
 // Config holds the application configuration from CLI arguments
 type Config struct {
-	URL             string
-	Params          []string
-	Method          string
-	StopOnHit       bool
-	ShowAll         bool
-	CustomPayload   string
-	PayloadFile     string
-	BrowserVerify   bool
-	BrowserHeadless bool
+	URL           string
+	Params        []string
+	Method        string
+	StopOnHit     bool
+	ShowAll       bool
+	CustomPayload string
+	PayloadFile   string
 }
 
 func main() {
@@ -121,8 +119,6 @@ func parseArgs() (*Config, error) {
 	showAll := flag.Bool("show", false, "Show output for each payload tested (default: only triggered payloads)")
 	customPayload := flag.String("custom-payload", "", "Use ONLY this custom payload (ignores built-in payloads)")
 	payloadFile := flag.String("payload-file", "", "Path to custom payload file (.txt only)")
-	browserVerify := flag.Bool("browser-verify", false, "Use browser to verify XSS execution (requires ChromeDriver)")
-	browserHeadless := flag.Bool("headless", true, "Run browser in headless mode (default: true)")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -143,14 +139,9 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --custom-payload string\n")
 		fmt.Fprintf(os.Stderr, "        Use ONLY this custom payload (ignores built-in payloads)\n")
 		fmt.Fprintf(os.Stderr, "  --payload-file string\n")
-		fmt.Fprintf(os.Stderr, "        Path to custom payload file (.txt only, shows only triggered)\n")
-		fmt.Fprintf(os.Stderr, "  --browser-verify\n")
-		fmt.Fprintf(os.Stderr, "        Use browser to verify actual XSS execution (requires ChromeDriver)\n")
-		fmt.Fprintf(os.Stderr, "  --headless\n")
-		fmt.Fprintf(os.Stderr, "        Run browser in headless mode (default: true)\n\n")
+		fmt.Fprintf(os.Stderr, "        Path to custom payload file (.txt only, shows only triggered)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --browser-verify\n\n")
+		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n\n")
 	}
 
 	flag.Parse()
@@ -171,8 +162,6 @@ func parseArgs() (*Config, error) {
 	config.ShowAll = *showAll
 	config.CustomPayload = *customPayload
 	config.PayloadFile = *payloadFile
-	config.BrowserVerify = *browserVerify
-	config.BrowserHeadless = *browserHeadless
 
 	// Validate that only one payload source is specified
 	if config.CustomPayload != "" && config.PayloadFile != "" {
@@ -260,43 +249,8 @@ func loadPayloadsFromFile(filePath string) ([]string, error) {
 func scanParameter(config *Config, param string, payloads []string) {
 	fmt.Printf("[*] Testing param: %s\n", param)
 
-	// Initialize browser verifier if browser-verify mode is enabled
-	var browserVerifier *scanner.BrowserVerifier
-	if config.BrowserVerify {
-		// Check if ChromeDriver is running
-		if !scanner.IsChromeDriverRunning() {
-			fmt.Fprintf(os.Stderr, "[!] ChromeDriver not detected. Please start ChromeDriver:\n")
-			fmt.Fprintf(os.Stderr, "    chromedriver --port=9515\n\n")
-			fmt.Fprintf(os.Stderr, "Falling back to static analysis...\n\n")
-			config.BrowserVerify = false
-		} else {
-			browserConfig := scanner.BrowserConfig{
-				Headless: config.BrowserHeadless,
-			}
-			var err error
-			browserVerifier, err = scanner.NewBrowserVerifier(browserConfig)
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "[!] Failed to initialize browser: %v\n", err)
-				fmt.Fprintf(os.Stderr, "Falling back to static analysis...\n\n")
-				config.BrowserVerify = false
-			} else {
-				err = browserVerifier.Start()
-				if err != nil {
-					fmt.Fprintf(os.Stderr, "[!] Failed to start browser: %v\n", err)
-					fmt.Fprintf(os.Stderr, "Falling back to static analysis...\n\n")
-					config.BrowserVerify = false
-				} else {
-					defer browserVerifier.Close()
-					fmt.Printf("[*] Browser verification enabled (%s mode)\n",
-						map[bool]string{true: "headless", false: "visible"}[config.BrowserHeadless])
-				}
-			}
-		}
-	}
-
 	rawHitCount := 0
 	escapedHitCount := 0
-	browserVerifiedCount := 0
 
 	for _, payload := range payloads {
 		// Build URL with injected payload
@@ -328,39 +282,15 @@ func scanParameter(config *Config, param string, payloads []string) {
 		switch analysis.Type {
 		case scanner.RawReflection:
 			rawHitCount++
+			fmt.Printf("\n[+] RAW XSS FOUND\n")
+			fmt.Printf("    Param: %s\n", param)
+			fmt.Printf("    Payload: %s\n", payload)
+			fmt.Println()
 
-			// If browser verification is enabled, verify XSS actually executes
-			browserVerified := false
-			if config.BrowserVerify && browserVerifier != nil {
-				verified, err := browserVerifier.VerifyWithInjectedDetector(testURL)
-				if err == nil && verified {
-					browserVerified = true
-					browserVerifiedCount++
-				}
-			}
-
-			// Only print if browser verification passed OR if not using browser verification
-			if !config.BrowserVerify || browserVerified {
-				fmt.Printf("\n[+] RAW XSS FOUND")
-				if config.BrowserVerify {
-					fmt.Printf(" [✓ BROWSER VERIFIED]")
-				}
-				fmt.Printf("\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
-
-				// Stop testing this parameter if --stop-on-hit is enabled
-				if config.StopOnHit {
-					fmt.Printf("[*] Stopping tests for param '%s' (--stop-on-hit enabled)\n\n", param)
-					return
-				}
-			} else if config.ShowAll {
-				// Show as potential hit if browser verification failed but --show is on
-				fmt.Printf("\n[~] Potential XSS (browser verification failed)\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
+			// Stop testing this parameter if --stop-on-hit is enabled
+			if config.StopOnHit {
+				fmt.Printf("[*] Stopping tests for param '%s' (--stop-on-hit enabled)\n\n", param)
+				return
 			}
 
 		case scanner.EscapedReflection:
@@ -388,12 +318,7 @@ func scanParameter(config *Config, param string, payloads []string) {
 	if rawHitCount == 0 && escapedHitCount == 0 {
 		fmt.Printf("[-] No reflections found for param: %s\n\n", param)
 	} else {
-		if config.BrowserVerify {
-			fmt.Printf("[*] Summary for param '%s': %d raw, %d browser-verified, %d escaped\n\n",
-				param, rawHitCount, browserVerifiedCount, escapedHitCount)
-		} else {
-			fmt.Printf("[*] Summary for param '%s': %d raw, %d escaped\n\n", param, rawHitCount, escapedHitCount)
-		}
+		fmt.Printf("[*] Summary for param '%s': %d raw, %d escaped\n\n", param, rawHitCount, escapedHitCount)
 	}
 }
 
