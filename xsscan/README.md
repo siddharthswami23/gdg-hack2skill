@@ -9,6 +9,7 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 - 🔄 Auto Retry on Network Errors
 - 📊 Smart Analysis (RAW/ESCAPED/NONE)
 - 🧠 Context-Aware Detection (Reduces False Positives)
+- 🌐 **Browser Verification (Detects alert/confirm/prompt execution!)**
 - 🚀 Multiple HTTP Methods
 - 🛡️ HTTP/HTTPS Support
 - ⚡ Stop-on-Hit Mode
@@ -22,6 +23,19 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 
 - Ubuntu/Linux
 - Go 1.21+
+- **ChromeDriver** (optional, for browser verification)
+
+### Install ChromeDriver
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install chromium-chromedriver
+
+# Or download manually
+wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+# Download the appropriate version for your system
+```
 
 ### Build
 
@@ -50,6 +64,8 @@ go build -o xsscan
 - `--show`: Show output for ALL payloads including escaped reflections and no reflections
 - `--custom-payload`: Use ONLY this custom payload (ignores built-in payloads)
 - `--payload-file`: Path to custom payload file (.txt only, shows only triggered)
+- `--browser-verify`: **Verify XSS execution in headless browser (requires ChromeDriver)**
+- `--chrome-driver`: Path to ChromeDriver executable (default: chromedriver)
 
 ### Examples
 
@@ -88,6 +104,15 @@ go build -o xsscan
 ./xsscan --url https://example.com/search --params q --payload-file /path/to/custom_payloads.txt
 ```
 
+#### **Browser Verification (Verify Actual Execution!)**
+```bash
+# Verify XSS actually executes in headless browser
+./xsscan --url https://example.com/search --params q --browser-verify
+
+# With custom ChromeDriver path
+./xsscan --url https://example.com/search --params q --browser-verify --chrome-driver /usr/bin/chromedriver
+```
+
 #### Combine multiple options
 ```bash
 ./xsscan --url https://example.com/api/search --params query --method POST --custom-payload "<img src=x onerror=alert(document.domain)>" --show
@@ -101,6 +126,23 @@ go build -o xsscan
     Param: q
     Payload: <svg/onload=alert(1)>
 ```
+
+### **VERIFIED XSS (Browser Verification)**
+```
+[+++] VERIFIED XSS (Executed in Browser!)
+    Param: q
+    Payload: <svg/onload=alert(1)>
+    Event Type: alert()
+```
+✅ This means the alert box **actually popped up** in the headless browser!
+
+### RAW XSS (Not Verified)
+```
+[+] RAW XSS FOUND (Static Analysis - Not Verified in Browser)
+    Param: q
+    Payload: <script>alert(1)</script>
+```
+⚠️ Found by static analysis but didn't execute in browser (might be in safe context)
 
 ### With --show Flag
 Shows all results including escaped reflections and no reflections:
@@ -203,12 +245,12 @@ Example payloads:
 ✅ Supports HTTP/HTTPS  
 ✅ Raw payload injection  
 ✅ Sequential execution  
+✅ **Headless browser verification (detects actual alert/confirm/prompt execution!)**  
 
 ## What This Tool Does NOT Do
 
 ❌ DOM-based XSS  
 ❌ Stored XSS  
-❌ JavaScript execution  
 ❌ URL encoding  
 ❌ Concurrent requests  
 ❌ Auto parameter discovery  
