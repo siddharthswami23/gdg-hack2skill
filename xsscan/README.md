@@ -10,7 +10,6 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 - 📊 Smart Analysis (RAW/ESCAPED/NONE)
 - 🧠 Context-Aware Detection (Reduces False Positives)
 - 🌐 **Browser Verification (Detects alert/confirm/prompt execution!)**
-- 🚀 Multiple HTTP Methods
 - 🛡️ HTTP/HTTPS Support
 - ⚡ Stop-on-Hit Mode
 - 👁️ Show All Payloads Mode
@@ -66,6 +65,7 @@ go build -o xsscan
 - `--payload-file`: Path to custom payload file (.txt only, shows only triggered)
 - `--browser-verify`: **Verify XSS execution in headless browser (requires ChromeDriver)**
 - `--chrome-driver`: Path to ChromeDriver executable (default: chromedriver)
+- `--report`: **Generate analysis report**
 
 ### Examples
 
@@ -164,6 +164,46 @@ Shows all results including escaped reflections and no reflections:
 ### No Reflections
 ```
 [-] No reflections found for param: q
+```
+
+### **AI-Generated Report Output**
+When using `--report`, a detailed TXT report is generated:
+```
+================================================================================
+                         XSScan Security Analysis Report
+================================================================================
+
+Generated: 2025-12-31 15:30:00
+Target: https://example.com/search
+Scan Duration: 2m30s
+
+================================================================================
+
+EXECUTIVE SUMMARY
+-----------------
+The XSS vulnerability scan identified 3 potential vulnerabilities...
+
+RISK ASSESSMENT
+---------------
+Severity: HIGH
+...
+
+TECHNICAL ANALYSIS
+------------------
+[1] Parameter: search
+    Payload: <svg/onload=alert(1)>
+    Status: VERIFIED (Browser executed alert())
+...
+
+REMEDIATION RECOMMENDATIONS
+---------------------------
+1. Implement proper output encoding...
+2. Use Content Security Policy (CSP)...
+...
+
+================================================================================
+                              End of Report
+================================================================================
 ```
 
 ## How It Works

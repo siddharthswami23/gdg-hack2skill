@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"xsscan/scanner"
 )
@@ -25,6 +26,9 @@ type Config struct {
 	PayloadFile      string
 	BrowserVerify    bool
 	ChromeDriverPath string
+	GenerateReport   bool
+	ReportOutput     string
+	CSVOutput        string
 }
 
 func main() {
@@ -99,11 +103,64 @@ func main() {
 	fmt.Printf("[*] Parameters: %s\n", strings.Join(config.Params, ", "))
 	fmt.Printf("[*] Payloads loaded: %d\n", len(payloads))
 	fmt.Printf("[*] Stop on hit: %v\n", config.StopOnHit)
-	fmt.Printf("[*] Show all: %v\n\n", config.ShowAll)
+	fmt.Printf("[*] Show all: %v\n", config.ShowAll)
+	if config.GenerateReport {
+		fmt.Printf("[*] Report generation: enabled\n")
+		fmt.Printf("[*] TXT output: %s\n", config.ReportOutput)
+		fmt.Printf("[*] CSV output: %s\n", config.CSVOutput)
+	}
+	fmt.Println()
+
+	// Initialize scan summary for report generation
+	scanSummary := &scanner.ScanSummary{
+		TargetURL:            config.URL,
+		Method:               config.Method,
+		Parameters:           config.Params,
+		TotalPayloads:        len(payloads),
+		StartTime:            time.Now(),
+		BrowserVerifyEnabled: config.BrowserVerify,
+		Results:              []scanner.ScanResult{},
+	}
 
 	// Scan each parameter
 	for _, param := range config.Params {
-		scanParameter(config, param, payloads)
+		paramResults := scanParameter(config, param, payloads)
+		scanSummary.Results = append(scanSummary.Results, paramResults...)
+	}
+
+	// Update summary counts
+	scanSummary.EndTime = time.Now()
+	for _, result := range scanSummary.Results {
+		switch result.ReflectionType {
+		case scanner.RawReflection:
+			scanSummary.RawCount++
+			if result.BrowserVerified {
+				scanSummary.VerifiedCount++
+			}
+		case scanner.EscapedReflection:
+			scanSummary.EscapedCount++
+		}
+	}
+
+	// Generate report if requested
+	if config.GenerateReport {
+		fmt.Println("\n[*] Generating reports...")
+
+		// Save TXT report
+		err = scanner.SaveReport(scanSummary, config.ReportOutput)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "[!] Failed to save TXT report: %v\n", err)
+		} else {
+			fmt.Printf("[+] TXT Report saved to: %s\n", config.ReportOutput)
+		}
+
+		// Save CSV report
+		err = scanner.SaveCSVReport(scanSummary, config.CSVOutput)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "[!] Failed to save CSV report: %v\n", err)
+		} else {
+			fmt.Printf("[+] CSV Report saved to: %s\n", config.CSVOutput)
+		}
 	}
 
 	fmt.Println("\n[*] Scan completed")
@@ -123,6 +180,9 @@ func parseArgs() (*Config, error) {
 	payloadFile := flag.String("payload-file", "", "Path to custom payload file (.txt only)")
 	browserVerify := flag.Bool("browser-verify", false, "Verify XSS execution in headless browser (requires ChromeDriver)")
 	chromeDriver := flag.String("chrome-driver", "chromedriver", "Path to ChromeDriver executable")
+	generateReport := flag.Bool("report", false, "Generate TXT and CSV reports")
+	reportOutput := flag.String("report-output", "xsscan_report.txt", "Output file path for the TXT report")
+	csvOutput := flag.String("csv-output", "xsscan_report.csv", "Output file path for the CSV report (for Looker Studio)")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -147,9 +207,17 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --browser-verify\n")
 		fmt.Fprintf(os.Stderr, "        Verify XSS execution in headless browser (requires ChromeDriver)\n")
 		fmt.Fprintf(os.Stderr, "  --chrome-driver string\n")
-		fmt.Fprintf(os.Stderr, "        Path to ChromeDriver executable (default: chromedriver)\n\n")
+		fmt.Fprintf(os.Stderr, "        Path to ChromeDriver executable (default: chromedriver)\n")
+		fmt.Fprintf(os.Stderr, "  --report\n")
+		fmt.Fprintf(os.Stderr, "        Generate TXT and CSV reports\n")
+		fmt.Fprintf(os.Stderr, "  --report-output string\n")
+		fmt.Fprintf(os.Stderr, "        Output file path for TXT report (default: xsscan_report.txt)\n")
+		fmt.Fprintf(os.Stderr, "  --csv-output string\n")
+		fmt.Fprintf(os.Stderr, "        Output file path for CSV report (default: xsscan_report.csv)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n\n")
+		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n")
+		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --report\n")
+		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --report --csv-output results.csv\n\n")
 	}
 
 	flag.Parse()
@@ -172,6 +240,9 @@ func parseArgs() (*Config, error) {
 	config.PayloadFile = *payloadFile
 	config.BrowserVerify = *browserVerify
 	config.ChromeDriverPath = *chromeDriver
+	config.GenerateReport = *generateReport
+	config.ReportOutput = *reportOutput
+	config.CSVOutput = *csvOutput
 
 	// Validate that only one payload source is specified
 	if config.CustomPayload != "" && config.PayloadFile != "" {
@@ -256,8 +327,10 @@ func loadPayloadsFromFile(filePath string) ([]string, error) {
 }
 
 // scanParameter tests a single parameter with all payloads
-func scanParameter(config *Config, param string, payloads []string) {
+func scanParameter(config *Config, param string, payloads []string) []scanner.ScanResult {
 	fmt.Printf("[*] Testing param: %s\n", param)
+
+	var results []scanner.ScanResult
 
 	// Initialize browser verifier if enabled
 	var browserVerifier *scanner.BrowserVerifier
@@ -331,6 +404,16 @@ func scanParameter(config *Config, param string, payloads []string) {
 			}
 		}
 
+		// Store result for report generation
+		scanResult := scanner.ScanResult{
+			Parameter:       param,
+			Payload:         payload,
+			ReflectionType:  analysis.Type,
+			BrowserVerified: browserVerified,
+			XSSEventType:    xssEventType,
+		}
+		results = append(results, scanResult)
+
 		// Print results based on reflection type
 		switch analysis.Type {
 		case scanner.RawReflection:
@@ -358,7 +441,7 @@ func scanParameter(config *Config, param string, payloads []string) {
 			// Stop testing this parameter if --stop-on-hit is enabled
 			if config.StopOnHit {
 				fmt.Printf("[*] Stopping tests for param '%s' (--stop-on-hit enabled)\n\n", param)
-				return
+				return results
 			}
 
 		case scanner.EscapedReflection:
@@ -393,6 +476,8 @@ func scanParameter(config *Config, param string, payloads []string) {
 			fmt.Printf("[*] Summary for param '%s': %d raw, %d escaped\n\n", param, rawHitCount, escapedHitCount)
 		}
 	}
+
+	return results
 }
 
 // printBanner prints the application banner
