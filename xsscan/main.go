@@ -181,8 +181,8 @@ func parseArgs() (*Config, error) {
 	browserVerify := flag.Bool("browser-verify", false, "Verify XSS execution in headless browser (requires ChromeDriver)")
 	chromeDriver := flag.String("chrome-driver", "chromedriver", "Path to ChromeDriver executable")
 	generateReport := flag.Bool("report", false, "Generate TXT and CSV reports")
-	reportOutput := flag.String("report-output", "xsscan_report.txt", "Output file path for the TXT report")
-	csvOutput := flag.String("csv-output", "xsscan_report.csv", "Output file path for the CSV report (for Looker Studio)")
+	reportOutput := flag.String("report-output", "", "Custom output file path for TXT report (default: auto-generated in outputs/)")
+	csvOutput := flag.String("csv-output", "", "Custom output file path for CSV report (default: auto-generated in outputs/)")
 
 	// Custom usage message
 	flag.Usage = func() {
@@ -209,11 +209,11 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --chrome-driver string\n")
 		fmt.Fprintf(os.Stderr, "        Path to ChromeDriver executable (default: chromedriver)\n")
 		fmt.Fprintf(os.Stderr, "  --report\n")
-		fmt.Fprintf(os.Stderr, "        Generate TXT and CSV reports\n")
+		fmt.Fprintf(os.Stderr, "        Generate TXT and CSV reports (auto-timestamped in outputs/)\n")
 		fmt.Fprintf(os.Stderr, "  --report-output string\n")
-		fmt.Fprintf(os.Stderr, "        Output file path for TXT report (default: xsscan_report.txt)\n")
+		fmt.Fprintf(os.Stderr, "        Custom output file path for TXT report (default: auto-generated)\n")
 		fmt.Fprintf(os.Stderr, "  --csv-output string\n")
-		fmt.Fprintf(os.Stderr, "        Output file path for CSV report (default: xsscan_report.csv)\n\n")
+		fmt.Fprintf(os.Stderr, "        Custom output file path for CSV report (default: auto-generated)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
 		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n")
 		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --report\n")
@@ -241,8 +241,32 @@ func parseArgs() (*Config, error) {
 	config.BrowserVerify = *browserVerify
 	config.ChromeDriverPath = *chromeDriver
 	config.GenerateReport = *generateReport
-	config.ReportOutput = *reportOutput
-	config.CSVOutput = *csvOutput
+
+	// Generate timestamped filenames if report generation is enabled and no custom paths provided
+	if config.GenerateReport {
+		// Create outputs directory if it doesn't exist
+		if err := os.MkdirAll("outputs", 0755); err != nil {
+			return nil, fmt.Errorf("failed to create outputs directory: %w", err)
+		}
+
+		// Generate timestamp-based filenames
+		timestamp := time.Now().Format("20060102_150405")
+
+		if *reportOutput == "" {
+			config.ReportOutput = fmt.Sprintf("outputs/xsscan_report_%s.txt", timestamp)
+		} else {
+			config.ReportOutput = *reportOutput
+		}
+
+		if *csvOutput == "" {
+			config.CSVOutput = fmt.Sprintf("outputs/xsscan_report_%s.csv", timestamp)
+		} else {
+			config.CSVOutput = *csvOutput
+		}
+	} else {
+		config.ReportOutput = *reportOutput
+		config.CSVOutput = *csvOutput
+	}
 
 	// Validate that only one payload source is specified
 	if config.CustomPayload != "" && config.PayloadFile != "" {

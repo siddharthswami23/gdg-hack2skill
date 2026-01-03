@@ -4,13 +4,13 @@
 
 SCAN DETAILS
 ------------
-Target URL: https://0a19002403c8e3f8839c789c00210082.web-security-academy.net/
+Target URL: https://0a9a005204afaaa280f403b400d9007c.web-security-academy.net/
 HTTP Method: GET
 Parameters Tested: search
 Total Payloads: 565
-Scan Start: 2026-01-02 20:11:35
-Scan End: 2026-01-02 20:14:01
-Duration: 2m25s
+Scan Start: 2026-01-02 20:30:15
+Scan End: 2026-01-02 20:32:46
+Duration: 2m30s
 Browser Verification: true
 
 RESULTS SUMMARY
