@@ -10,23 +10,23 @@ XSSpect is a powerful CLI-based scanner designed to detect reflected XSS vulnera
 ---
 
 ## Team Details
-* **Team Name:** Sudo Squad
+* **Team Name:** TEAM MARCO
 * **Leader:** Siddharth Swami
-* **Member:** [Your Team Member 1]
-* **Member:** [Your Team Member 2]
+* **Member:** Ayush Shankarpure
+* **Member:** Chinmay Kulkarni
 
 ## Problem Statement
 Manual XSS testing is time-consuming and prone to human error. Existing automated tools suffer from:
 * **High False Positive Rates** (Detecting XSS in safe contexts like HTML comments).
 * **No Real Execution Verification** (Static analysis only, no browser testing).
 * **Poor Reporting** (No structured output for further analysis).
-* **No Cloud Integration** (Results trapped locally).
+<!-- * **No Cloud Integration** (Results trapped locally). -->
 
 ## The Solution
 XSSpect solves this by combining three powerful approaches:
-1. **Context-Aware Static Analysis**: Intelligently distinguishes between safe and dangerous HTML contexts.
-2. **Browser Verification**: Uses Selenium + ChromeDriver to verify if payloads actually execute in a real browser.
-3. **Cloud Sync**: Automatically syncs CSV reports to Google Drive for team collaboration.
+<!-- 1. **Context-Aware Static Analysis**: Intelligently distinguishes between safe and dangerous HTML contexts. -->
+1. **Browser Verification**: Uses Selenium + ChromeDriver to verify if payloads actually execute in a real browser.
+<!-- 3. **Cloud Sync**: Automatically syncs CSV reports to Google Drive for team collaboration. -->
 
 ---
 
@@ -418,4 +418,4 @@ XSSpect is designed for security professionals and penetration testers. Only use
 
 ---
 
-**Made with ❤️ by Sudo Squad for GDG Hack2Skill 2026**
+**Made with ❤️ by Team MARCO for GDG Hack2Skill 2026**
