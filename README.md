@@ -189,33 +189,4 @@ chmod +x /usr/bin/chromedriver
 
 ---
 
-## Performance
-
-- **Per Payload**: ~1-2 seconds
-- **With Browser Verify**: +3-5 seconds per hit
-- **With `--stop-on-hit`**: Under 1 minute
-
----
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file.
-
----
-
-## Disclaimer
-
-⚠️ **For Educational and Authorized Testing Only**
-
-Only use on systems you own or have permission to test.
-
----
-
-## Contact
-
-- **GitHub**: [siddharthswami23/gdg-hack2skill](https://github.com/siddharthswami23/gdg-hack2skill)
-- **Issues**: [Report a Bug](https://github.com/siddharthswami23/gdg-hack2skill/issues)
-
----
-
 **Made with ❤️ by Team MARCO for GDG Hack2Skill 2026**
