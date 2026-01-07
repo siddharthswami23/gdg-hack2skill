@@ -5,10 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 	"time"
 
-	"xsscan/scanner"
+	"xsspect/scanner"
 )
 
 const (
@@ -27,7 +28,6 @@ type Config struct {
 	BrowserVerify    bool
 	ChromeDriverPath string
 	GenerateReport   bool
-	ReportOutput     string
 	CSVOutput        string
 }
 
@@ -105,8 +105,7 @@ func main() {
 	fmt.Printf("[*] Stop on hit: %v\n", config.StopOnHit)
 	fmt.Printf("[*] Show all: %v\n", config.ShowAll)
 	if config.GenerateReport {
-		fmt.Printf("[*] Report generation: enabled\n")
-		fmt.Printf("[*] TXT output: %s\n", config.ReportOutput)
+		fmt.Printf("[*] CSV report generation: enabled\n")
 		fmt.Printf("[*] CSV output: %s\n", config.CSVOutput)
 	}
 	fmt.Println()
@@ -144,15 +143,7 @@ func main() {
 
 	// Generate report if requested
 	if config.GenerateReport {
-		fmt.Println("\n[*] Generating reports...")
-
-		// Save TXT report
-		err = scanner.SaveReport(scanSummary, config.ReportOutput)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "[!] Failed to save TXT report: %v\n", err)
-		} else {
-			fmt.Printf("[+] TXT Report saved to: %s\n", config.ReportOutput)
-		}
+		fmt.Println("\n[*] Generating CSV report...")
 
 		// Save CSV report
 		err = scanner.SaveCSVReport(scanSummary, config.CSVOutput)
@@ -160,6 +151,19 @@ func main() {
 			fmt.Fprintf(os.Stderr, "[!] Failed to save CSV report: %v\n", err)
 		} else {
 			fmt.Printf("[+] CSV Report saved to: %s\n", config.CSVOutput)
+		}
+
+		// Sync to Google Drive using rclone
+		fmt.Println("\n[*] Syncing reports to Google Drive...")
+		cmd := exec.Command("rclone", "sync", "./outputs", "gdrive:csv-data")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
+		if err := cmd.Run(); err != nil {
+			fmt.Fprintf(os.Stderr, "[!] Failed to sync to Google Drive: %v\n", err)
+			fmt.Fprintf(os.Stderr, "[!] Make sure rclone is configured (run: rclone config)\n")
+		} else {
+			fmt.Printf("[+] Reports synced to Google Drive: gdrive:csv-data\n")
 		}
 	}
 
@@ -180,14 +184,13 @@ func parseArgs() (*Config, error) {
 	payloadFile := flag.String("payload-file", "", "Path to custom payload file (.txt only)")
 	browserVerify := flag.Bool("browser-verify", false, "Verify XSS execution in headless browser (requires ChromeDriver)")
 	chromeDriver := flag.String("chrome-driver", "chromedriver", "Path to ChromeDriver executable")
-	generateReport := flag.Bool("report", false, "Generate TXT and CSV reports")
-	reportOutput := flag.String("report-output", "", "Custom output file path for TXT report (default: auto-generated in outputs/)")
+	generateReport := flag.Bool("report", false, "Generate CSV report with visualizations")
 	csvOutput := flag.String("csv-output", "", "Custom output file path for CSV report (default: auto-generated in outputs/)")
 
 	// Custom usage message
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "XSScan - Reflected XSS Scanner\n\n")
-		fmt.Fprintf(os.Stderr, "Usage: xsscan [options]\n\n")
+		fmt.Fprintf(os.Stderr, "XSSpect - Reflected XSS Scanner\n\n")
+		fmt.Fprintf(os.Stderr, "Usage: xsspect [options]\n\n")
 		fmt.Fprintf(os.Stderr, "Required:\n")
 		fmt.Fprintf(os.Stderr, "  --url string\n")
 		fmt.Fprintf(os.Stderr, "        Target URL (must include http:// or https://)\n")
@@ -209,15 +212,13 @@ func parseArgs() (*Config, error) {
 		fmt.Fprintf(os.Stderr, "  --chrome-driver string\n")
 		fmt.Fprintf(os.Stderr, "        Path to ChromeDriver executable (default: chromedriver)\n")
 		fmt.Fprintf(os.Stderr, "  --report\n")
-		fmt.Fprintf(os.Stderr, "        Generate TXT and CSV reports (auto-timestamped in outputs/)\n")
-		fmt.Fprintf(os.Stderr, "  --report-output string\n")
-		fmt.Fprintf(os.Stderr, "        Custom output file path for TXT report (default: auto-generated)\n")
+		fmt.Fprintf(os.Stderr, "        Generate CSV report with visualizations (auto-timestamped in outputs/)\n")
 		fmt.Fprintf(os.Stderr, "  --csv-output string\n")
 		fmt.Fprintf(os.Stderr, "        Custom output file path for CSV report (default: auto-generated)\n\n")
 		fmt.Fprintf(os.Stderr, "Example:\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q,name --method GET\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --report\n")
-		fmt.Fprintf(os.Stderr, "  xsscan --url https://example.com/search --params q --report --csv-output results.csv\n\n")
+		fmt.Fprintf(os.Stderr, "  xsspect --url https://example.com/search --params q,name --method GET\n")
+		fmt.Fprintf(os.Stderr, "  xsspect --url https://example.com/search --params q --report\n")
+		fmt.Fprintf(os.Stderr, "  xsspect --url https://example.com/search --params q --report --csv-output results.csv\n\n")
 	}
 
 	flag.Parse()
@@ -242,29 +243,22 @@ func parseArgs() (*Config, error) {
 	config.ChromeDriverPath = *chromeDriver
 	config.GenerateReport = *generateReport
 
-	// Generate timestamped filenames if report generation is enabled and no custom paths provided
+	// Generate timestamped filename if report generation is enabled and no custom path provided
 	if config.GenerateReport {
 		// Create outputs directory if it doesn't exist
 		if err := os.MkdirAll("outputs", 0755); err != nil {
 			return nil, fmt.Errorf("failed to create outputs directory: %w", err)
 		}
 
-		// Generate timestamp-based filenames
+		// Generate timestamp-based filename
 		timestamp := time.Now().Format("20060102_150405")
 
-		if *reportOutput == "" {
-			config.ReportOutput = fmt.Sprintf("outputs/xsscan_report_%s.txt", timestamp)
-		} else {
-			config.ReportOutput = *reportOutput
-		}
-
 		if *csvOutput == "" {
-			config.CSVOutput = fmt.Sprintf("outputs/xsscan_report_%s.csv", timestamp)
+			config.CSVOutput = fmt.Sprintf("outputs/xsspect_report_%s.csv", timestamp)
 		} else {
 			config.CSVOutput = *csvOutput
 		}
 	} else {
-		config.ReportOutput = *reportOutput
 		config.CSVOutput = *csvOutput
 	}
 
@@ -507,13 +501,14 @@ func scanParameter(config *Config, param string, payloads []string) []scanner.Sc
 // printBanner prints the application banner
 func printBanner() {
 	banner := `
- __   __ _____ _____                 
- \ \ / // ____/ ____|                
-  \ V /| (___| (___   ___ __ _ _ __  
-   > <  \___ \\___ \ / __/ _' | '_ \ 
-  / . \ ____) |___) | (_| (_| | | | |
- /_/ \_\_____/_____/ \___\__,_|_| |_|
-                                      
+ __   __ _____ _____                 _   
+ \ \ / // ____/ ____|              	| |  
+  \ V /| (___| (___  _ __   ___  ___| |_ 
+   > <  \___ \\___ \| '_ \ / _ \/ __| __|
+  / . \ ____) |___) | |_) |  __/ (__| |_ 
+ /_/ \_\_____/_____/| .__/ \___|\___|\__|
+                    | |                  
+                    |_|                  
  Reflected XSS Scanner
  ========================================
 `

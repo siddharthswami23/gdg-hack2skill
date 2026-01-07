@@ -1,22 +1,15 @@
-# XSScan - Reflected XSS Scanner
+# XSSpect - Reflected XSS Scanner
 
 CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 
 ## Features
 
 - 🔍 Automated XSS Detection
-- 🎯 700+ Built-in Payloads  
 - 🔄 Auto Retry on Network Errors
 - 📊 Smart Analysis (RAW/ESCAPED/NONE)
 - 🧠 Context-Aware Detection (Reduces False Positives)
 - 🌐 **Browser Verification (Detects alert/confirm/prompt execution!)**
-- 🛡️ HTTP/HTTPS Support
-- ⚡ Stop-on-Hit Mode
-- 👁️ Show All Payloads Mode
-- 🎨 Custom Payload Support
-- 📁 Custom Payload File Support
-
-## Installation
+- ☁️ **Google Drive Auto-Sync (rclone integration)**
 
 ### Prerequisites
 
@@ -31,16 +24,11 @@ CLI-based reflected XSS automation tool for Ubuntu/Linux systems.
 sudo apt-get update
 sudo apt-get install chromium-chromedriver
 
-# Or download manually
-wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-# Download the appropriate version for your system
-```
-
 ### Build
 
 ```bash
-cd xsscan
-go build -o xsscan
+cd xsspect
+go build -o xsspect
 ```
 
 ## Usage
@@ -48,7 +36,7 @@ go build -o xsscan
 ### Basic Syntax
 
 ```bash
-./xsscan --url <target-url> --params <param1,param2> [options]
+./xsspect --url <target-url> --params <param1,param2> [options]
 ```
 
 ### Required Arguments
@@ -71,51 +59,51 @@ go build -o xsscan
 
 #### Single parameter
 ```bash
-./xsscan --url https://example.com/search --params q
+./xsspect --url https://example.com/search --params q
 ```
 
 #### Multiple parameters
 ```bash
-./xsscan --url https://example.com/search --params q,name,filter
+./xsspect --url https://example.com/search --params q,name,filter
 ```
 
 #### POST method
 ```bash
-./xsscan --url https://example.com/api/search --params query --method POST
+./xsspect --url https://example.com/api/search --params query --method POST
 ```
 
 #### Stop on first hit
 ```bash
-./xsscan --url https://example.com/search --params q --stop-on-hit
+./xsspect --url https://example.com/search --params q --stop-on-hit
 ```
 
 #### Show all payloads (including non-triggered)
 ```bash
-./xsscan --url https://example.com/search --params q --show
+./xsspect --url https://example.com/search --params q --show
 ```
 
 #### Test with custom payload
 ```bash
-./xsscan --url https://example.com/search --params q --custom-payload "<script>alert('custom')</script>"
+./xsspect --url https://example.com/search --params q --custom-payload "<script>alert('custom')</script>"
 ```
 
 #### Test with custom payload file
 ```bash
-./xsscan --url https://example.com/search --params q --payload-file /path/to/custom_payloads.txt
+./xsspect --url https://example.com/search --params q --payload-file /path/to/custom_payloads.txt
 ```
 
 #### **Browser Verification (Verify Actual Execution!)**
 ```bash
 # Verify XSS actually executes in headless browser
-./xsscan --url https://example.com/search --params q --browser-verify
+./xsspect --url https://example.com/search --params q --browser-verify
 
 # With custom ChromeDriver path
-./xsscan --url https://example.com/search --params q --browser-verify --chrome-driver /usr/bin/chromedriver
+./xsspect --url https://example.com/search --params q --browser-verify --chrome-driver /usr/bin/chromedriver
 ```
 
 #### Combine multiple options
 ```bash
-./xsscan --url https://example.com/api/search --params query --method POST --custom-payload "<img src=x onerror=alert(document.domain)>" --show
+./xsspect --url https://example.com/api/search --params query --method POST --custom-payload "<img src=x onerror=alert(document.domain)>" --show
 ```
 
 ## Output
@@ -166,46 +154,6 @@ Shows all results including escaped reflections and no reflections:
 [-] No reflections found for param: q
 ```
 
-### **AI-Generated Report Output**
-When using `--report`, a detailed TXT report is generated:
-```
-================================================================================
-                         XSScan Security Analysis Report
-================================================================================
-
-Generated: 2025-12-31 15:30:00
-Target: https://example.com/search
-Scan Duration: 2m30s
-
-================================================================================
-
-EXECUTIVE SUMMARY
------------------
-The XSS vulnerability scan identified 3 potential vulnerabilities...
-
-RISK ASSESSMENT
----------------
-Severity: HIGH
-...
-
-TECHNICAL ANALYSIS
-------------------
-[1] Parameter: search
-    Payload: <svg/onload=alert(1)>
-    Status: VERIFIED (Browser executed alert())
-...
-
-REMEDIATION RECOMMENDATIONS
----------------------------
-1. Implement proper output encoding...
-2. Use Content Security Policy (CSP)...
-...
-
-================================================================================
-                              End of Report
-================================================================================
-```
-
 ## How It Works
 
 1. Parse arguments and validate URL
@@ -240,57 +188,8 @@ The tool now checks if payloads are in **executable contexts**:
 
 This significantly reduces false positives! See `CONTEXT_DETECTION.md` for details.
 
-## Payload Management
 
-Edit `payloads/payloads.txt` to customize payloads:
-- One payload per line
-- Lines starting with `#` or `//` are ignored
-- Empty lines are skipped
+#### Example Usage
 
-Example payloads:
-```
-<script>alert(1)</script>
-<svg/onload=alert(1)>
-<img src=x onerror=alert(1)>
-```
-
-## Troubleshooting
-
-**"go: command not found"**  
-→ Install Go: `sudo apt install golang-go`
-
-**"Failed to open payloads file"**  
-→ Run from xsscan directory
-
-**"Invalid URL"**  
-→ Include http:// or https://
-
-**No results?**  
-→ Target may be properly sanitized
-
-## Important Notes
-
-⚠️ **Use only on authorized systems**
-
-- Your own applications
-- Bug bounty programs (within scope)
-- Authorized pentests
-- Educational environments (DVWA, bWAPP)
-
-❌ **Unauthorized testing is illegal**
-
-## What This Tool Does
-
-✅ Tests reflected XSS in query parameters  
-✅ Supports HTTP/HTTPS  
-✅ Raw payload injection  
-✅ Sequential execution  
-✅ **Headless browser verification (detects actual alert/confirm/prompt execution!)**  
-
-## What This Tool Does NOT Do
-
-❌ DOM-based XSS  
-❌ Stored XSS  
-❌ URL encoding  
-❌ Concurrent requests  
-❌ Auto parameter discovery  
+```bash
+./xsscan --url "https://target.com/" --params q,search --browser-verify --report

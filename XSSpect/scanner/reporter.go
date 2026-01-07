@@ -123,8 +123,8 @@ func GenerateBasicReport(summary *ScanSummary) string {
 	var sb strings.Builder
 
 	sb.WriteString("================================================================================\n")
-	sb.WriteString("                         XSScan Security Report\n")
-	sb.WriteString("================================================================================\n\n")
+	sb.WriteString("                         XSSpect Security Report\n")
+	sb.WriteString("================================================================================\n")
 
 	sb.WriteString("SCAN DETAILS\n")
 	sb.WriteString("------------\n")

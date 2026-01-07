@@ -50,7 +50,7 @@ func SendRequest(config RequestConfig) RequestResult {
 		}
 
 		// Set a basic User-Agent to avoid being blocked by some servers
-		req.Header.Set("User-Agent", "XSScan/1.0")
+		req.Header.Set("User-Agent", "XSSpect/1.0")
 
 		// Send request
 		resp, err := client.Do(req)
@@ -69,7 +69,7 @@ func SendRequest(config RequestConfig) RequestResult {
 
 		// We got a valid HTTP response - read it and return (no retry)
 		defer resp.Body.Close()
-		
+
 		bodyBytes, err := io.ReadAll(resp.Body)
 		if err != nil {
 			result.Error = fmt.Errorf("failed to read response body: %w", err)

