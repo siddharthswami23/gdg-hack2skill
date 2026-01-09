@@ -142,7 +142,7 @@ func (bv *BrowserVerifier) VerifyXSSExecution(url string) (bool, string, error) 
 		}
 	}
 
-	// If page loaded without error, inject detection script and check
+	// If page loaded without error, inject detection script and check we overite the browser functions
 	detectionScript := `
 		window.__xss_detected = false;
 		window.__xss_type = '';
