@@ -15,6 +15,8 @@ type ScanResult struct {
 	ReflectionType  ReflectionType
 	BrowserVerified bool
 	XSSEventType    string
+	StartTime       time.Time
+	EndTime         time.Time
 }
 
 // ScanSummary holds the complete scan summary
@@ -55,7 +57,9 @@ func SaveCSVReport(summary *ScanSummary, outputPath string) error {
 
 	// Write CSV header
 	header := []string{
-		"Timestamp",
+		"Payload_Start_Time",
+		"Payload_End_Time",
+		"Duration_Seconds",
 		"Target_URL",
 		"HTTP_Method",
 		"Parameter",
@@ -70,7 +74,6 @@ func SaveCSVReport(summary *ScanSummary, outputPath string) error {
 	}
 
 	// Write each result as a row
-	timestamp := summary.EndTime.Format("2006-01-02 15:04:05")
 	for _, result := range summary.Results {
 		// Determine severity based on reflection type and browser verification
 		severity := getSeverity(result)
@@ -84,8 +87,15 @@ func SaveCSVReport(summary *ScanSummary, outputPath string) error {
 			browserVerified = "Yes"
 		}
 
+		// Format timestamps and calculate duration
+		startTime := result.StartTime.Format("2006-01-02 15:04:05.000")
+		endTime := result.EndTime.Format("2006-01-02 15:04:05.000")
+		duration := fmt.Sprintf("%.3f", result.EndTime.Sub(result.StartTime).Seconds())
+
 		row := []string{
-			timestamp,
+			startTime,
+			endTime,
+			duration,
 			summary.TargetURL,
 			summary.Method,
 			result.Parameter,

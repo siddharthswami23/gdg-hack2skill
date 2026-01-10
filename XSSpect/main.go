@@ -167,7 +167,11 @@ func main() {
 		}
 	}
 
-	fmt.Println("\n[*] Scan completed")
+	// Calculate and display total scan time
+	totalDuration := scanSummary.EndTime.Sub(scanSummary.StartTime)
+	fmt.Printf("\n[*] Scan completed in %s\n", formatDuration(totalDuration))
+	fmt.Printf("[*] Total payloads tested: %d\n", len(scanSummary.Results))
+	fmt.Printf("[*] Average time per payload: %.3f seconds\n", totalDuration.Seconds()/float64(len(scanSummary.Results)))
 }
 
 // parseArgs parses command-line arguments and returns a Config
@@ -382,6 +386,9 @@ func scanParameter(config *Config, param string, payloads []string) []scanner.Sc
 	verifiedHitCount := 0
 
 	for _, payload := range payloads {
+		// Record payload start time
+		payloadStartTime := time.Now()
+
 		// Build URL with injected payload
 		testURL, err := scanner.BuildRequestURL(config.URL, param, payload)
 		if err != nil {
@@ -422,6 +429,9 @@ func scanParameter(config *Config, param string, payloads []string) []scanner.Sc
 			}
 		}
 
+		// Record payload end time
+		payloadEndTime := time.Now()
+
 		// Store result for report generation
 		scanResult := scanner.ScanResult{
 			Parameter:       param,
@@ -429,6 +439,8 @@ func scanParameter(config *Config, param string, payloads []string) []scanner.Sc
 			ReflectionType:  analysis.Type,
 			BrowserVerified: browserVerified,
 			XSSEventType:    xssEventType,
+			StartTime:       payloadStartTime,
+			EndTime:         payloadEndTime,
 		}
 		results = append(results, scanResult)
 
@@ -496,6 +508,16 @@ func scanParameter(config *Config, param string, payloads []string) []scanner.Sc
 	}
 
 	return results
+}
+
+// formatDuration formats a duration into a human-readable string
+func formatDuration(d time.Duration) string {
+	if d < time.Minute {
+		return fmt.Sprintf("%.2f seconds", d.Seconds())
+	}
+	minutes := int(d.Minutes())
+	seconds := int(d.Seconds()) % 60
+	return fmt.Sprintf("%d minutes %d seconds", minutes, seconds)
 }
 
 // printBanner prints the application banner
