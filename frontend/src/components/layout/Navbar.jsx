@@ -16,8 +16,8 @@ import { useTheme } from '../../context/ThemeContext';
 const navigation = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Scanner', href: '/scanner', icon: Search },
-  { name: 'History', href: '/history', icon: History },
-  { name: 'Docs', href: '/docs', icon: BookOpen },
+  // { name: 'History', href: '/history', icon: History },
+  // { name: 'Docs', href: '/docs', icon: BookOpen },
 ];
 
 const Navbar = () => {

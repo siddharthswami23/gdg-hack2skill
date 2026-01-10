@@ -20,6 +20,7 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { scanHistory } from '../services/storage';
+import { scannerApi } from '../services/api';
 
 const severityConfig = {
   critical: {
@@ -54,66 +55,69 @@ const ResultsPage = () => {
   const [scan, setScan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedFinding, setSelectedFinding] = useState(null);
-  const [csvDownloaded, setCsvDownloaded] = useState(false);
 
   useEffect(() => {
     loadScanResults();
     // Poll for updates if scan is running
-    const interval = setInterval(() => {
-      const currentScan = scanHistory.get(scanId);
-      if (currentScan?.status === 'running') {
-        loadScanResults();
-      } else {
-        clearInterval(interval);
+    const interval = setInterval(async () => {
+      try {
+        const status = await scannerApi.getScanStatus(scanId);
+        if (status.status === 'running') {
+          setScan(status);
+        } else {
+          clearInterval(interval);
+          loadScanResults();
+        }
+      } catch (error) {
+        console.error('Failed to poll status:', error);
       }
     }, 2000);
 
     return () => clearInterval(interval);
   }, [scanId]);
 
-  // Auto-download CSV when scan completes
-  useEffect(() => {
-    if (scan?.status === 'completed' && scan?.results?.findings && !csvDownloaded) {
-      setCsvDownloaded(true);
-      autoDownloadCSV();
+  const loadScanResults = async () => {
+    setLoading(true);
+    try {
+      const results = await scannerApi.getScanResults(scanId);
+      setScan(results);
+      
+      // Show error toast if scan failed
+      if (results.status === 'failed') {
+        toast.error(`Scan failed: ${results.error || 'Unknown error'}`);
+      }
+      
+      // Save to local storage
+      scanHistory.update(scanId, {
+        status: results.status,
+        endTime: results.endTime,
+        results: results.results,
+        error: results.error,
+      });
+    } catch (error) {
+      console.error('Failed to load scan results:', error);
+      toast.error('Failed to load scan results');
+    } finally {
+      setLoading(false);
     }
-  }, [scan, csvDownloaded]);
-
-  const autoDownloadCSV = () => {
-    if (!scan?.results?.findings) return;
-
-    const headers = ['ID', 'Severity', 'Type', 'URL', 'Parameter', 'Payload', 'Evidence'];
-    const rows = scan.results.findings.map(f => [
-      f.id,
-      f.severity,
-      f.type,
-      f.url,
-      f.parameter,
-      `"${f.payload.replace(/"/g, '""')}"`,
-      `"${f.evidence.replace(/"/g, '""')}"`,
-    ]);
-
-    const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `xsspect_report_${scanId}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success('CSV report downloaded automatically!');
   };
 
-  const loadScanResults = () => {
-    const scanData = scanHistory.get(scanId);
-    if (scanData) {
-      setScan(scanData);
+  const handleDownloadCSV = async () => {
+    try {
+      const blob = await scannerApi.downloadCSV(scanId);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `xsspect_scan_${scanId}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast.success('CSV downloaded successfully');
+    } catch (error) {
+      console.error('Failed to download CSV:', error);
+      toast.error('Failed to download CSV');
     }
-    setLoading(false);
-  };
-
-  const handleExportCSV = () => {
-    autoDownloadCSV();
   };
 
   const copyToClipboard = (text) => {
@@ -175,7 +179,7 @@ const ResultsPage = () => {
           {!isRunning && results.findings?.length > 0 && (
             <Button
               variant="secondary"
-              onClick={handleExportCSV}
+              onClick={handleDownloadCSV}
               leftIcon={<Download className="w-4 h-4" />}
             >
               Export CSV
@@ -200,6 +204,26 @@ const ResultsPage = () => {
                 Testing payloads against target. This may take a few minutes...
               </p>
             </div>
+          </Card.Content>
+        </Card>
+      )}
+
+      {/* Error Status */}
+      {scan.status === 'failed' && (
+        <Card className="mb-6 bg-red-900/20 border-red-500/30">
+          <Card.Content className="flex items-center gap-4">
+            <AlertTriangle className="w-8 h-8 text-red-400" />
+            <div className="flex-1">
+              <p className="text-white font-medium">Scan Failed</p>
+              <p className="text-red-300 text-sm">
+                {scan.error || 'An error occurred during the scan. Please check your URL and parameters.'}
+              </p>
+            </div>
+            <Link to="/scanner">
+              <Button variant="secondary" size="sm">
+                Try Again
+              </Button>
+            </Link>
           </Card.Content>
         </Card>
       )}

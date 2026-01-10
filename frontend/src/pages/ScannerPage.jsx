@@ -39,7 +39,7 @@ const ScannerPage = () => {
     defaultValues: {
       url: '',
       method: 'GET',
-      headers: '',
+      parameters: '',
       postData: '',
     },
   });
@@ -53,24 +53,20 @@ const ScannerPage = () => {
   const onSubmit = async (data) => {
     setIsScanning(true);
     
-    // Prepare scan configuration matching your Go backend
+    // Prepare scan configuration for backend
     const scanConfig = {
       url: data.url,
       method: data.method,
-      headers: parseHeaders(data.headers),
-      postData: data.method === 'POST' ? data.postData : undefined,
+      parameters: data.parameters || extractParameters(data.url),
     };
 
     try {
-      // For now, simulate the scan (will connect to real backend later)
-      // const response = await scannerApi.startScan(scanConfig);
-      
-      // Simulate scan start
-      const mockScanId = Date.now().toString();
+      // Start real scan via backend
+      const response = await scannerApi.startScan(scanConfig);
       
       // Save to local history
-      const savedScan = scanHistory.add({
-        id: mockScanId,
+      scanHistory.add({
+        id: response.scanId,
         config: scanConfig,
         status: 'running',
         startTime: new Date().toISOString(),
@@ -78,18 +74,8 @@ const ScannerPage = () => {
 
       toast.success('Scan started successfully!');
       
-      // Simulate scan completion after delay (remove when backend is ready)
-      setTimeout(() => {
-        const mockResults = generateMockResults(scanConfig.url);
-        scanHistory.update(mockScanId, {
-          status: 'completed',
-          endTime: new Date().toISOString(),
-          results: mockResults,
-        });
-      }, 3000);
-
       // Navigate to results page
-      navigate(`/results/${mockScanId}`);
+      navigate(`/results/${response.scanId}`);
       
     } catch (error) {
       console.error('Scan failed:', error);
@@ -98,16 +84,14 @@ const ScannerPage = () => {
     }
   };
 
-  const parseHeaders = (headerString) => {
-    if (!headerString) return undefined;
-    const headers = {};
-    headerString.split('\n').forEach(line => {
-      const [key, ...value] = line.split(':');
-      if (key && value.length) {
-        headers[key.trim()] = value.join(':').trim();
-      }
-    });
-    return Object.keys(headers).length > 0 ? headers : undefined;
+  const extractParameters = (url) => {
+    try {
+      const urlObj = new URL(url);
+      const params = Array.from(urlObj.searchParams.keys());
+      return params.join(',');
+    } catch {
+      return '';
+    }
   };
 
   const handleSaveConfig = () => {
@@ -129,44 +113,6 @@ const ScannerPage = () => {
     scanConfigs.delete(configId);
     setSavedConfigs(scanConfigs.getAll());
     toast.success('Configuration deleted');
-  };
-
-  // Mock results generator (remove when backend is ready)
-  const generateMockResults = (url) => {
-    return {
-      totalTests: 150,
-      vulnerabilitiesFound: 3,
-      scanDuration: '45s',
-      findings: [
-        {
-          id: 1,
-          severity: 'high',
-          type: 'Reflected XSS',
-          url: url,
-          parameter: 'search',
-          payload: '<script>alert("XSS")</script>',
-          evidence: 'Payload reflected in response without encoding',
-        },
-        {
-          id: 2,
-          severity: 'medium',
-          type: 'DOM-based XSS',
-          url: url,
-          parameter: 'callback',
-          payload: 'javascript:alert(1)',
-          evidence: 'DOM manipulation detected with user input',
-        },
-        {
-          id: 3,
-          severity: 'low',
-          type: 'Potential XSS',
-          url: url,
-          parameter: 'name',
-          payload: '"><img src=x onerror=alert(1)>',
-          evidence: 'Input partially reflected, filtering may be bypassable',
-        },
-      ],
-    };
   };
 
   return (
@@ -252,6 +198,14 @@ const ScannerPage = () => {
               {...register('method')}
             />
 
+            {/* Parameters */}
+            <Input
+              label="Parameters"
+              placeholder="param1,param2,param3"
+              helperText="Comma-separated list of URL parameters to test (leave empty to auto-detect)"
+              {...register('parameters')}
+            />
+
             {/* POST Data (conditional) */}
             {watchMethod === 'POST' && (
               <Textarea
@@ -262,15 +216,6 @@ const ScannerPage = () => {
                 {...register('postData')}
               />
             )}
-
-            {/* Custom Headers */}
-            <Textarea
-              label="Custom Headers"
-              placeholder="X-Custom-Header: value&#10;Authorization: Bearer token"
-              helperText="One header per line in 'Key: Value' format"
-              rows={3}
-              {...register('headers')}
-            />
           </Card.Content>
         </Card>
 
