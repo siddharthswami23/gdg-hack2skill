@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"sync"
 	"time"
 
 	"xsspect/scanner"
@@ -348,164 +349,135 @@ func loadPayloadsFromFile(filePath string) ([]string, error) {
 	return payloads, nil
 }
 
-// scanParameter tests a single parameter with all payloads
+// scanParameter tests a single parameter with all payloads using concurrent workers
 func scanParameter(config *Config, param string, payloads []string) []scanner.ScanResult {
 	fmt.Printf("[*] Testing param: %s\n", param)
+	fmt.Printf("[*] Concurrent mode: 10 workers, 5 browser instances\n")
 
 	var results []scanner.ScanResult
+	var resultsMutex sync.Mutex
 
-	// Initialize browser verifier if enabled
-	var browserVerifier *scanner.BrowserVerifier
+	// Initialize browser pool if enabled
+	var browserPool *scanner.BrowserPool
 	if config.BrowserVerify {
-		browserConfig := scanner.BrowserConfig{
-			ChromeDriverPath: config.ChromeDriverPath,
-			Headless:         true,
-		}
-
-		bv, err := scanner.NewBrowserVerifier(browserConfig)
+		fmt.Printf("[*] Initializing browser pool with 5 instances...\n")
+		pool, err := scanner.NewBrowserPool(5, config.ChromeDriverPath)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "[!] Failed to initialize browser: %v\n", err)
-			fmt.Fprintf(os.Stderr, "[!] Make sure ChromeDriver is installed and in PATH\n")
-			fmt.Fprintf(os.Stderr, "[!] Continuing with static analysis only...\n\n")
+			fmt.Fprintf(os.Stderr, "[!] Failed to initialize browser pool: %v\n", err)
+			fmt.Fprintf(os.Stderr, "[!] Continuing without browser verification...\n\n")
+			config.BrowserVerify = false
 		} else {
-			err = bv.Start()
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "[!] Failed to start browser: %v\n", err)
-				fmt.Fprintf(os.Stderr, "[!] Continuing with static analysis only...\n\n")
-				browserVerifier = nil
-			} else {
-				browserVerifier = bv
-				defer browserVerifier.Close()
-				fmt.Printf("[*] Browser verification enabled (headless mode)\n\n")
-			}
+			browserPool = pool
+			defer browserPool.Cleanup()
 		}
 	}
 
+	// Create worker pool with 10 workers
+	workerPool := scanner.NewWorkerPool(10, browserPool, config.BrowserVerify)
+	workerPool.Start()
+
+	// Result collector goroutine
 	rawHitCount := 0
 	escapedHitCount := 0
 	verifiedHitCount := 0
 
-	for _, payload := range payloads {
-		// Record payload start time
-		payloadStartTime := time.Now()
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for result := range workerPool.GetResultQueue() {
+			if result.Error != nil {
+				// Silently skip errors to keep output clean
+				continue
+			}
 
-		// Build URL with injected payload
+			// Store result
+			resultsMutex.Lock()
+			results = append(results, result.ScanResult)
+
+			// Update counters
+			switch result.ReflectionType {
+			case scanner.RawReflection:
+				rawHitCount++
+				if result.BrowserVerified {
+					verifiedHitCount++
+				}
+			case scanner.EscapedReflection:
+				escapedHitCount++
+			}
+			resultsMutex.Unlock()
+
+			// Print results based on reflection type
+			switch result.ReflectionType {
+			case scanner.RawReflection:
+				if result.BrowserVerified {
+					fmt.Printf("[✓] BROWSER VERIFIED XSS: %s | Param: %s | Payload: %s\n",
+						result.URL, result.Parameter, result.Payload)
+				} else if config.BrowserVerify {
+					fmt.Printf("[~] RAW REFLECTION (not verified): %s | Param: %s | Payload: %s\n",
+						result.URL, result.Parameter, result.Payload)
+				} else {
+					fmt.Printf("[!] RAW REFLECTION: %s | Param: %s | Payload: %s\n",
+						result.URL, result.Parameter, result.Payload)
+				}
+			case scanner.EscapedReflection:
+				if config.ShowAll {
+					fmt.Printf("[-] ESCAPED: %s | Payload: %s\n", result.Parameter, result.Payload)
+				}
+			default:
+				if config.ShowAll {
+					fmt.Printf("[.] NO REFLECTION: %s | Payload: %s\n", result.Parameter, result.Payload)
+				}
+			}
+
+			// Stop on hit if enabled
+			if config.StopOnHit && result.ReflectionType == scanner.RawReflection {
+				workerPool.Stop()
+				return
+			}
+		}
+	}()
+
+	// Submit all jobs
+	jobID := 0
+	for _, payload := range payloads {
 		testURL, err := scanner.BuildRequestURL(config.URL, param, payload)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "[!] Error building URL: %v\n", err)
 			continue
 		}
 
-		// Send HTTP request
-		reqConfig := scanner.RequestConfig{
-			URL:    testURL,
-			Method: config.Method,
+		job := scanner.PayloadJob{
+			Payload:   payload,
+			URL:       testURL,
+			Method:    config.Method,
+			Parameter: param,
+			JobID:     jobID,
 		}
-
-		result := scanner.SendRequest(reqConfig)
-
-		// Handle request errors
-		if result.Error != nil {
-			// Only print errors that aren't just timeouts or common network issues
-			// (to keep output clean)
-			continue
-		}
-
-		// Analyze response
-		analysis := scanner.AnalyzeResponse(result.ResponseBody, payload, param)
-
-		// If browser verification is enabled and we found RAW reflection, verify execution
-		browserVerified := false
-		xssEventType := ""
-		if config.BrowserVerify && browserVerifier != nil && analysis.Type == scanner.RawReflection {
-			detected, eventType, err := browserVerifier.VerifyWithRetry(testURL, 1)
-			if err != nil {
-				// Verification failed, but we still report it as RAW (static analysis found it)
-				fmt.Printf("[!] Browser verification failed: %v\n", err)
-			} else if detected {
-				browserVerified = true
-				xssEventType = eventType
-				verifiedHitCount++
-			}
-		}
-
-		// Record payload end time
-		payloadEndTime := time.Now()
-
-		// Store result for report generation
-		scanResult := scanner.ScanResult{
-			Parameter:       param,
-			Payload:         payload,
-			ReflectionType:  analysis.Type,
-			BrowserVerified: browserVerified,
-			XSSEventType:    xssEventType,
-			StartTime:       payloadStartTime,
-			EndTime:         payloadEndTime,
-		}
-		results = append(results, scanResult)
-
-		// Print results based on reflection type
-		switch analysis.Type {
-		case scanner.RawReflection:
-			rawHitCount++
-
-			// Print different message based on browser verification
-			if config.BrowserVerify && browserVerified {
-				fmt.Printf("\n[+++] VERIFIED XSS (Executed in Browser!)\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Printf("    Event Type: %s()\n", xssEventType)
-				fmt.Println()
-			} else if config.BrowserVerify && !browserVerified {
-				fmt.Printf("\n[+] RAW XSS FOUND (Static Analysis - Not Verified in Browser)\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
-			} else {
-				fmt.Printf("\n[+] RAW XSS FOUND\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
-			}
-
-			// Stop testing this parameter if --stop-on-hit is enabled
-			if config.StopOnHit {
-				fmt.Printf("[*] Stopping tests for param '%s' (--stop-on-hit enabled)\n\n", param)
-				return results
-			}
-
-		case scanner.EscapedReflection:
-			escapedHitCount++
-			// Only show escaped reflections if --show flag is enabled
-			if config.ShowAll {
-				fmt.Printf("\n[~] Escaped reflection\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
-			}
-
-		case scanner.NoReflection:
-			// Show all payloads if --show flag is enabled
-			if config.ShowAll {
-				fmt.Printf("[-] No reflection\n")
-				fmt.Printf("    Param: %s\n", param)
-				fmt.Printf("    Payload: %s\n", payload)
-				fmt.Println()
-			}
-		}
+		workerPool.SubmitJob(job)
+		jobID++
 	}
 
-	// Print summary for this parameter
-	if rawHitCount == 0 && escapedHitCount == 0 {
-		fmt.Printf("[-] No reflections found for param: %s\n\n", param)
-	} else {
-		if config.BrowserVerify && verifiedHitCount > 0 {
-			fmt.Printf("[*] Summary for param '%s': %d raw (%d verified in browser), %d escaped\n\n",
-				param, rawHitCount, verifiedHitCount, escapedHitCount)
-		} else {
-			fmt.Printf("[*] Summary for param '%s': %d raw, %d escaped\n\n", param, rawHitCount, escapedHitCount)
-		}
+	// Close job queue and wait for workers to finish
+	workerPool.CloseJobs()
+	workerPool.Wait()
+
+	// Wait for result collector to finish
+	wg.Wait()
+
+	// Print summary
+	fmt.Printf("\n[*] Scan completed for parameter: %s\n", param)
+	fmt.Printf("[*] Total payloads tested: %d\n", len(payloads))
+	if rawHitCount > 0 {
+		fmt.Printf("[!] RAW reflections found: %d\n", rawHitCount)
 	}
+	if verifiedHitCount > 0 {
+		fmt.Printf("[✓] Browser verified: %d\n", verifiedHitCount)
+	}
+	if escapedHitCount > 0 {
+		fmt.Printf("[-] Escaped reflections: %d\n", escapedHitCount)
+	}
+	fmt.Println()
 
 	return results
 }

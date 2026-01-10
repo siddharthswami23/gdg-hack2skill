@@ -55,6 +55,8 @@ const ResultsPage = () => {
   const [scan, setScan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedFinding, setSelectedFinding] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     loadScanResults();
@@ -157,6 +159,19 @@ const ResultsPage = () => {
 
   const isRunning = scan.status === 'running';
   const results = scan.results || { totalTests: 0, vulnerabilitiesFound: 0, findings: [] };
+
+  // Pagination logic
+  const totalFindings = results.findings?.length || 0;
+  const totalPages = Math.ceil(totalFindings / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentFindings = results.findings?.slice(startIndex, endIndex) || [];
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+    setSelectedFinding(null); // Close any open finding when changing pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -275,11 +290,11 @@ const ResultsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <span className="text-gray-400">URL:</span>
-              <p className="text-white font-mono break-all">{scan.config?.url}</p>
+              <p className="text-white font-mono break-all">{scan.url}</p>
             </div>
             <div>
               <span className="text-gray-400">Method:</span>
-              <p className="text-white">{scan.config?.method || 'GET'}</p>
+              <p className="text-white">{scan.method || 'GET'}</p>
             </div>
             <div>
               <span className="text-gray-400">Started:</span>
@@ -299,14 +314,21 @@ const ResultsPage = () => {
       {results.findings && results.findings.length > 0 ? (
         <Card>
           <Card.Header>
-            <Card.Title className="flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-red-400" />
-              Vulnerabilities Found ({results.findings.length})
+            <Card.Title className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-red-400" />
+                Vulnerabilities Found ({results.findings.length})
+              </div>
+              {totalPages > 1 && (
+                <span className="text-sm text-gray-400">
+                  Page {currentPage} of {totalPages}
+                </span>
+              )}
             </Card.Title>
           </Card.Header>
           <Card.Content className="p-0">
             <div className="divide-y divide-gray-800">
-              {results.findings.map((finding) => {
+              {currentFindings.map((finding) => {
                 const config = severityConfig[finding.severity] || severityConfig.low;
                 const Icon = config.icon;
                 
@@ -389,6 +411,74 @@ const ResultsPage = () => {
               })}
             </div>
           </Card.Content>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <Card.Footer>
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-400">
+                  Showing {startIndex + 1}-{Math.min(endIndex, totalFindings)} of {totalFindings} vulnerabilities
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => goToPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </Button>
+                  
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                      // Show first page, last page, current page, and pages around current
+                      const showPage = 
+                        page === 1 || 
+                        page === totalPages || 
+                        (page >= currentPage - 1 && page <= currentPage + 1);
+                      
+                      const showEllipsis = 
+                        (page === currentPage - 2 && currentPage > 3) ||
+                        (page === currentPage + 2 && currentPage < totalPages - 2);
+
+                      if (showEllipsis) {
+                        return (
+                          <span key={page} className="px-2 text-gray-500">
+                            ...
+                          </span>
+                        );
+                      }
+
+                      if (!showPage) return null;
+
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => goToPage(page)}
+                          className={`min-w-[2.5rem] h-10 px-3 rounded transition-colors ${
+                            currentPage === page
+                              ? 'bg-indigo-600 text-white'
+                              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            </Card.Footer>
+          )}
         </Card>
       ) : !isRunning ? (
         <Card className="text-center py-12">

